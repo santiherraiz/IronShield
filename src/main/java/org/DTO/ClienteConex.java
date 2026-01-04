@@ -1,16 +1,20 @@
-package org.DTO;
+package org.DTO; // Te recomiendo cambiar DTO por server (DTO es para objetos de datos, no hilos)
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalTime; // Añadido para hora exacta
 
 public class ClienteConex implements Runnable {
 
     private Socket socket;
+    private int idAgente; // 1. Variable para guardar el ID del guardia
 
-    public ClienteConex(Socket socket) {
+    // Constructor
+    public ClienteConex(Socket socket, int contadorClientes) {
         this.socket = socket;
+        this.idAgente = contadorClientes; // 2. AQUÍ guardamos quién es este hilo
     }
 
     @Override
@@ -24,17 +28,23 @@ public class ClienteConex implements Runnable {
 
             String mensaje;
 
-            while ((mensaje = entrada.readLine()) != null) {
-                System.out.println("Datos recibidos: " + mensaje);
+            // Log inicial para saber que el hilo arrancó
+            System.out.println("[Agente #" + idAgente + "] CONECTADO - Esperando reportes...");
 
-                salida.println("Datos recibidos correctamente");
+            while ((mensaje = entrada.readLine()) != null) {
+                // 3. Imprimimos el ID en cada mensaje para trazabilidad
+                System.out.println("[Agente #" + idAgente + "] Reporta: " + mensaje);
+
+                // Confirmación al móvil
+                salida.println("RECIBIDO. Mando Central fuera.");
             }
 
         } catch (Exception e) {
-            System.out.println("Cliente desconectado");
+            System.err.println("[Agente #" + idAgente + "] ERROR: Conexión perdida inesperadamente.");
         } finally {
             try {
                 socket.close();
+                System.out.println("[Agente #" + idAgente + "] Socket cerrado. Sesión finalizada.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
