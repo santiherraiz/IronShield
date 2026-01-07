@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
+
+interface Props {
+  navigation: any;
+}
 
 const DATOS_REGISTRO = [
   { id: '1', tipo: 'PUNTO DE CONTROL DELTA', hora: '23:40', estado: 'OK' },
@@ -9,7 +13,16 @@ const DATOS_REGISTRO = [
   { id: '3', tipo: 'PUNTO DE CONTROL FOXTROT', hora: '23:10', estado: 'OK' },
 ];
 
-const PantallaDetalleGuardia = () => {
+const PantallaDetalleGuardia = ({ navigation }: Props) => {
+
+  const handleCerrar = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Dashboard'); 
+    }
+  };
+
   return (
     <SafeAreaView style={styles.contenedor}>
       <View style={styles.encabezado}>
@@ -53,7 +66,7 @@ const PantallaDetalleGuardia = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.botonCerrar}>
+      <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
         <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
       </TouchableOpacity>
     </SafeAreaView>
