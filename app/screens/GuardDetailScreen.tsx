@@ -3,88 +3,88 @@ import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity } from '
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 
-const LOG_DATA = [
-  { id: '1', type: 'CHECKPOINT DELTA', time: '23:40', status: 'OK' },
-  { id: '2', type: 'CHECKPOINT ECHO', time: '23:25', status: 'OK' },
-  { id: '3', type: 'CHECKPOINT FOXTROT', time: '23:10', status: 'OK' },
+const DATOS_REGISTRO = [
+  { id: '1', tipo: 'PUNTO DE CONTROL DELTA', hora: '23:40', estado: 'OK' },
+  { id: '2', tipo: 'PUNTO DE CONTROL ECHO', hora: '23:25', estado: 'OK' },
+  { id: '3', tipo: 'PUNTO DE CONTROL FOXTROT', hora: '23:10', estado: 'OK' },
 ];
 
-const GuardDetailScreen = () => {
+const PantallaDetalleGuardia = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.screenTitle}>GUARD DETAIL PANEL</Text>
+    <SafeAreaView style={styles.contenedor}>
+      <View style={styles.encabezado}>
+        <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
       </View>
 
-      <View style={styles.infoGrid}>
-        <View style={styles.infoBox}>
-          <Text style={styles.label}>ID</Text>
-          <Text style={styles.value}>G002</Text>
+      <View style={styles.cuadriculaInfo}>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>ID</Text>
+          <Text style={styles.valor}>G002</Text>
         </View>
-        <View style={styles.infoBox}>
-          <Text style={styles.label}>NAME</Text>
-          <Text style={styles.value}>RODRÍGUEZ, A.</Text>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>NOMBRE</Text>
+          <Text style={styles.valor}>RODRÍGUEZ, A.</Text>
         </View>
-        <View style={styles.infoBox}>
-          <Text style={styles.label}>SHIFT START</Text>
-          <Text style={styles.value}>22:00</Text>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>INICIO TURNO</Text>
+          <Text style={styles.valor}>22:00</Text>
         </View>
-        <View style={styles.infoBox}>
-          <Text style={styles.label}>LAST MOV.</Text>
-          <Text style={[styles.value, { color: COLORS.primary }]}>30s INACTIVITY</Text>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>ÚLT. MOV.</Text>
+          <Text style={[styles.valor, { color: COLORS.primary }]}>30s INACTIVIDAD</Text>
         </View>
       </View>
 
-      <View style={styles.logSection}>
-        <Text style={styles.sectionHeader}>CHECKPOINT LOG</Text>
+      <View style={styles.seccionRegistros}>
+        <Text style={styles.encabezadoSeccion}>REGISTRO DE PUNTOS DE CONTROL</Text>
         
         <FlatList
-          data={LOG_DATA}
+          data={DATOS_REGISTRO}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <View style={styles.logItem}>
-              <View style={styles.logIndicator} />
+            <View style={styles.itemRegistro}>
+              <View style={styles.indicadorRegistro} />
               <View style={{ flex: 1 }}>
-                <Text style={styles.logType}>{item.type}</Text>
+                <Text style={styles.tipoRegistro}>{item.tipo}</Text>
               </View>
-              <Text style={styles.logTime}>{item.time}</Text>
+              <Text style={styles.horaRegistro}>{item.hora}</Text>
             </View>
           )}
         />
       </View>
 
-      <TouchableOpacity style={styles.closeButton}>
-        <Text style={styles.closeButtonText}>CLOSE PANEL</Text>
+      <TouchableOpacity style={styles.botonCerrar}>
+        <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  contenedor: {
     flex: 1,
     backgroundColor: COLORS.background,
     padding: 10,
   },
-  header: {
+  encabezado: {
     paddingVertical: 15,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
     marginBottom: 10,
   },
-  screenTitle: {
+  tituloPantalla: {
     color: COLORS.primary,
     fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 1,
   },
-  infoGrid: {
+  cuadriculaInfo: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  infoBox: {
+  cajaInfo: {
     width: '48%',
     backgroundColor: 'transparent',
     borderWidth: 1,
@@ -92,28 +92,28 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
   },
-  label: {
+  etiqueta: {
     color: COLORS.primary,
     fontSize: 10,
     marginBottom: 5,
   },
-  value: {
+  valor: {
     color: COLORS.textHighlight,
     fontSize: 14,
     fontWeight: 'bold',
   },
-  logSection: {
+  seccionRegistros: {
     flex: 1,
     borderWidth: 1,
     borderColor: COLORS.border,
     padding: 10,
   },
-  sectionHeader: {
+  encabezadoSeccion: {
     color: COLORS.primary,
     marginBottom: 10,
     fontSize: 12,
   },
-  logItem: {
+  itemRegistro: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#000',
@@ -122,31 +122,31 @@ const styles = StyleSheet.create({
     borderLeftWidth: 3,
     borderLeftColor: COLORS.success,
   },
-  logIndicator: {
+  indicadorRegistro: {
     width: 8,
     height: 8,
     backgroundColor: COLORS.success,
     marginRight: 10,
   },
-  logType: {
+  tipoRegistro: {
     color: COLORS.text,
     fontSize: 12,
   },
-  logTime: {
+  horaRegistro: {
     color: COLORS.textHighlight,
     fontSize: 12,
     fontFamily: 'monospace',
   },
-  closeButton: {
+  botonCerrar: {
     backgroundColor: COLORS.primary,
     padding: 15,
     marginTop: 10,
     alignItems: 'center',
   },
-  closeButtonText: {
+  textoBotonCerrar: {
     color: 'black',
     fontWeight: 'bold',
   }
 });
 
-export default GuardDetailScreen;
+export default PantallaDetalleGuardia;
