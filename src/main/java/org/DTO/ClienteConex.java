@@ -1,4 +1,4 @@
-package org.DTO; // Te recomiendo cambiar DTO por server (DTO es para objetos de datos, no hilos)
+package org.DTO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
