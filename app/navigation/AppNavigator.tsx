@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'react-native';
 import { COLORS } from '../../constants/colors';
@@ -12,7 +11,7 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
+    <>
       <StatusBar barStyle="light-content" backgroundColor={COLORS.background} />
       
       <Stack.Navigator
@@ -65,7 +64,7 @@ const AppNavigator = () => {
         />
 
       </Stack.Navigator>
-    </NavigationContainer>
+    </>
   );
 };
 

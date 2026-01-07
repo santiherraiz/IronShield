@@ -1,77 +1,81 @@
 import React from 'react';
-import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import { useCentinela } from '../hooks/useCentinelaLocation';
+import { Radar, RefreshCw, AlertOctagon, ShieldCheck } from 'lucide-react-native';
 
 export const CentinelaDisplay = () => {
-    const {location, errorMsg, loading, refresh} = useCentinela();
+    const { location, errorMsg, loading, refresh } = useCentinela();
 
     return (
-    <View className="bg-black p-5 border-2 border-green-900 shadow-2xl">
-      {/* Header de Estado */}
-      <View className="flex-row items-center justify-between mb-6 border-b border-green-900 pb-3">
-        <View className="flex-row items-center">
-          <Radar size={18} color="#22c55e" />
-          <Text className="text-green-500 font-mono text-xs ml-3 tracking-[2px] font-bold uppercase">
-            Centinela V1 - En Línea
-          </Text>
-        </View>
-        <TouchableOpacity onPress={refresh} disabled={loading}>
-          <RefreshCw size={16} color={loading ? "#14532d" : "#22c55e"} />
-        </TouchableOpacity>
-      </View>
-
-      {loading ? (
-        <View className="py-10 items-center">
-          <ActivityIndicator color="#22c55e" size="large" />
-          <Text className="text-green-500 font-mono text-[10px] mt-4 uppercase animate-pulse">
-            Sincronizando coordenadas...
-          </Text>
-        </View>
-      ) : errorMsg ? (
-        <View className="bg-red-950/30 border border-red-600 p-4 flex-row items-center">
-          <AlertOctagon size={24} color="#dc2626" />
-          <Text className="text-red-500 font-mono text-xs ml-3 font-black uppercase flex-1 leading-4">
-            {errorMsg}
-          </Text>
-        </View>
-      ) : (
-        <View className="space-y-4">
-          {/* Panel de Datos GPS */}
-          <View className="bg-green-950/10 p-4 border border-green-900/40">
-            <View className="flex-row justify-between mb-3">
-              <Text className="text-green-800 font-mono text-[10px] uppercase font-bold">Latitud:</Text>
-              <Text className="text-green-400 font-mono text-base font-black">
-                {location?.coords.latitude.toFixed(6)}
-              </Text>
+        <View style={styles.card}>
+            {/* Header táctico */}
+            <View style={styles.cardHeader}>
+                <View style={styles.row}>
+                    <Radar size={16} color="#22c55e" />
+                    <Text style={styles.headerTitle}>CENTINELA V1.0 // EN LÍNEA</Text>
+                </View>
+                <TouchableOpacity onPress={refresh} disabled={loading}>
+                    <RefreshCw size={16} color={loading ? "#14532d" : "#22c55e"} />
+                </TouchableOpacity>
             </View>
-            <View className="flex-row justify-between">
-              <Text className="text-green-800 font-mono text-[10px] uppercase font-bold">Longitud:</Text>
-              <Text className="text-green-400 font-mono text-base font-black">
-                {location?.coords.longitude.toFixed(6)}
-              </Text>
-            </View>
-          </View>
 
-          {/* Verificación de Integridad */}
-          <View className="pt-3 border-t border-green-900/30 flex-row items-center justify-between">
-            <View className="flex-row items-center">
-              <ShieldCheck size={14} color="#166534" />
-              <Text className="text-green-900 font-mono text-[9px] ml-2 uppercase">
-                Precisión: {location?.coords.accuracy?.toFixed(1)} metros
-              </Text>
-            </View>
-            <View className="bg-green-900/20 px-2 py-1">
-              <Text className="text-green-500 font-mono text-[8px] font-bold">VERIFICADO</Text>
-            </View>
-          </View>
+            {loading ? (
+                <View style={styles.centerPadding}>
+                    <ActivityIndicator color="#22c55e" size="small" />
+                    <Text style={styles.loadingText}>SINCRONIZANDO CON SATÉLITE...</Text>
+                </View>
+            ) : errorMsg ? (
+                <View style={styles.errorBox}>
+                    <AlertOctagon size={20} color="#dc2626" />
+                    <Text style={styles.errorText}>{errorMsg}</Text>
+                </View>
+            ) : (
+                <View>
+                    {/* Panel de Coordenadas */}
+                    <View style={styles.dataContainer}>
+                        <View style={styles.dataRow}>
+                            <Text style={styles.dataLabel}>LATITUD:</Text>
+                            <Text style={styles.dataValue}>{location?.coords.latitude.toFixed(6)}</Text>
+                        </View>
+                        <View style={styles.dataRow}>
+                            <Text style={styles.dataLabel}>LONGITUD:</Text>
+                            <Text style={styles.dataValue}>{location?.coords.longitude.toFixed(6)}</Text>
+                        </View>
+                    </View>
+
+                    {/* Footer de Integridad */}
+                    <View style={styles.cardFooter}>
+                        <View style={styles.row}>
+                            <ShieldCheck size={12} color="#166534" />
+                            <Text style={styles.precisionText}>
+                                PRECISIÓN: {location?.coords.accuracy?.toFixed(1)}m
+                            </Text>
+                        </View>
+                        <View style={styles.verifiedBadge}>
+                            <Text style={styles.verifiedText}>VERIFICADO</Text>
+                        </View>
+                    </View>
+                </View>
+            )}
         </View>
-      )}
+    );
+};
 
-      {/* Marca de Agua Disciplinaria */}
-      <Text className="text-green-950 font-mono text-[8px] mt-6 text-center uppercase leading-3">
-        Cualquier discrepancia en la ubicación será reportada al Comandante Raül de forma automática.
-      </Text>
-    </View>
-  );
-
-}
+const styles = StyleSheet.create({
+    card: { backgroundColor: '#000', padding: 15, borderWidth: 1, borderColor: '#166534', borderRadius: 2 },
+    cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#14532d', paddingBottom: 10, marginBottom: 15 },
+    row: { flexDirection: 'row', alignItems: 'center' },
+    headerTitle: { color: '#22c55e', fontSize: 10, fontFamily: 'monospace', marginLeft: 8, fontWeight: 'bold', letterSpacing: 1 },
+    centerPadding: { paddingVertical: 20, alignItems: 'center' },
+    loadingText: { color: '#22c55e', fontSize: 8, fontFamily: 'monospace', marginTop: 10, letterSpacing: 1 },
+    errorBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(220, 38, 38, 0.1)', padding: 10, borderLeftWidth: 3, borderLeftColor: '#dc2626' },
+    errorText: { color: '#ef4444', fontSize: 10, fontFamily: 'monospace', marginLeft: 10, fontWeight: 'bold' },
+    dataContainer: { backgroundColor: 'rgba(34, 197, 94, 0.05)', padding: 12, borderLeftWidth: 1, borderLeftColor: '#22c55e' },
+    dataRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 },
+    dataLabel: { color: '#166534', fontSize: 9, fontFamily: 'monospace', fontWeight: 'bold' },
+    dataValue: { color: '#4ade80', fontSize: 14, fontFamily: 'monospace', fontWeight: 'bold' },
+    cardFooter: { marginTop: 15, paddingTop: 10, borderTopWidth: 1, borderTopColor: 'rgba(22, 101, 52, 0.2)', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    precisionText: { color: '#166534', fontSize: 8, fontFamily: 'monospace', marginLeft: 5 },
+    verifiedBadge: { backgroundColor: 'rgba(22, 101, 52, 0.3)', paddingHorizontal: 5, paddingVertical: 2 },
+    verifiedText: { color: '#22c55e', fontSize: 8, fontWeight: 'bold' }
+});
