@@ -1,5 +1,7 @@
 package org.DTO;
 
+import org.Server.UtilsServer;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -7,12 +9,11 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Cliente {
-    public static void main(String[] args) {
-        // Datos de conexión (mismo puerto)
-        String host = "localhost";
-        int puerto = 1234;
+    private static final int PORT = UtilsServer.getServerPort();
+    private static final String HOST = UtilsServer.getServerName();
 
-        try (Socket socket = new Socket(host, puerto)) {
+    public static void main(String[] args) {
+        try (Socket socket = new Socket(HOST, PORT)) {
             System.out.println("--- MÓVIL CONECTADO AL SISTEMA IRON SHIELD ---");
 
             // Comunicacion
