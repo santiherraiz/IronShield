@@ -37,10 +37,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-<<<<<<< HEAD
-
-node_modules/
-jspm_packages/
-=======
 /.idea/
->>>>>>> 8ca1039c ([GITIGNORE] Ignorando .idea/)
+node_modules
