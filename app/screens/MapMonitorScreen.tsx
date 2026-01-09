@@ -18,7 +18,6 @@ const PantallaMonitoreoMapa = () => {
 
     return (
         <SafeAreaView style={styles.contenedor}>
-            {/* Cabecera Táctica */}
             <View style={styles.barraSuperior}>
                 <Text style={styles.textoZona}>ZONA: POLÍGONO NORTE</Text>
                 <View style={styles.indicadorSenal}>
@@ -26,7 +25,6 @@ const PantallaMonitoreoMapa = () => {
                 </View>
             </View>
 
-            {/* Visualizador de Mapa/Centinela */}
             <View style={styles.marcadorMapa}>
                 <View style={styles.radarOverlay}>
                     <CentinelaDisplay />
@@ -37,7 +35,6 @@ const PantallaMonitoreoMapa = () => {
                 </View>
             </View>
 
-            {/* Panel de Telemetría */}
             <View style={styles.panelCoordenadas}>
                 <Text style={styles.tituloPanel}>TELEMETRÍA EN VIVO</Text>
                 
@@ -65,36 +62,106 @@ const PantallaMonitoreoMapa = () => {
 };
 
 const styles = StyleSheet.create({
-    contenedor: { flex: 1, backgroundColor: '#000' },
+    contenedor: { 
+        flex: 1, 
+        backgroundColor: COLORS.background 
+    },
     barraSuperior: { 
         flexDirection: 'row', 
         justifyContent: 'space-between', 
         padding: 15, 
-        backgroundColor: '#0a0a0a', 
+        backgroundColor: COLORS.card, 
         borderBottomWidth: 1, 
-        borderBottomColor: '#166534' 
+        borderBottomColor: COLORS.border 
     },
-    textoZona: { color: '#22c55e', fontSize: 10, fontWeight: 'bold', letterSpacing: 2 },
-    indicadorSenal: { backgroundColor: '#22c55e', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 1 },
-    textoSenal: { color: 'black', fontSize: 9, fontWeight: '900' },
-    marcadorMapa: { flex: 2, backgroundColor: '#00050a', justifyContent: 'center', padding: 20 },
-    radarOverlay: { flex: 1, justifyContent: 'center' },
-    coordFooter: { marginTop: 20, alignItems: 'center', borderTopWidth: 1, borderTopColor: 'rgba(22, 101, 52, 0.2)', paddingTop: 10 },
-    labelCoords: { color: '#166534', fontSize: 8, fontFamily: 'monospace' },
-    valorCoords: { color: '#22c55e', fontSize: 9, fontFamily: 'monospace', fontWeight: 'bold' },
+    textoZona: { 
+        color: COLORS.textHighlight, 
+        fontSize: 10, 
+        fontWeight: 'bold', 
+        letterSpacing: 2 
+    },
+    indicadorSenal: { 
+        backgroundColor: COLORS.success, 
+        paddingHorizontal: 8, 
+        paddingVertical: 2, 
+        borderRadius: 4 
+    },
+    textoSenal: { 
+        color: COLORS.primaryText, 
+        fontSize: 9, 
+        fontWeight: '900' 
+    },
+    marcadorMapa: { 
+        flex: 2, 
+        backgroundColor: COLORS.background, 
+        justifyContent: 'center', 
+        padding: 20 
+    },
+    radarOverlay: { 
+        flex: 1, 
+        justifyContent: 'center' 
+    },
+    coordFooter: { 
+        marginTop: 20, 
+        alignItems: 'center', 
+        borderTopWidth: 1, 
+        borderTopColor: COLORS.border, 
+        paddingTop: 10 
+    },
+    labelCoords: { 
+        color: COLORS.text, 
+        fontSize: 8, 
+        fontFamily: 'monospace' 
+    },
+    valorCoords: { 
+        color: COLORS.primary,
+        fontSize: 9, 
+        fontFamily: 'monospace', 
+        fontWeight: 'bold' 
+    },
     panelCoordenadas: { 
         flex: 1, 
         padding: 25, 
-        backgroundColor: '#000', 
+        backgroundColor: COLORS.card,
         borderTopWidth: 2, 
-        borderTopColor: '#22c55e' 
+        borderTopColor: COLORS.primary
     },
-    tituloPanel: { color: '#e2e8f0', fontSize: 10, letterSpacing: 3, marginBottom: 20, borderBottomWidth: 1, borderBottomColor: 'rgba(34, 197, 94, 0.2)', paddingBottom: 5 },
-    fila: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
-    etiqueta: { color: '#94a3b8', fontSize: 11, fontFamily: 'monospace' },
-    valor: { color: '#4ade80', fontSize: 11, fontWeight: 'bold', fontFamily: 'monospace' },
-    alertaContenedor: { marginTop: 15, padding: 10, alignItems: 'center' },
-    textoAlerta: { color: '#22c55e', fontSize: 10, fontWeight: '900', letterSpacing: 2 }
+    tituloPanel: { 
+        color: COLORS.text, 
+        fontSize: 10, 
+        letterSpacing: 3, 
+        marginBottom: 20, 
+        borderBottomWidth: 1, 
+        borderBottomColor: COLORS.border, 
+        paddingBottom: 5 
+    },
+    fila: { 
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        marginBottom: 10 
+    },
+    etiqueta: { 
+        color: COLORS.text, 
+        fontSize: 11, 
+        fontFamily: 'monospace' 
+    },
+    valor: { 
+        color: COLORS.textHighlight, 
+        fontSize: 11, 
+        fontWeight: 'bold', 
+        fontFamily: 'monospace' 
+    },
+    alertaContenedor: { 
+        marginTop: 15, 
+        padding: 10, 
+        alignItems: 'center' 
+    },
+    textoAlerta: { 
+        color: COLORS.success,
+        fontSize: 10, 
+        fontWeight: '900', 
+        letterSpacing: 2 
+    }
 });
 
 export default PantallaMonitoreoMapa;
