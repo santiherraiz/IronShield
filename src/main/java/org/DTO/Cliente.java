@@ -1,5 +1,7 @@
 package org.DTO;
 
+import org.Server.UtilsServer;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -8,9 +10,9 @@ import java.util.Scanner;
 
 public class Cliente {
     public static void main(String[] args) {
-        // Datos de conexión (mismo puerto)
+
         String host = "localhost";
-        int puerto = 1234;
+        int puerto = UtilsServer.getServerPort();
 
         try (Socket socket = new Socket(host, puerto)) {
             System.out.println("--- MÓVIL CONECTADO AL SISTEMA IRON SHIELD ---");
@@ -32,10 +34,9 @@ public class Cliente {
                     break;
                 }
 
-                // 1. Enviar al servidor
+
                 salida.println(mensajeUsuario);
 
-                // 2. Esperar respuesta del servidor (ACK)
                 String respuesta = entrada.readLine();
                 System.out.println("SERVIDOR DICE: " + respuesta);
             }

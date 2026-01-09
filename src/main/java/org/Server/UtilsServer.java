@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Objects;
 
-class UtilsServer {
+public class UtilsServer {
     private static final String PATH = "server.properties";
 
     private static String getValueFromConf(String key) {

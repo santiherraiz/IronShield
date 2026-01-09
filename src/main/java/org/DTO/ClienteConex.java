@@ -9,7 +9,7 @@ import java.time.LocalTime; // Añadido para hora exacta
 public class ClienteConex implements Runnable {
 
     private Socket socket;
-    private int idAgente; // 1. Variable para guardar el ID del guardia
+    private int idAgente; // Id guardia
 
     // Constructor
     public ClienteConex(Socket socket, int contadorClientes) {
@@ -28,14 +28,14 @@ public class ClienteConex implements Runnable {
 
             String mensaje;
 
-            // Log inicial para saber que el hilo arrancó
+            // Log inicial
             System.out.println("[Agente #" + idAgente + "] CONECTADO - Esperando reportes...");
 
             while ((mensaje = entrada.readLine()) != null) {
-                // 3. Imprimimos el ID en cada mensaje para trazabilidad
+
                 System.out.println("[Agente #" + idAgente + "] Reporta: " + mensaje);
 
-                // Confirmación al móvil
+
                 salida.println("RECIBIDO. Mando Central fuera.");
             }
 
