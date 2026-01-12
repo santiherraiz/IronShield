@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
+import { sendErrorToJava } from '../services/LogService';
 
 interface Props {
   navigation: any;
@@ -11,9 +12,19 @@ const PantallaLogin = ({ navigation }: Props) => {
   const [idServicio, setIdServicio] = useState('');
   const [contrasena, setContrasena] = useState('');
 
-  const gestionarInicioSesion = () => {
-    console.log('Intentando conectar al servidor...');
-    navigation.replace('OperationsStack');
+  const gestionarInicioSesion = async () => {
+    try {
+      if (!idServicio.trim() || !contrasena.trim()) {
+        throw new Error('ID de servicio y contraseña son requeridos');
+      }
+
+      console.log('Login: ' + idServicio);
+      navigation.replace('OperationsStack');
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      sendErrorToJava(msg, 'LoginScreen');
+      Alert.alert('Error', msg);
+    }
   };
 
   return (

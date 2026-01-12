@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
+import { sendErrorToJava } from '../services/LogService';
 
 interface Props {
   navigation: any;
@@ -16,10 +17,15 @@ const DATOS_REGISTRO = [
 const PantallaDetalleGuardia = ({ navigation }: Props) => {
 
   const handleCerrar = () => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    } else {
-      navigation.navigate('Dashboard'); 
+    try {
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        navigation.navigate('Dashboard'); 
+      }
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      sendErrorToJava(msg, 'GuardDetailScreen');
     }
   };
 

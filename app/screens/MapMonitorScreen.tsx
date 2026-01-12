@@ -3,17 +3,23 @@ import { View, Text, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { CentinelaDisplay } from '../../components/CentinelaDisplay';
+import { sendErrorToJava } from '../services/LogService';
 
 const PantallaMonitoreoMapa = () => {
     const pulseAnim = React.useRef(new Animated.Value(1)).current;
 
     React.useEffect(() => {
-        Animated.loop(
-            Animated.sequence([
-                Animated.timing(pulseAnim, { toValue: 0.4, duration: 1500, useNativeDriver: true }),
-                Animated.timing(pulseAnim, { toValue: 1, duration: 1500, useNativeDriver: true }),
-            ])
-        ).start();
+        try {
+            Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulseAnim, { toValue: 0.4, duration: 1500, useNativeDriver: true }),
+                    Animated.timing(pulseAnim, { toValue: 1, duration: 1500, useNativeDriver: true }),
+                ])
+            ).start();
+        } catch (error) {
+            const msg = error instanceof Error ? error.message : String(error);
+            sendErrorToJava(msg, 'MapMonitorScreen');
+        }
     }, []);
 
     return (
