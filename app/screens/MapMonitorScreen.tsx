@@ -1,113 +1,173 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
+import { CentinelaDisplay } from '../../components/CentinelaDisplay';
+import { sendErrorToJava } from '../services/LogService';
 
 const PantallaMonitoreoMapa = () => {
-  return (
-    <SafeAreaView style={styles.contenedor}>
-      <View style={styles.barraSuperior}>
-        <Text style={styles.textoZona}>ZONA: POLÍGONO NORTE</Text>
-        <View style={styles.indicadorSenal}>
-          <Text style={styles.textoSenal}>SEÑAL: FUERTE</Text>
-        </View>
-      </View>
+    const pulseAnim = React.useRef(new Animated.Value(1)).current;
 
-      <View style={styles.marcadorMapa}>
-        <Text style={{ color: COLORS.text }}>
-          [COMPONENTE DE VISTA DE MAPA AQUÍ]
-        </Text>
-        <Text style={{ color: COLORS.text, marginTop: 10 }}>
-          Lat: 39.4699 | Lon: -0.3763
-        </Text>
-      </View>
+    React.useEffect(() => {
+        try {
+            Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulseAnim, { toValue: 0.4, duration: 1500, useNativeDriver: true }),
+                    Animated.timing(pulseAnim, { toValue: 1, duration: 1500, useNativeDriver: true }),
+                ])
+            ).start();
+        } catch (error) {
+            const msg = error instanceof Error ? error.message : String(error);
+            sendErrorToJava(msg, 'MapMonitorScreen');
+        }
+    }, []);
 
-      <View style={styles.panelCoordenadas}>
-        <Text style={styles.tituloPanel}>TELEMETRÍA EN VIVO</Text>
-        <View style={styles.fila}>
-          <Text style={styles.etiqueta}>VELOCIDAD:</Text>
-          <Text style={styles.valor}>0 km/h</Text>
-        </View>
-        <View style={styles.fila}>
-          <Text style={styles.etiqueta}>ÚLTIMO PING:</Text>
-          <Text style={styles.valor}>hace 0s</Text>
-        </View>
-   
-        <Text style={styles.textoAlerta}>SIN MOVIMIENTO DETECTADO (5s)</Text>
-      </View>
-    </SafeAreaView>
-  );
+    return (
+        <SafeAreaView style={styles.contenedor}>
+            <View style={styles.barraSuperior}>
+                <Text style={styles.textoZona}>ZONA: POLÍGONO NORTE</Text>
+                <View style={styles.indicadorSenal}>
+                    <Text style={styles.textoSenal}>SEÑAL: FUERTE</Text>
+                </View>
+            </View>
+
+            <View style={styles.marcadorMapa}>
+                <View style={styles.radarOverlay}>
+                    <CentinelaDisplay />
+                    <View style={styles.coordFooter}>
+                        <Text style={styles.labelCoords}>SISTEMA DE POSICIONAMIENTO GLOBAL</Text>
+                        <Text style={styles.valorCoords}>ACTIVO // ALTA PRECISIÓN</Text>
+                    </View>
+                </View>
+            </View>
+
+            <View style={styles.panelCoordenadas}>
+                <Text style={styles.tituloPanel}>TELEMETRÍA EN VIVO</Text>
+                
+                <View style={styles.fila}>
+                    <Text style={styles.etiqueta}>VELOCIDAD:</Text>
+                    <Text style={styles.valor}>0.0 KM/H</Text>
+                </View>
+                
+                <View style={styles.fila}>
+                    <Text style={styles.etiqueta}>LATENCIA PING:</Text>
+                    <Text style={styles.valor}>24 MS</Text>
+                </View>
+                
+                <View style={styles.fila}>
+                    <Text style={styles.etiqueta}>ESTADO DEL LINK:</Text>
+                    <Text style={[styles.valor, { color: COLORS.primary }]}>ENCRIPTADO</Text>
+                </View>
+
+                <Animated.View style={[styles.alertaContenedor, { opacity: pulseAnim }]}>
+                    <Text style={styles.textoAlerta}>SIN MOVIMIENTO DETECTADO</Text>
+                </Animated.View>
+            </View>
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
-  contenedor: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-  barraSuperior: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 15,
-    backgroundColor: COLORS.card,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
-  },
-  textoZona: {
-    color: COLORS.primary,
-    fontWeight: 'bold',
-  },
-  indicadorSenal: {
-    backgroundColor: COLORS.success,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 2,
-  },
-  textoSenal: {
-    color: 'black',
-    fontSize: 10,
-    fontWeight: 'bold',
-  },
-  marcadorMapa: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#001020',
-  },
-  panelCoordenadas: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: COLORS.background,
-    borderTopWidth: 2,
-    borderTopColor: COLORS.primary,
-  },
-  tituloPanel: {
-    color: COLORS.text,
-    fontSize: 12,
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
-    paddingBottom: 5,
-  },
-  fila: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  etiqueta: {
-    color: COLORS.text,
-    fontFamily: 'monospace',
-  },
-  valor: {
-    color: COLORS.textHighlight,
-    fontWeight: 'bold',
-    fontFamily: 'monospace',
-  },
-  textoAlerta: {
-    color: COLORS.primary,
-    marginTop: 10,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  }
+    contenedor: { 
+        flex: 1, 
+        backgroundColor: COLORS.background 
+    },
+    barraSuperior: { 
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        padding: 15, 
+        backgroundColor: COLORS.card, 
+        borderBottomWidth: 1, 
+        borderBottomColor: COLORS.border 
+    },
+    textoZona: { 
+        color: COLORS.textHighlight, 
+        fontSize: 10, 
+        fontWeight: 'bold', 
+        letterSpacing: 2 
+    },
+    indicadorSenal: { 
+        backgroundColor: COLORS.success, 
+        paddingHorizontal: 8, 
+        paddingVertical: 2, 
+        borderRadius: 4 
+    },
+    textoSenal: { 
+        color: COLORS.primaryText, 
+        fontSize: 9, 
+        fontWeight: '900' 
+    },
+    marcadorMapa: { 
+        flex: 2, 
+        backgroundColor: COLORS.background, 
+        justifyContent: 'center', 
+        padding: 20 
+    },
+    radarOverlay: { 
+        flex: 1, 
+        justifyContent: 'center' 
+    },
+    coordFooter: { 
+        marginTop: 20, 
+        alignItems: 'center', 
+        borderTopWidth: 1, 
+        borderTopColor: COLORS.border, 
+        paddingTop: 10 
+    },
+    labelCoords: { 
+        color: COLORS.text, 
+        fontSize: 8, 
+        fontFamily: 'monospace' 
+    },
+    valorCoords: { 
+        color: COLORS.primary,
+        fontSize: 9, 
+        fontFamily: 'monospace', 
+        fontWeight: 'bold' 
+    },
+    panelCoordenadas: { 
+        flex: 1, 
+        padding: 25, 
+        backgroundColor: COLORS.card,
+        borderTopWidth: 2, 
+        borderTopColor: COLORS.primary
+    },
+    tituloPanel: { 
+        color: COLORS.text, 
+        fontSize: 10, 
+        letterSpacing: 3, 
+        marginBottom: 20, 
+        borderBottomWidth: 1, 
+        borderBottomColor: COLORS.border, 
+        paddingBottom: 5 
+    },
+    fila: { 
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        marginBottom: 10 
+    },
+    etiqueta: { 
+        color: COLORS.text, 
+        fontSize: 11, 
+        fontFamily: 'monospace' 
+    },
+    valor: { 
+        color: COLORS.textHighlight, 
+        fontSize: 11, 
+        fontWeight: 'bold', 
+        fontFamily: 'monospace' 
+    },
+    alertaContenedor: { 
+        marginTop: 15, 
+        padding: 10, 
+        alignItems: 'center' 
+    },
+    textoAlerta: { 
+        color: COLORS.success,
+        fontSize: 10, 
+        fontWeight: '900', 
+        letterSpacing: 2 
+    }
 });
 
 export default PantallaMonitoreoMapa;

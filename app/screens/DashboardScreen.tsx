@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
+import { sendErrorToJava } from '../services/LogService';
 
 const PantallaPanelControl = ({ navigation }: any) => {
   const [estado, setEstado] = useState('NOMINAL');
 
-  const gestionarPuntoControl = () => {
-    const horaActual = new Date().toLocaleTimeString();
-    Alert.alert("PUNTO DE CONTROL", `Coordenadas y hora (${horaActual}) enviadas al servidor.`);
+  const gestionarPuntoControl = async () => {
+    try {
+      const horaActual = new Date().toLocaleTimeString();
+      Alert.alert("PUNTO DE CONTROL", `Coordenadas y hora (${horaActual}) enviadas al servidor.`);
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      sendErrorToJava(msg, 'DashboardScreen');
+    }
   };
 
   return (
