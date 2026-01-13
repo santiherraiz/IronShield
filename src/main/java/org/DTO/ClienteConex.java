@@ -1,4 +1,4 @@
-package org.DTO;
+package java.org.DTO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

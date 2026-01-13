@@ -1,6 +1,6 @@
-package org.DTO;
+package java.org.DTO;
 
-import org.Server.UtilsServer;
+import java.org.Server.UtilsServer;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
