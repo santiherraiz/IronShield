@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS guardia_posicion (
     latitud DOUBLE NOT NULL,
     longitud DOUBLE NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);git
+);
