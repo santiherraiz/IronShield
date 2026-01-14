@@ -1,4 +1,4 @@
-package java.org.Server;
+package org.Server;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
