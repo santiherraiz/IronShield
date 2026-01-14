@@ -2,3 +2,5 @@
 [LOG] Mensaje envíado al servidor.[2026-01-13 | 21:37:16]
 [LOG] Mensaje envíado al servidor.[2026-01-13 | 22:08:37]
 [LOG] Cliente con IP 127.0.0.1 se ha desconectado[2026-01-13 | 22:08:37]
+[LOG] Cliente con IP 127.0.0.1 se ha desconectado[2026-01-14 | 10:17:49]
+[LOG] Mensaje envíado al servidor.[2026-01-14 | 10:17:50]
