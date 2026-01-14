@@ -18,6 +18,7 @@ const AppNavigator = () => {
         id="MainStack"
         initialRouteName="Login"
         screenOptions={{
+          headerShown: false,
           headerStyle: {
             backgroundColor: COLORS.background,
             borderBottomWidth: 1,

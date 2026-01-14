@@ -2,35 +2,16 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
-import { sendErrorToJava } from '../services/LogService';
+import { useLogin } from '../../hooks/useLogin';
 
-interface Props {
-  navigation: any;
-}
+const PantallaLogin = () => {
 
-const PantallaLogin = ({ navigation }: Props) => {
-  const [idServicio, setIdServicio] = useState('');
-  const [contrasena, setContrasena] = useState('');
-
-  const gestionarInicioSesion = async () => {
-    try {
-      if (!idServicio.trim() || !contrasena.trim()) {
-        throw new Error('ID de servicio y contraseña son requeridos');
-      }
-
-      console.log('Login: ' + idServicio);
-      navigation.replace('OperationsStack');
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : String(error);
-      sendErrorToJava(msg, 'LoginScreen');
-      Alert.alert('Error', msg);
-    }
-  };
+  const { idServicio, setIdServicio, contrasena, setContrasena, gestionarInicioSesion } = useLogin();
 
   return (
     <SafeAreaView style={styles.contenedor}>
       <StatusBar barStyle="light-content" backgroundColor={COLORS.background} />
-      
+
       <View style={styles.encabezado}>
         <Text style={styles.titulo}>TRACKMATE</Text>
         <Text style={styles.subtitulo}>OPERACIONES DE SEGURIDAD</Text>
