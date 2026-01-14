@@ -2,11 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
-import { sendErrorToJava } from '../services/LogService';
-
-interface Props {
-  navigation: any;
-}
+import { useGuardDetailScreen } from '../../hooks/useGuardDetailScreen';
 
 const DATOS_REGISTRO = [
   { id: '1', tipo: 'PUNTO DE CONTROL DELTA', hora: '23:40', estado: 'OK' },
@@ -14,20 +10,9 @@ const DATOS_REGISTRO = [
   { id: '3', tipo: 'PUNTO DE CONTROL FOXTROT', hora: '23:10', estado: 'OK' },
 ];
 
-const PantallaDetalleGuardia = ({ navigation }: Props) => {
+const PantallaDetalleGuardia = () => {
 
-  const handleCerrar = () => {
-    try {
-      if (navigation.canGoBack()) {
-        navigation.goBack();
-      } else {
-        navigation.navigate('Dashboard'); 
-      }
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : String(error);
-      sendErrorToJava(msg, 'GuardDetailScreen');
-    }
-  };
+  const { handleCerrar } = useGuardDetailScreen();
 
   return (
     <SafeAreaView style={styles.contenedor}>
@@ -56,7 +41,7 @@ const PantallaDetalleGuardia = ({ navigation }: Props) => {
 
       <View style={styles.seccionRegistros}>
         <Text style={styles.encabezadoSeccion}>REGISTRO DE PUNTOS DE CONTROL</Text>
-        
+
         <FlatList
           data={DATOS_REGISTRO}
           keyExtractor={(item) => item.id}
