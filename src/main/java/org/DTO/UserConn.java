@@ -16,9 +16,7 @@ import java.net.Socket;
 public class UserConn implements Runnable {
     private final User user;
 
-    public UserConn(User user) {
-        this.user = user;
-    }
+    public UserConn(User user) { this.user = user; }
 
     /**
      * La función {@code serialiseUser} sirve para serializar al agente que se le pase como argumento.
@@ -26,9 +24,7 @@ public class UserConn implements Runnable {
                     frontend
      * @return      Devuelve un {@link String} con el JSON del agente.
      */
-    private static String serialiseUser(User user) {
-        return new Gson().toJson(user);
-    }
+    private static String serialiseUser(User user) { return new Gson().toJson(user); }
 
     /**
      * La función {@code run} viene de la interfaz {@link Runnable} y se ejecuta cuando empieza un hilo. La función
@@ -37,7 +33,10 @@ public class UserConn implements Runnable {
      */
     public void run() {
         try (
-            final Socket socket = new Socket(UtilsServer.getServerName(), UtilsServer.getServerPort());
+            final Socket socket = new Socket(
+                    UtilsServer.getServerName("server.properties"),
+                    UtilsServer.getServerPort("server.properties")
+            );
             final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))
         ) {
             bw.write(serialiseUser(this.user));

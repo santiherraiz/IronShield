@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useDashboardScreen } from '../../hooks/useDashboardScreen';
+import TestServerButton from "../../components/TestServerButton";
 
 const PantallaPanelControl = ({ navigation }: any) => {
 
@@ -34,6 +35,7 @@ const PantallaPanelControl = ({ navigation }: any) => {
             <Text style={styles.subtextoPuntoControl}>ASEGURADO</Text>
           </View>
         </TouchableOpacity>
+        <TestServerButton />
       </View>
 
       <View style={styles.navegacionCuadricula}>

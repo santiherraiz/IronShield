@@ -17,8 +17,7 @@ import java.util.Objects;
  * con fecha y hora. La función para escribir también está asociada a esta clase.
  */
 public class UtilsServer {
-    // Ficheros de configuración y de log
-    private static final String SERVER_PROPERTIES = "server.properties";
+    // Fichero de log
     private static final String SERVER_LOG = System.getProperty("user.dir") + "/src/server-logs/server_log.txt";
 
     /**
@@ -54,8 +53,8 @@ public class UtilsServer {
      * @param key Es el campo que quieres buscar (debe estar dentro del fichero de configuración, si no dará null)
      * @return El valor de la clave pasada, si hay un problema o no es válida la clave, devuelve null.
      */
-    private static String getValueFromConf(String key) {
-        try (final BufferedReader br = new BufferedReader(new FileReader(SERVER_PROPERTIES))) {
+    private static String getValueFromConf(String key, String path) {
+        try (final BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
             final HashMap<String, String> dict = new HashMap<>();
             while ((line = br.readLine()) != null) {
@@ -80,17 +79,17 @@ public class UtilsServer {
     /**
      * @return Devuelve el nombre del servidor llamando a la función {@code getValueFromConf}
      */
-    public static String getServerName() {
-        return getValueFromConf("host");
+    public static String getServerName(String path) {
+        return getValueFromConf("host", path);
     }
 
     /**
      * @return Devuelve el puerto del servidor llamando a la función {@code getValueFromConf},
      * comprobando si se puede parsear a {@link Integer}
      */
-    public static int getServerPort() {
+    public static int getServerPort(String path) {
         try {
-            return Integer.parseInt(Objects.requireNonNull(getValueFromConf("port")));
+            return Integer.parseInt(Objects.requireNonNull(getValueFromConf("port", path)));
         } catch (Exception e) {
             System.err.println("[ERROR] Hay un error al parsear el puerto a Integer (Es NULL, seguramente sea null)");
         }
