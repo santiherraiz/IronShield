@@ -6,9 +6,6 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.DTO.User;
-import org.DTO.UserConn;
-
 public class Servidor {
 
     private static final int PORT = UtilsServer.getServerPort("server.properties");

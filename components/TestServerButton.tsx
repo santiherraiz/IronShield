@@ -1,11 +1,16 @@
 import {useState} from "react";
 import {Button, View, Text, Platform} from "react-native";
 
+interface Props {
+    latitude: string;
+    longitude: string;
+}
+
 /**
  * <h1><strong>PROVISIONAL</strong></h1>
  * @constructor
  */
-const TestServerButton = () => {
+const TestServerButton = ({ latitude, longitude }: Props) => {
     const [status, setStatus] = useState("Sin conexión");
 
     const testConn = async () => {
