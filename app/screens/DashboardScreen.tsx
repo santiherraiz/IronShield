@@ -10,7 +10,7 @@ const PantallaPanelControl = ({ navigation }: any) => {
 
   const { estado, setEstado, gestionarPuntoControl } = useDashboardScreen();
   const { location } = useCentinela();
-  const { handleConn } = useServer();
+  const { sendLocation } = useServer();
 
   return (
     <SafeAreaView style={styles.contenedor}>
@@ -32,7 +32,7 @@ const PantallaPanelControl = ({ navigation }: any) => {
           AL LLEGAR A POSICIÓN, PULSE PARA CONFIRMAR PRESENCIA
         </Text>
         
-        <TouchableOpacity style={styles.botonPuntoControl} onPress={() => handleConn(location?.coords.latitude.toFixed(6), location?.coords.longitude.toFixed(6))}>
+        <TouchableOpacity style={styles.botonPuntoControl} onPress={() => sendLocation(location?.coords.latitude.toFixed(6), location?.coords.longitude.toFixed(6))}>
           <View style={styles.anilloInterno}>
             <Text style={styles.textoPuntoControl}>PUNTO DE CONTROL</Text>
             <Text style={styles.subtextoPuntoControl}>ASEGURADO</Text>
