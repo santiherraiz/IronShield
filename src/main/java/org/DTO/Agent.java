@@ -9,20 +9,17 @@ package org.DTO;
  *<br>  Aquí también se lanza la instancía del agente, para que se conecte a la base de datos.
  */
 public class Agent {
-    private final String name;
     private final double latitude;
     private final double longitude;
 
-    public Agent(String name, double latitude, double longitude) {
-        this.name = name;
+    public Agent(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     @Override
     public String toString() {
-        return "Nombre: " + this.name + "\n" +
-                "Latitud: " + this.latitude + "\n" +
+        return  "Latitud: " + this.latitude + "\n" +
                 "Longitud: " + this.longitude;
     }
 }
