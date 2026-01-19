@@ -11,8 +11,8 @@ import org.DTO.UserConn;
 
 public class Servidor {
 
-    private static final int PORT = UtilsServer.getServerPort();
-    private static final String HOST = UtilsServer.getServerName();
+    private static final int PORT = UtilsServer.getServerPort("server.properties");
+    private static final String HOST = UtilsServer.getServerName("server.properties");
 
     /**
      * La función el mensaje que ha enviado el cliente conectado, si es que envía algún mensaje.
