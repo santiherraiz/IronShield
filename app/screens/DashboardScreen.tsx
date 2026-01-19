@@ -3,10 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useDashboardScreen } from '../../hooks/useDashboardScreen';
+import {useCentinela} from "../../hooks/useCentinelaLocation";
+import {useServer} from "../../hooks/useServer";
 
 const PantallaPanelControl = ({ navigation }: any) => {
 
   const { estado, setEstado, gestionarPuntoControl } = useDashboardScreen();
+  const { location } = useCentinela();
+  const { sendLocation } = useServer();
 
   return (
     <SafeAreaView style={styles.contenedor}>
@@ -28,7 +32,7 @@ const PantallaPanelControl = ({ navigation }: any) => {
           AL LLEGAR A POSICIÓN, PULSE PARA CONFIRMAR PRESENCIA
         </Text>
         
-        <TouchableOpacity style={styles.botonPuntoControl} onPress={gestionarPuntoControl}>
+        <TouchableOpacity style={styles.botonPuntoControl} onPress={() => sendLocation(location?.coords.latitude.toFixed(6), location?.coords.longitude.toFixed(6))}>
           <View style={styles.anilloInterno}>
             <Text style={styles.textoPuntoControl}>PUNTO DE CONTROL</Text>
             <Text style={styles.subtextoPuntoControl}>ASEGURADO</Text>

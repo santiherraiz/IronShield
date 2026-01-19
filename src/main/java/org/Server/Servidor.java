@@ -6,9 +6,6 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.DTO.User;
-import org.DTO.UserConn;
-
 public class Servidor {
 
     private static final int PORT = UtilsServer.getServerPort("server.properties");
@@ -24,7 +21,7 @@ public class Servidor {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
             return br.readLine();
         } catch (Exception e) {
-            UtilsServer.writeServerLog("[ERROR] No se ha pidod leer el mensaje");
+            UtilsServer.writeServerLog("[ERROR] No se ha podido leer el mensaje");
         }
 
         return null;
