@@ -18,7 +18,7 @@ public class Servidor {
      * @return Devuelve el mensaje que ha leído.
      */
     private static String readClientMsg(Socket clientSocket) {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+        try (final var br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
             return br.readLine();
         } catch (Exception e) {
             UtilsServer.writeServerLog("[ERROR] No se ha podido leer el mensaje");
@@ -30,10 +30,9 @@ public class Servidor {
     public static void main(String[] args) {
         System.out.printf("[LOG] Servidor iniciado en %s:%d\n", HOST, PORT);
 
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try (final var serverSocket = new ServerSocket(PORT)) {
             while (true) {
                 final Socket clientSocket = serverSocket.accept();
-                System.out.printf("Cliente conectado desde %s:%d\n", clientSocket.getInetAddress().getHostAddress(), clientSocket.getPort());
                 final String json = readClientMsg(clientSocket);
                 System.out.println("[LOG]: " + json);
                 if (clientSocket.isClosed()) {
