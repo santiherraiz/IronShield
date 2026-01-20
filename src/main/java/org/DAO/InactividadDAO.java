@@ -1,28 +1,21 @@
 package main.java.org.DAO;
 
 import main.java.org.BBDD.ConexionBD;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class InactividadDAO {
 
     public void insertarInactividad(int usuarioId, int minutosInactivo) {
-
         String sql = "INSERT INTO inactividad (usuario_id, minutos_inactivo) VALUES (?, ?)";
 
-        try {
-            ConexionBD bd = new ConexionBD();
-            Connection conn = bd.conectar();
+        try (Connection conn = new ConexionBD().conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, usuarioId);
             ps.setInt(2, minutosInactivo);
 
             ps.executeUpdate();
-
-            ps.close();
-            conn.close();
 
         } catch (Exception e) {
             e.printStackTrace();
