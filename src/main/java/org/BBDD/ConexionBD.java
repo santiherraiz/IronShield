@@ -20,8 +20,6 @@ public class ConexionBD {
             user = props.getProperty("db.user");
             password = props.getProperty("db.password");
 
-            //Cambio
-
         } catch (Exception e) {
             e.printStackTrace();
         }
