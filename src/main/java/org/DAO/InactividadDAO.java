@@ -1,6 +1,7 @@
-package main.java.org.DAO;
+package org.DAO;
 
-import main.java.org.BBDD.ConexionBD;
+import org.BBDD.ConexionBD;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 

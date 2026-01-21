@@ -26,7 +26,7 @@ public class UtilsServer {
      * @param msg El mensaje que se va a escribir
      */
     public static void writeServerLog(String msg) {
-        final String log = LogManager.info(msg);
+        final String log = strFormatter(msg);
         try (final BufferedWriter bw = new BufferedWriter(new FileWriter(SERVER_LOG, true))) {
             bw.write(log);
             bw.newLine();
