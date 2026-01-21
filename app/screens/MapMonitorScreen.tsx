@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { CentinelaDisplay } from '../../components/CentinelaDisplay';
@@ -7,7 +7,7 @@ import { useMapMonitorScreen } from '../../hooks/useMapMonitorScreen';
 
 const PantallaMonitoreoMapa = () => {
 
-    const { pulseAnim } = useMapMonitorScreen();
+    const { handleCerrar } = useMapMonitorScreen();
 
     return (
         <SafeAreaView style={styles.contenedor}>
@@ -46,9 +46,9 @@ const PantallaMonitoreoMapa = () => {
                     <Text style={[styles.valor, { color: COLORS.primary }]}>ENCRIPTADO</Text>
                 </View>
 
-                <Animated.View style={[styles.alertaContenedor, { opacity: pulseAnim }]}>
-                    <Text style={styles.textoAlerta}>SIN MOVIMIENTO DETECTADO</Text>
-                </Animated.View>
+                <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
+                    <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -154,6 +154,16 @@ const styles = StyleSheet.create({
         fontSize: 10, 
         fontWeight: '900', 
         letterSpacing: 2 
+    },
+    botonCerrar: {
+        backgroundColor: COLORS.primary,
+        padding: 15,
+        marginTop: 10,
+        alignItems: 'center',
+    },
+    textoBotonCerrar: {
+        color: 'black',
+        fontWeight: 'bold',
     }
 });
 

@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 import { sendErrorToJava } from '../app/services/LogService';
 import { useNavigation } from 'expo-router';
+import { useUser } from '../contexts/UserContext';
 
 export const useLogin = () => {
     const navigation = useNavigation<any>();
+    const { setRole, setUserId } = useUser();
     const [idServicio, setIdServicio] = useState('');
     const [contrasena, setContrasena] = useState('');
 
@@ -14,7 +16,25 @@ export const useLogin = () => {
             if (!idServicio.trim() || !contrasena.trim()) {
                 throw new Error('ID de servicio y contraseña son requeridos');
             }
-            navigation.replace('OperationsStack');
+
+            const guardiaRegex = /^G\d{3}$/;
+            const supervisorRegex = /^S\d{3}$/;
+
+            let role: 'guardia' | 'supervisor';
+            if (guardiaRegex.test(idServicio)) {
+                role = 'guardia';
+                setRole('guardia');
+                setUserId(idServicio);
+                navigation.replace('OperationsStack');
+            } else if (supervisorRegex.test(idServicio)) {
+                role = 'supervisor';
+                setRole('supervisor');
+                setUserId(idServicio);
+                navigation.replace('GuardDetail');
+            } else {
+                throw new Error('ID de servicio inválido.');
+            }
+
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
             sendErrorToJava(msg, 'LoginScreen');

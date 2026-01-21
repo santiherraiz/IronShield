@@ -29,3 +29,5 @@ export const sendErrorToJava = async (
     console.error('[✗] No se conectó con Java:', err);
   }
 };
+
+export default sendErrorToJava;

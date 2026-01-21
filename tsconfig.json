@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
-    "types": ["nativewind/types"]
+    "types": [
+      "nativewind/types"
+    ],
+    "jsx": "react-native",
+    "lib": [
+      "es2017"
+    ],
+    "moduleResolution": "bundler", 
   },
   "extends": "expo/tsconfig.base",
   "include": [

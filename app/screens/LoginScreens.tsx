@@ -21,7 +21,7 @@ const PantallaLogin = () => {
         <Text style={styles.etiqueta}>ID DE SERVICIO</Text>
         <TextInput
           style={styles.entrada}
-          placeholder="ADMIN-001"
+          placeholder="S001 o G001"
           placeholderTextColor="#546E7A"
           value={idServicio}
           onChangeText={setIdServicio}
@@ -43,7 +43,7 @@ const PantallaLogin = () => {
         </TouchableOpacity>
 
         <Text style={styles.textoPie}>SOLO PERSONAL AUTORIZADO</Text>
-        <Text style={styles.textoVersion}>SIS v2.4.1</Text>
+        <Text style={styles.textoVersion}>SIS v0.0.3</Text>
       </View>
     </SafeAreaView>
   );
