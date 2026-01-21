@@ -1,6 +1,5 @@
 import React from 'react';
 import { Animated } from 'react-native';
-import { sendErrorToJava } from '../app/services/LogService';
 
 export const useMapMonitorScreen = () => {
     
@@ -16,7 +15,6 @@ export const useMapMonitorScreen = () => {
             ).start();
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
-            sendErrorToJava(msg, 'MapMonitorScreen');
         }
     }, []);
     

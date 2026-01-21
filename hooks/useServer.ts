@@ -8,9 +8,7 @@ export const useServer = () => {
      * @param longitude La longitud
      */
     const sendLocation = async (latitude: string, longitude: string) => {
-        const SERVER_URL = Platform.OS === "web"
-            ? "http://localhost:45678"
-            : "http://10.0.2.2:45678";
+        const SERVER_URL = "http://172.30.77.54:45678";
         try {
             await fetch(`${SERVER_URL}/location`, {
                 method: "POST",

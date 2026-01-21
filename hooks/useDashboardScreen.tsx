@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Alert } from 'react-native';
-import { sendErrorToJava } from '../app/services/LogService';
 
 export const useDashboardScreen = () => {
 
@@ -12,7 +11,6 @@ export const useDashboardScreen = () => {
             Alert.alert("PUNTO DE CONTROL", `Coordenadas y hora (${horaActual}) enviadas al servidor.`);
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
-            sendErrorToJava(msg, 'DashboardScreen');
         }
     };
 

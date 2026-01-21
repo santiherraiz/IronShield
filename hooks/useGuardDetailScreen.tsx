@@ -1,5 +1,4 @@
 import { useNavigation } from 'expo-router';
-import { sendErrorToJava } from '../app/services/LogService';
 
 export const useGuardDetailScreen = () => {
 
@@ -14,7 +13,6 @@ export const useGuardDetailScreen = () => {
             }
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
-            sendErrorToJava(msg, 'GuardDetailScreen');
         }
     };
 

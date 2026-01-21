@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { Alert } from 'react-native';
-import { sendErrorToJava } from '../app/services/LogService';
 import { useNavigation } from 'expo-router';
 
 export const useLogin = () => {
@@ -17,7 +16,6 @@ export const useLogin = () => {
             navigation.replace('OperationsStack');
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
-            sendErrorToJava(msg, 'LoginScreen');
             Alert.alert('Error', msg);
         }
     };
