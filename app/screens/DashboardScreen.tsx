@@ -3,12 +3,19 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useDashboardScreen } from '../../hooks/useDashboardScreen';
+import { useUser } from '../../contexts/UserContext';
 import {useCentinela} from "../../hooks/useCentinelaLocation";
 import {useServer} from "../../hooks/useServer";
 
 const PantallaPanelControl = ({ navigation }: any) => {
 
   const { estado, setEstado, gestionarPuntoControl } = useDashboardScreen();
+  const { role, userId } = useUser();
+  const { dia, mes, anno } = {
+    dia: new Date().getDate(),
+    mes: new Date().getMonth() + 1,
+    anno: new Date().getFullYear()
+  }
   const { location } = useCentinela();
   const { sendLocation } = useServer();
 
@@ -16,14 +23,12 @@ const PantallaPanelControl = ({ navigation }: any) => {
     <SafeAreaView style={styles.contenedor}>
       <View style={styles.filaEncabezado}>
         <View>
-          <Text style={styles.etiquetaEncabezado}>OPERADOR</Text>
-          <Text style={styles.valorEncabezado}>G002 - RODRÍGUEZ</Text>
+          <Text style={styles.etiquetaEncabezado}>GUARDIA</Text>
+          <Text style={styles.valorEncabezado}>{userId} - RODRÍGUEZ</Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
-          <Text style={styles.etiquetaEncabezado}>ESTADO</Text>
-          <Text style={[styles.valorEncabezado, { color: estado === 'NOMINAL' ? COLORS.success : COLORS.danger }]}>
-            {estado}
-          </Text>
+          <Text style={styles.etiquetaEncabezado}>FECHA</Text>
+          <Text style={styles.valorEncabezado}> {dia}/{mes}/{anno}</Text>
         </View>
       </View>
 
@@ -46,13 +51,6 @@ const PantallaPanelControl = ({ navigation }: any) => {
           onPress={() => navigation.navigate('MapMonitor')}>
           <Text style={styles.tituloNav}>MAPA / GPS</Text>
           <Text style={styles.estadoNav}>RASTREO ACTIVO</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={styles.tarjetaNav} 
-          onPress={() => navigation.navigate('GuardDetail')}>
-          <Text style={styles.tituloNav}>MIS REGISTROS</Text>
-          <Text style={styles.estadoNav}>VER HISTORIAL</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -1,62 +1,87 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import { useCentinela } from '../hooks/useCentinelaLocation';
-import { Radar, RefreshCw, AlertOctagon, ShieldCheck } from 'lucide-react-native';
+import { Radar, RefreshCw, AlertOctagon, ShieldCheck, Settings } from 'lucide-react-native';
+import { PermissionStatus } from '../infrastructure/interfaces/location';
 
 export const CentinelaDisplay = () => {
-    const { location, errorMsg, loading, refresh } = useCentinela();
+    const { location, errorMsg, loading, refresh, status } = useCentinela();
+
+
+    const renderContent = () => {
+        if (loading || status === PermissionStatus.CHECKING) {
+            return (
+                <View style={styles.centerPadding}>
+                    <ActivityIndicator color="#22c55e" size="small" />
+                    <Text style={styles.loadingText}>SINCRONIZANDO CON SATÉLITE...</Text>
+                </View>
+            );
+        }
+
+        if (status === PermissionStatus.DENIED || status === PermissionStatus.BLOCKED) {
+            return (
+                <View style={styles.errorBox}>
+                    <AlertOctagon size={20} color="#dc2626" />
+                    <View className="ml-2">
+                        <Text style={styles.errorText}>SISTEMA BLOQUEADO</Text>
+                        <Text style={styles.precisionText}>HABILITE LOCALIZACIÓN EN AJUSTES</Text>
+                    </View>
+                </View>
+            );
+        }
+
+        if (errorMsg) {
+            return (
+                <View style={styles.errorBox}>
+                    <AlertOctagon size={20} color="#dc2626" />
+                    <Text style={styles.errorText}>{errorMsg}</Text>
+                </View>
+            );
+        }
+
+        return (
+            <View>
+                {/* Panel de Coordenadas */}
+                <View style={styles.dataContainer}>
+                    <View style={styles.dataRow}>
+                        <Text style={styles.dataLabel}>LATITUD:</Text>
+                        <Text style={styles.dataValue}>{location?.coords.latitude.toFixed(6) || '---'}</Text>
+                    </View>
+                    <View style={styles.dataRow}>
+                        <Text style={styles.dataLabel}>LONGITUD:</Text>
+                        <Text style={styles.dataValue}>{location?.coords.longitude.toFixed(6) || '---'}</Text>
+                    </View>
+                </View>
+
+                {/* Footer de Integridad */}
+                <View style={styles.cardFooter}>
+                    <View style={styles.row}>
+                        <ShieldCheck size={12} color="#166534" />
+                        <Text style={styles.precisionText}>
+                            PRECISIÓN: {location?.coords.accuracy?.toFixed(1) || '0'}m
+                        </Text>
+                    </View>
+                    <View style={styles.verifiedBadge}>
+                        <Text style={styles.verifiedText}>{status === PermissionStatus.GRANTED ? 'VERIFICADO' : 'PENDIENTE'}</Text>
+                    </View>
+                </View>
+            </View>
+        );
+    };
 
     return (
         <View style={styles.card}>
-            {/* Header táctico */}
             <View style={styles.cardHeader}>
                 <View style={styles.row}>
                     <Radar size={16} color="#22c55e" />
-                    <Text style={styles.headerTitle}>CENTINELA V1.0 // EN LÍNEA</Text>
+                    <Text style={styles.headerTitle}>SISTEMA IRONSHIELD // PERMISO: {status}</Text>
                 </View>
                 <TouchableOpacity onPress={refresh} disabled={loading}>
                     <RefreshCw size={16} color={loading ? "#14532d" : "#22c55e"} />
                 </TouchableOpacity>
             </View>
 
-            {loading ? (
-                <View style={styles.centerPadding}>
-                    <ActivityIndicator color="#22c55e" size="small" />
-                    <Text style={styles.loadingText}>SINCRONIZANDO CON SATÉLITE...</Text>
-                </View>
-            ) : errorMsg ? (
-                <View style={styles.errorBox}>
-                    <AlertOctagon size={20} color="#dc2626" />
-                    <Text style={styles.errorText}>{errorMsg}</Text>
-                </View>
-            ) : (
-                <View>
-                    {/* Panel de Coordenadas */}
-                    <View style={styles.dataContainer}>
-                        <View style={styles.dataRow}>
-                            <Text style={styles.dataLabel}>LATITUD:</Text>
-                            <Text style={styles.dataValue}>{location?.coords.latitude.toFixed(6)}</Text>
-                        </View>
-                        <View style={styles.dataRow}>
-                            <Text style={styles.dataLabel}>LONGITUD:</Text>
-                            <Text style={styles.dataValue}>{location?.coords.longitude.toFixed(6)}</Text>
-                        </View>
-                    </View>
-
-                    {/* Footer de Integridad */}
-                    <View style={styles.cardFooter}>
-                        <View style={styles.row}>
-                            <ShieldCheck size={12} color="#166534" />
-                            <Text style={styles.precisionText}>
-                                PRECISIÓN: {location?.coords.accuracy?.toFixed(1)}m
-                            </Text>
-                        </View>
-                        <View style={styles.verifiedBadge}>
-                            <Text style={styles.verifiedText}>VERIFICADO</Text>
-                        </View>
-                    </View>
-                </View>
-            )}
+            {renderContent()}
         </View>
     );
 };

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useGuardDetailScreen } from '../../hooks/useGuardDetailScreen';
+import { useUser } from '../../contexts/UserContext';
 
 const DATOS_REGISTRO = [
   { id: '1', tipo: 'PUNTO DE CONTROL DELTA', hora: '23:40', estado: 'OK' },
@@ -13,6 +14,7 @@ const DATOS_REGISTRO = [
 const PantallaDetalleGuardia = () => {
 
   const { handleCerrar } = useGuardDetailScreen();
+  const { userId } = useUser();
 
   return (
     <SafeAreaView style={styles.contenedor}>
@@ -23,19 +25,11 @@ const PantallaDetalleGuardia = () => {
       <View style={styles.cuadriculaInfo}>
         <View style={styles.cajaInfo}>
           <Text style={styles.etiqueta}>ID</Text>
-          <Text style={styles.valor}>G002</Text>
+          <Text style={styles.valor}>{userId}</Text>
         </View>
         <View style={styles.cajaInfo}>
           <Text style={styles.etiqueta}>NOMBRE</Text>
           <Text style={styles.valor}>RODRÍGUEZ, A.</Text>
-        </View>
-        <View style={styles.cajaInfo}>
-          <Text style={styles.etiqueta}>INICIO TURNO</Text>
-          <Text style={styles.valor}>22:00</Text>
-        </View>
-        <View style={styles.cajaInfo}>
-          <Text style={styles.etiqueta}>ÚLT. MOV.</Text>
-          <Text style={[styles.valor, { color: COLORS.primary }]}>30s INACTIVIDAD</Text>
         </View>
       </View>
 

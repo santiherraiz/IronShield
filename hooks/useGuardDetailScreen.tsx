@@ -6,11 +6,7 @@ export const useGuardDetailScreen = () => {
 
     const handleCerrar = () => {
         try {
-            if (navigation.canGoBack()) {
-                navigation.goBack();
-            } else {
-                navigation.navigate('Dashboard');
-            }
+            navigation.replace('Login');
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
         }

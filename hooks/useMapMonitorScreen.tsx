@@ -1,24 +1,19 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { useNavigation } from 'expo-router';
 
 export const useMapMonitorScreen = () => {
-    
-    const pulseAnim = React.useRef(new Animated.Value(1)).current;
 
-    React.useEffect(() => {
+    const navigation = useNavigation<any>();
+
+    const handleCerrar = () => {
         try {
-            Animated.loop(
-                Animated.sequence([
-                    Animated.timing(pulseAnim, { toValue: 0.4, duration: 1500, useNativeDriver: true }),
-                    Animated.timing(pulseAnim, { toValue: 1, duration: 1500, useNativeDriver: true }),
-                ])
-            ).start();
+            navigation.navigate('OperationsStack');
         } catch (error) {
             const msg = error instanceof Error ? error.message : String(error);
         }
-    }, []);
-    
+    };
+
     return {
-        pulseAnim
+        handleCerrar
     };
 }
