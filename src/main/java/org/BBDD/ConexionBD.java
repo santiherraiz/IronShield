@@ -1,9 +1,9 @@
 package org.BBDD;
 
-import java.io.FileInputStream;
+import org.Server.UtilsServer;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Properties;
 
 public class ConexionBD {
 
@@ -13,12 +13,9 @@ public class ConexionBD {
 
     public ConexionBD() {
         try {
-            Properties props = new Properties();
-            props.load(new FileInputStream("database.properties"));
-
-            url = props.getProperty("db.url");
-            user = props.getProperty("db.user");
-            password = props.getProperty("db.password");
+            url = UtilsServer.getValueFromConf("db.url", "database.properties");
+            user = UtilsServer.getValueFromConf("db.agent", "database.properties");
+            password = UtilsServer.getValueFromConf("db.password", "database.properties");
 
         } catch (Exception e) {
             e.printStackTrace();

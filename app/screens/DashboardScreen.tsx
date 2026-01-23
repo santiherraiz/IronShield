@@ -6,6 +6,8 @@ import { useDashboardScreen } from '../../hooks/useDashboardScreen';
 import { useUser } from '../../contexts/UserContext';
 import {useCentinela} from "../../hooks/useCentinelaLocation";
 import {useServer} from "../../hooks/useServer";
+import {useLogin} from "../../hooks/useLogin";
+import {useRoute} from "@react-navigation/core";
 
 const PantallaPanelControl = ({ navigation }: any) => {
 
@@ -18,13 +20,15 @@ const PantallaPanelControl = ({ navigation }: any) => {
   }
   const { location } = useCentinela();
   const { sendLocation } = useServer();
+    const route = useRoute();
+    const { name } = route.params;
 
   return (
     <SafeAreaView style={styles.contenedor}>
       <View style={styles.filaEncabezado}>
         <View>
           <Text style={styles.etiquetaEncabezado}>GUARDIA</Text>
-          <Text style={styles.valorEncabezado}>{userId} - RODRÍGUEZ</Text>
+          <Text style={styles.valorEncabezado}>{userId} - {(name as string).toUpperCase()}</Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           <Text style={styles.etiquetaEncabezado}>FECHA</Text>

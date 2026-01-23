@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { useUser } from '../contexts/UserContext';
+import {useServer} from "./useServer";
 
 export const useLogin = () => {
     const navigation = useNavigation<any>();
     const { setRole, setUserId } = useUser();
     const [idServicio, setIdServicio] = useState('');
     const [contrasena, setContrasena] = useState('');
+    const [nombre, setName] = useState("");
 
     const gestionarInicioSesion = async () => {
         try {
@@ -19,17 +21,19 @@ export const useLogin = () => {
             const guardiaRegex = /^G\d{3}$/;
             const supervisorRegex = /^S\d{3}$/;
 
+            const name = await useServer().getName(idServicio, contrasena);
+
             let role: 'guardia' | 'supervisor';
             if (guardiaRegex.test(idServicio)) {
                 role = 'guardia';
                 setRole('guardia');
                 setUserId(idServicio);
-                navigation.replace('OperationsStack');
+                navigation.replace('OperationsStack', {name});
             } else if (supervisorRegex.test(idServicio)) {
                 role = 'supervisor';
                 setRole('supervisor');
                 setUserId(idServicio);
-                navigation.replace('GuardDetail');
+                navigation.replace('GuardDetail', {name});
             } else {
                 throw new Error('ID de servicio inválido.');
             }
@@ -45,6 +49,7 @@ export const useLogin = () => {
         setIdServicio,
         contrasena,
         setContrasena,
-        gestionarInicioSesion
+        gestionarInicioSesion,
+        nombre
     };
 };

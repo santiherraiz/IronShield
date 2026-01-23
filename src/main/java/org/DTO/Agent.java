@@ -7,17 +7,37 @@ package org.DTO;
  *<br>  - <strong>Longitud - double:</strong> La segunda coordenada sirve para identificar la longitud del agente
  */
 public class Agent {
-    private final double latitude;
-    private final double longitude;
+    public final String username;
+    public final String pass;
+    public final double latitude;
+    public final double longitude;
+
+    public Agent(String username) {
+        this.username = username;
+        this.pass = "";
+        this.latitude = 0;
+        this.longitude = 0;
+    }
+
+    public Agent(String username, String pass) {
+        this.username = username;
+        this.pass = pass;
+        this.latitude = 0;
+        this.longitude = 0;
+    }
 
     public Agent(double latitude, double longitude) {
+        this.username = "A";
+        this.pass = "A2";
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     @Override
     public String toString() {
-        return  "Latitud: " + this.latitude + "\n" +
+        return  "Username: " + this.username + "\n" +
+                "Pass: " + this.pass + "\n" +
+                "Latitud: " + this.latitude + "\n" +
                 "Longitud: " + this.longitude;
     }
 }

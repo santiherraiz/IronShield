@@ -1,6 +1,5 @@
-import {Platform} from "react-native";
-
 export const useServer = () => {
+    const SERVER_URL = "http://172.30.77.54:45678";
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en
      * una plataforma, ya que es otra ruta distinta a la del emulador.
@@ -8,7 +7,6 @@ export const useServer = () => {
      * @param longitude La longitud
      */
     const sendLocation = async (latitude: string, longitude: string) => {
-        const SERVER_URL = "http://172.30.77.54:45678";
         try {
             await fetch(`${SERVER_URL}/location`, {
                 method: "POST",
@@ -21,7 +19,26 @@ export const useServer = () => {
     };
 
     // Aquí va la función para recibir los registros en el futuro
+    const getName = async (username: string, pass: string) => {
+        try {
+            const res = await fetch(`${SERVER_URL}/name`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, pass })
+            });
+
+            if (!res.ok) {
+                console.log("No se ha podido pasar el nombre.");
+            }
+
+            return await res.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return {
         sendLocation,
+        getName,
     }
 }

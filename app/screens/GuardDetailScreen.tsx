@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useGuardDetailScreen } from '../../hooks/useGuardDetailScreen';
 import { useUser } from '../../contexts/UserContext';
+import {useRoute} from "@react-navigation/core";
 
 const DATOS_REGISTRO = [
   { id: '1', tipo: 'PUNTO DE CONTROL DELTA', hora: '23:40', estado: 'OK' },
@@ -15,6 +16,8 @@ const PantallaDetalleGuardia = () => {
 
   const { handleCerrar } = useGuardDetailScreen();
   const { userId } = useUser();
+    const route = useRoute();
+    const { name } = route.params;
 
   return (
     <SafeAreaView style={styles.contenedor}>
@@ -29,7 +32,7 @@ const PantallaDetalleGuardia = () => {
         </View>
         <View style={styles.cajaInfo}>
           <Text style={styles.etiqueta}>NOMBRE</Text>
-          <Text style={styles.valor}>RODRÍGUEZ, A.</Text>
+          <Text style={styles.valor}>{(name as string).toUpperCase()}</Text>
         </View>
       </View>
 
