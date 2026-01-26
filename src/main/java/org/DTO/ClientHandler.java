@@ -10,8 +10,6 @@ import java.io.*;
 import java.net.Socket;
 
 public record ClientHandler(Socket clientSocket) implements Runnable {
-    private static final int PORT_WEBSERVER = UtilsServer.getServerPort("webserver.properties");
-    private static final String HOST_WEBSERVER = UtilsServer.getServerName("webserver.properties");
     private static Agent deserialise(String body) { return new Gson().fromJson(body, Agent.class); }
     private static String serialise(String res) { return new Gson().toJson(res); }
     /**
@@ -46,11 +44,9 @@ public record ClientHandler(Socket clientSocket) implements Runnable {
         }
     }
 
-    private static void handleLoc(final Agent agent, final Socket clientSocket) {
-        System.out.println("Hola desde handleLoc");
+    private static void handleLoc(final Agent agent) {
         GuardiaDAO.insertarPosicion(agent.username, agent.latitude, agent.longitude);
     }
-
 
     @Override
     public void run() {
@@ -62,7 +58,7 @@ public record ClientHandler(Socket clientSocket) implements Runnable {
                 handleName(agent, clientSocket);
                 break;
             case 3:
-                handleLoc(agent, clientSocket);
+                handleLoc(agent);
                 break;
             default:
                 System.out.println("No implementado");

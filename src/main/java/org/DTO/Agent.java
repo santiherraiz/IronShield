@@ -32,9 +32,8 @@ public class Agent {
     }
 
     // CODE 3
-    public Agent(String username, String pass, double latitude, double longitude, int code) {
+    public Agent(String username, double latitude, double longitude, int code) {
         this.code = code;
-        this.pass = pass;
         this.username = username;
         this.latitude = latitude;
         this.longitude = longitude;
