@@ -1,5 +1,7 @@
 package org.DTO;
 
+import java.sql.Timestamp;
+
 /**
  * La clase {@link Agent} es una clase para almacenar los datos del agente.
  *<br>Esta clase tiene como atributos:
@@ -9,28 +11,42 @@ package org.DTO;
  *<br>  - <strong>Longitud - double:</strong> La segunda coordenada sirve para identificar la longitud del agente
  */
 public class Agent {
-    public final String username;
-    public final String pass;
-    public final double latitude;
-    public final double longitude;
+    public int code = 1;
+    public String username = null;
+    public String pass = null;
+    public double latitude = 0;
+    public double longitude = 0;
+    public Timestamp fecha = null;
 
-    public Agent(String username) {
+    public Agent(String username, int code) {
+        this.code = code;
         this.username = username;
-        this.pass = "";
-        this.latitude = 0;
-        this.longitude = 0;
     }
 
-    public Agent(String username, String pass) {
+    public Agent(String username, String pass, int code) {
+        this.code = code;
         this.username = username;
         this.pass = pass;
-        this.latitude = 0;
-        this.longitude = 0;
     }
 
-    public Agent(double latitude, double longitude) {
-        this.username = "A";
-        this.pass = "A2";
+    public Agent(String username, double latitude, double longitude, int code) {
+        this.code = code;
+        this.username = username;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Agent(double latitude, double longitude, int code) {
+        this.code = code;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Agent(String username, String pass, double latitude, double longitude, Timestamp fecha, int code) {
+        this.code = code;
+        this.username = username;
+        this.pass = pass;
+        this.fecha = fecha;
         this.latitude = latitude;
         this.longitude = longitude;
     }

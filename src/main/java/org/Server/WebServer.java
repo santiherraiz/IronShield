@@ -3,12 +3,12 @@ package org.Server;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import org.DAO.ConsultaDAO;
+import org.DAO.GuardiaDAO;
 import org.DAO.NombreDAO;
 import org.DTO.Agent;
 
-import java.io.BufferedWriter;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -19,14 +19,6 @@ public class WebServer {
     private static final String HOST_WEBSERVER = UtilsServer.getServerName("webserver.properties");
     private static final int PORT_SERVER = UtilsServer.getServerPort("server.properties");
     private static final String HOST_SERVER = UtilsServer.getServerName("server.properties");
-
-    private static Agent deserialise(String body) {
-        return new Gson().fromJson(body, Agent.class);
-    }
-
-    private static String serialise(String res) {
-        return new Gson().toJson(res);
-    }
 
     /**
      * Esta función comprueba que se envía al servidor TCP. Hace un socket y lo conecta al servidor, después escribe
@@ -47,6 +39,24 @@ public class WebServer {
         }
 
         return true;
+    }
+
+    /**
+     * La función el mensaje que ha enviado el cliente conectado, si es que envía algún mensaje.
+     * Esto sirve para no ofuscar el código
+     *
+     * @param clientSocket Es el {@link Socket} del cliente, sirve para obtener el {@link InputStream}.
+     * @return Devuelve el mensaje que ha leído.
+     */
+    private static String readClientMsg(Socket clientSocket) {
+        try {
+            final var br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            return br.readLine();
+        } catch (Exception e) {
+            UtilsServer.writeServerLog("[ERROR] No se ha podido leer el mensaje");
+        }
+
+        return null;
     }
 
     /**
@@ -78,11 +88,7 @@ public class WebServer {
 
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             System.out.println("[LOG] Localización: " + body);
-            String response = "Enviado";
-            if (!sendServer(body)) {
-                response = "No se ha podido enviar al Servidor TCP";
-            }
-            exchange.sendResponseHeaders(200, response.length());
+            sendServer(body);
             exchange.close();
         } catch (Exception e) {
             System.err.println("[ERROR] Ha habido un error al recibir la localización");
@@ -109,16 +115,17 @@ public class WebServer {
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-            final Agent agent = deserialise(body);
-            final String name = NombreDAO.obtenerNombrePorUsuario(agent.username, agent.pass);
-            System.out.println(name);
-            String jsonResponse = serialise(name);
-            byte[] responseBytes = jsonResponse.getBytes(StandardCharsets.UTF_8);
-            exchange.sendResponseHeaders(200, responseBytes.length);
-            final OutputStream os = exchange.getResponseBody();
-            os.write(responseBytes);
-            os.close();
-            exchange.close();
+            sendServer(body);
+//            final Agent agent = deserialise(body);
+//            final String name = NombreDAO.obtenerNombrePorUsuario(agent.username, agent.pass);
+//            System.out.println(name);
+//            String jsonResponse = serialise(name);
+//            byte[] responseBytes = jsonResponse.getBytes(StandardCharsets.UTF_8);
+//            exchange.sendResponseHeaders(200, responseBytes.length);
+//            final OutputStream os = exchange.getResponseBody();
+//            os.write(responseBytes);
+//            os.close();
+//            exchange.close();
         } catch (Exception e) {
             System.err.println("[ERROR] Ha habido un error al recibir la localización");
         }
