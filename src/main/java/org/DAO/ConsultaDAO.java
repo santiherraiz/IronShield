@@ -21,8 +21,10 @@ public class ConsultaDAO {
             JOIN usuarios u ON i.usuario_id = u.id
             JOIN guardia_posicion gp ON gp.username = u.username
             ORDER BY i.fecha DESC
+            LIMIT 5
         """;
-            //Si lo quieres ordenado por fecha vale, si no lo quitas
+
+        //Si lo quieres ordenado por fecha vale, si no lo quitas
 
         try (final Connection conn = new ConexionBD().conectar();
              final PreparedStatement ps = conn.prepareStatement(sql);
