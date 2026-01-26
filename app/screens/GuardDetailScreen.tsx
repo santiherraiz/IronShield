@@ -1,63 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useGuardDetailScreen } from '../../hooks/useGuardDetailScreen';
 import { useUser } from '../../contexts/UserContext';
-import {useRoute} from "@react-navigation/core";
+import { useRoute } from "@react-navigation/core";
+import { useServer } from '../../hooks/useServer';
 
-const DATOS_REGISTRO = [
-  { id: '1', tipo: 'PUNTO DE CONTROL DELTA', hora: '23:40', estado: 'OK' },
-  { id: '2', tipo: 'PUNTO DE CONTROL ECHO', hora: '23:25', estado: 'OK' },
-  { id: '3', tipo: 'PUNTO DE CONTROL FOXTROT', hora: '23:10', estado: 'OK' },
-];
+type Agent = {
+  username: string;
+  latitude: number;
+  longitude: number;
+  date: string;
+};
 
 const PantallaDetalleGuardia = () => {
 
   const { handleCerrar } = useGuardDetailScreen();
   const { userId } = useUser();
-    const route = useRoute();
-    const { name } = route.params;
+  const route = useRoute();
+  const { name } = route.params as { name: string };
+  const { getAlertsLog } = useServer();
+
+  const [alerts, setAlerts] = useState<Agent[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // Función que llama al servidor y carga alertas
+  const cargarAlertas = async () => {
+    setLoading(true);
+    try {
+      const data = await getAlertsLog();
+      if (Array.isArray(data)) {
+        setAlerts(data as Agent[]);
+      } else {
+        console.log('[WARN] getAlertsLog no ha devuelto lo esperado', data);
+      }
+    } catch (e) {
+      console.log('[ERROR] No se pudieron cargar alertas', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const renderAlert = ({ item }: { item: Agent }) => {
+    const hora = new Date(item.date).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    return (
+        <View style={styles.itemRegistro}>
+          <View style={styles.indicadorRegistro} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.tipoRegistro}>
+              {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
+            </Text>
+          </View>
+          <Text style={styles.horaRegistro}>{hora}</Text>
+        </View>
+    );
+  };
 
   return (
-    <SafeAreaView style={styles.contenedor}>
-      <View style={styles.encabezado}>
-        <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
-      </View>
-
-      <View style={styles.cuadriculaInfo}>
-        <View style={styles.cajaInfo}>
-          <Text style={styles.etiqueta}>ID</Text>
-          <Text style={styles.valor}>{userId}</Text>
+      <SafeAreaView style={styles.contenedor}>
+        <View style={styles.encabezado}>
+          <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
         </View>
-        <View style={styles.cajaInfo}>
-          <Text style={styles.etiqueta}>NOMBRE</Text>
-          <Text style={styles.valor}>{(name as string).toUpperCase()}</Text>
+
+        <View style={styles.cuadriculaInfo}>
+          <View style={styles.cajaInfo}>
+            <Text style={styles.etiqueta}>ID</Text>
+            <Text style={styles.valor}>{userId}</Text>
+          </View>
+          <View style={styles.cajaInfo}>
+            <Text style={styles.etiqueta}>NOMBRE</Text>
+            <Text style={styles.valor}>{name.toUpperCase()}</Text>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.seccionRegistros}>
-        <Text style={styles.encabezadoSeccion}>REGISTRO DE PUNTOS DE CONTROL</Text>
+        {/* Botón para cargar alertas */}
+        <TouchableOpacity
+            style={[styles.botonCerrar, { marginBottom: 10 }]}
+            onPress={cargarAlertas}
+        >
+          <Text style={styles.textoBotonCerrar}>
+            {loading ? 'CARGANDO...' : 'CARGAR ALERTAS'}
+          </Text>
+        </TouchableOpacity>
 
-        <FlatList
-          data={DATOS_REGISTRO}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.itemRegistro}>
-              <View style={styles.indicadorRegistro} />
-              <View style={{ flex: 1 }}>
-                <Text style={styles.tipoRegistro}>{item.tipo}</Text>
-              </View>
-              <Text style={styles.horaRegistro}>{item.hora}</Text>
-            </View>
-          )}
-        />
-      </View>
+        {/* FlatList de alertas */}
+        <View style={styles.seccionRegistros}>
+          <Text style={styles.encabezadoSeccion}>ALERTAS RECIENTES</Text>
 
-      <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
-        <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+          <FlatList
+              data={alerts}
+              keyExtractor={(item) => `${item.username}-${item.date}`}
+              renderItem={renderAlert}
+              ListEmptyComponent={
+                  !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
+                    No hay alertas registradas
+                  </Text>
+              }
+          />
+        </View>
+
+        <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
+          <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
   );
 };
 

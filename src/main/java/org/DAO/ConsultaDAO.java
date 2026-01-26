@@ -1,6 +1,7 @@
 package org.DAO;
 
 import org.BBDD.ConexionBD;
+import org.DTO.Agent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +11,9 @@ import java.util.List;
 
 public class ConsultaDAO {
 
-    public static List<String> obtenerAlertas() {
+    public static List<Agent> obtenerAlertas() {
 
-        List<String> alertas = new ArrayList<>();
+        List<Agent> alertsAgents = new ArrayList<>();
 
         String sql = """
             SELECT u.username, gp.latitud, gp.longitud, i.fecha
@@ -23,23 +24,24 @@ public class ConsultaDAO {
         """;
             //Si lo quieres ordenado por fecha vale, si no lo quitas
 
-        try (Connection conn = new ConexionBD().conectar();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (final Connection conn = new ConexionBD().conectar();
+             final PreparedStatement ps = conn.prepareStatement(sql);
+             final ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                String fila = rs.getString("username") + ";" +
-                        rs.getDouble("latitud") + ";" +
-                        rs.getDouble("longitud") + ";" +
-                        rs.getTimestamp("fecha");
-                alertas.add(fila);
+                alertsAgents.add(new Agent(
+                        rs.getString("username"),
+                        rs.getDouble("latitud"),
+                        rs.getDouble("longitud"),
+                        rs.getTimestamp("fecha")
+                ));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return alertas;
+        return alertsAgents;
     }
 
 /*  Uso ejemplo pal xavi

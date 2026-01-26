@@ -34,10 +34,22 @@ export const useServer = () => {
                 body: JSON.stringify({ code: 1, username, pass })
             });
 
-            if (!res.ok) {
-                console.log("No se ha podido pasar el nombre.");
-            }
+            if (!res.ok) console.log("No se ha podido pasar el nombre.");
 
+            return await res.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    /**
+     * <strong>getAlerts</strong> recibe de la BBDD las alertas registradas en la misma.
+     */
+    const getAlertsLog = async () => {
+        // Esta consulta al servidor solo estará en el WebServer, ya que no tiene mucha lógica envíarla al TCP.
+        try {
+            const res = await fetch(`${SERVER_CASA}/alert-log`);
+            if (!res.ok) console.log("No se ha podido obtener los logs de alertas");
             return await res.json();
         } catch (error) {
             console.log(error);
@@ -47,5 +59,6 @@ export const useServer = () => {
     return {
         sendLocation,
         getName,
+        getAlertsLog,
     }
 }

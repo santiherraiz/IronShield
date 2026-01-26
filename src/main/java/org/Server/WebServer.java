@@ -12,6 +12,9 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WebServer {
     // Puertos y nombres de host para el servidor y la conexión TCP
@@ -42,24 +45,6 @@ public class WebServer {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    /**
-     * La función el mensaje que ha enviado el cliente conectado, si es que envía algún mensaje.
-     * Esto sirve para no ofuscar el código
-     *
-     * @param clientSocket Es el {@link Socket} del cliente, sirve para obtener el {@link InputStream}.
-     * @return Devuelve el mensaje que ha leído.
-     */
-    private static String readClientMsg(Socket clientSocket) {
-        try {
-            final var br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            return br.readLine();
-        } catch (Exception e) {
-            UtilsServer.writeServerLog("[ERROR] No se ha podido leer el mensaje");
-        }
-
-        return null;
     }
 
     /**
@@ -94,7 +79,7 @@ public class WebServer {
             sendServer(body);
             exchange.close();
         } catch (Exception e) {
-            System.err.println("[ERROR] Ha habido un error al recibir la localización");
+            System.err.println("[ERROR] Ha habido un error al envíar la localización");
         }
     }
 
@@ -127,7 +112,36 @@ public class WebServer {
             os.write(tcpResponse.getBytes());
             os.close();
         } catch (Exception e) {
-            System.err.println("[ERROR] Ha habido un error al recibir la localización");
+            System.err.println("[ERROR] Ha habido un error al mandar la localización");
+        }
+    }
+
+    private static void handleAlertLog(HttpExchange exchange) {
+        try {
+            if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+                exchange.sendResponseHeaders(204, -1);
+                exchange.close();
+                return;
+            }
+
+            if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(405, -1);
+                exchange.close();
+                return;
+            }
+
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+            List<Agent> alerts = ConsultaDAO.obtenerAlertas();
+            String json = new Gson().toJson(alerts);
+            exchange.sendResponseHeaders(200, json.getBytes().length);
+            OutputStream os = exchange.getResponseBody();
+            os.write(json.getBytes());
+            os.close();
+        } catch (Exception e) {
+            System.err.println("[ERROR] Ha habido un error al recibir los registros de alertas.");
         }
     }
 
@@ -137,6 +151,7 @@ public class WebServer {
             final HttpServer server = HttpServer.create(new InetSocketAddress(HOST_WEBSERVER, PORT_WEBSERVER), 0);
             server.createContext("/location", WebServer::handleLocation);
             server.createContext("/name", WebServer::handleName);
+            server.createContext("/alert-log", WebServer::handleAlertLog);
             server.setExecutor(null);
             server.start();
             System.out.println("[INFO] WebServer escuchando en " + HOST_WEBSERVER + ":" + PORT_WEBSERVER);

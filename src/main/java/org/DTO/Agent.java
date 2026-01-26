@@ -16,7 +16,7 @@ public class Agent {
     public String pass;
     public double latitude;
     public double longitude;
-    public Timestamp fecha;
+    public Timestamp date;
 
     // CODE 1
     public Agent(String username, int code) {
@@ -25,33 +25,17 @@ public class Agent {
     }
 
     // CODE 2
-    public Agent(String username, String pass, int code) {
-        this.code = code;
+    public Agent(String username, double latitude, double longitude, Timestamp date) {
         this.username = username;
-        this.pass = pass;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date = date;
     }
 
     // CODE 3
     public Agent(String username, double latitude, double longitude, int code) {
         this.code = code;
         this.username = username;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    // CODE 4
-    public Agent(double latitude, double longitude, int code) {
-        this.code = code;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    // CODE 5
-    public Agent(String username, String pass, double latitude, double longitude, Timestamp fecha, int code) {
-        this.code = code;
-        this.username = username;
-        this.pass = pass;
-        this.fecha = fecha;
         this.latitude = latitude;
         this.longitude = longitude;
     }
