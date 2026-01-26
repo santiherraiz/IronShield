@@ -22,10 +22,15 @@ const PantallaDetalleGuardia = () => {
   const { name } = route.params as { name: string };
   const { getAlertsLog } = useServer();
 
+  // Alertas y su estado de carga
   const [alerts, setAlerts] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Función que llama al servidor y carga alertas
+  /**
+   * La función <strong>cargarAlertas</strong> es una función asíncrona la cual, como dice el nombre carga las alertas.
+   * Esto lo hace mediante la llamada a la función <strong>getAlertsLog</strong>. Comprueba si es un array y lo asigna a
+   * la variable de estado <strong>alerts</strong>
+   */
   const cargarAlertas = async () => {
     setLoading(true);
     try {
@@ -42,6 +47,13 @@ const PantallaDetalleGuardia = () => {
     }
   };
 
+  /**
+   * La función <strong>renderAlert</strong> es el componente renderizable, pero sin ser componente y siendo una función
+   * Esto fomatea la hora (que pasa como string) y la parsea la interfaz {@link Date}. Después hace el componente que se
+   * compone del username, latitud, longitud y, por supuesto, la hora formateada.
+   * <h1>SE PUEDE EXTRAER A UN COMPONENTE APARTE</h1>
+   * @param item
+   */
   const renderAlert = ({ item }: { item: Agent }) => {
     const hora = new Date(item.date).toLocaleTimeString([], {
       hour: '2-digit',

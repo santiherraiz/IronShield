@@ -4,16 +4,12 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import org.DAO.ConsultaDAO;
-import org.DAO.GuardiaDAO;
-import org.DAO.NombreDAO;
 import org.DTO.Agent;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WebServer {
@@ -83,6 +79,13 @@ public class WebServer {
         }
     }
 
+    /**
+     * Esta función obtiene la petición y envía al servidor TCP para la resolución de la misma. La petición es la
+     * resolución del nombre mediante el username del login. Después reenvia la respuesta del TCP como respuesta
+     * del mismo {@link HttpExchange}
+     * @param exchange encapsula una petición y una respuesta HTTP. Puede examinar la solicitud y
+     *                 construir y enviar una respuesta.
+     */
     private static void handleName(HttpExchange exchange) {
         try {
             if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
@@ -108,7 +111,7 @@ public class WebServer {
             if (tcpResponse == null) tcpResponse = "Error TCP";
 
             exchange.sendResponseHeaders(200, tcpResponse.getBytes().length);
-            OutputStream os = exchange.getResponseBody();
+            final OutputStream os = exchange.getResponseBody();
             os.write(tcpResponse.getBytes());
             os.close();
         } catch (Exception e) {
@@ -116,6 +119,13 @@ public class WebServer {
         }
     }
 
+    /**
+     * Esta función obtiene una petición, y en el mismo servidor, resuelve la petición recogiendo los registros de
+     * alertas en la BBDD. No se envía al TCP, como las otras, porque sería un gasto en llamadas al servidor para
+     * serializar una lista a JSON.
+     * @param exchange encapsula una petición y una respuesta HTTP. Puede examinar la solicitud y
+     *                 construir y enviar una respuesta.
+     */
     private static void handleAlertLog(HttpExchange exchange) {
         try {
             if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
@@ -134,10 +144,10 @@ public class WebServer {
             }
 
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-            List<Agent> alerts = ConsultaDAO.obtenerAlertas();
-            String json = new Gson().toJson(alerts);
+            final List<Agent> alerts = ConsultaDAO.obtenerAlertas();
+            final String json = new Gson().toJson(alerts);
             exchange.sendResponseHeaders(200, json.getBytes().length);
-            OutputStream os = exchange.getResponseBody();
+            final OutputStream os = exchange.getResponseBody();
             os.write(json.getBytes());
             os.close();
         } catch (Exception e) {
