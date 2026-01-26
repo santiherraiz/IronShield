@@ -3,6 +3,7 @@ package org.DTO;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import org.DAO.GuardiaDAO;
+import org.DAO.NombreDAO;
 import org.Server.UtilsServer;
 
 import java.io.*;
@@ -11,6 +12,8 @@ import java.net.Socket;
 public record ClientHandler(Socket clientSocket) implements Runnable {
     private static final int PORT_WEBSERVER = UtilsServer.getServerPort("webserver.properties");
     private static final String HOST_WEBSERVER = UtilsServer.getServerName("webserver.properties");
+    private static Agent deserialise(String body) { return new Gson().fromJson(body, Agent.class); }
+    private static String serialise(String res) { return new Gson().toJson(res); }
     /**
      * La función el mensaje que ha enviado el cliente conectado, si es que envía algún mensaje.
      * Esto sirve para no ofuscar el código
@@ -29,41 +32,43 @@ public record ClientHandler(Socket clientSocket) implements Runnable {
         return null;
     }
 
-    /**
-     * Esta función comprueba que se envía al servidor TCP. Hace un socket y lo conecta al servidor, después escribe
-     * el body proporcionado por el {@link HttpExchange} para que el servidor lo reciba.
-     * @param body Mensaje enviado desde la aplicación
-     * @return True o false si no hay un error o lo hay respectivamente.
-     */
-    private static boolean sendWebServer(String body) {
-        try (
-                Socket socket = new Socket(HOST_WEBSERVER, PORT_WEBSERVER);
-                final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))
-        ) {
-            bw.write(body);
+    private static void handleName(final Agent agent, final Socket clientSocket) {
+        final String name = NombreDAO.obtenerNombrePorUsuario(agent.username, agent.pass);
+        final String jsonResponse = serialise(name);
+
+        try {
+            final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            bw.write(jsonResponse);
             bw.newLine();
             bw.flush();
         } catch (Exception e) {
-            return false;
+            System.err.println("[ERROR] Error al enviar respuesta al WebServer.");
         }
-
-        return true;
     }
 
-    private static Agent deserialise(String body) {
-        return new Gson().fromJson(body, Agent.class);
+    private static void handleLoc(final Agent agent, final Socket clientSocket) {
+        System.out.println("Hola desde handleLoc");
+        GuardiaDAO.insertarPosicion(agent.username, agent.latitude, agent.longitude);
     }
 
-    private static String serialise(String res) {
-        return new Gson().toJson(res);
-    }
 
     @Override
     public void run() {
         final String json = readClientMsg(clientSocket);
         System.out.println("[LOG]: " + json);
-//        final Agent agent = deserialise(json);
-//        GuardiaDAO.insertarPosicion(agent.username, agent.latitude, agent.longitude);
+        final Agent agent = deserialise(json);
+        switch (agent.code) {
+            case 1:
+                handleName(agent, clientSocket);
+                break;
+            case 3:
+                handleLoc(agent, clientSocket);
+                break;
+            default:
+                System.out.println("No implementado");
+                return;
+        }
+
         try {
             clientSocket.close();
             UtilsServer.writeServerLog("[LOG] Cliente desconectado: " + clientSocket.getInetAddress().getHostAddress() + ":" + clientSocket.getPort());

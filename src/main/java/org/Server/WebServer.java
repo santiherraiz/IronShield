@@ -26,19 +26,22 @@ public class WebServer {
      * @param body Mensaje enviado desde la aplicación
      * @return True o false si no hay un error o lo hay respectivamente.
      */
-    private static boolean sendServer(String body) {
+    private static String sendServer(String body) {
         try (
                 Socket socket = new Socket(HOST_SERVER, PORT_SERVER);
-                final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))
+                final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                final BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
+            // Envío al TCP
             bw.write(body);
             bw.newLine();
             bw.flush();
-        } catch (Exception e) {
-            return false;
-        }
 
-        return true;
+            // Aquí devuelve la respuesta
+            return br.readLine();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -115,17 +118,14 @@ public class WebServer {
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-            sendServer(body);
-//            final Agent agent = deserialise(body);
-//            final String name = NombreDAO.obtenerNombrePorUsuario(agent.username, agent.pass);
-//            System.out.println(name);
-//            String jsonResponse = serialise(name);
-//            byte[] responseBytes = jsonResponse.getBytes(StandardCharsets.UTF_8);
-//            exchange.sendResponseHeaders(200, responseBytes.length);
-//            final OutputStream os = exchange.getResponseBody();
-//            os.write(responseBytes);
-//            os.close();
-//            exchange.close();
+            String tcpResponse = sendServer(body);
+
+            if (tcpResponse == null) tcpResponse = "Error TCP";
+
+            exchange.sendResponseHeaders(200, tcpResponse.getBytes().length);
+            OutputStream os = exchange.getResponseBody();
+            os.write(tcpResponse.getBytes());
+            os.close();
         } catch (Exception e) {
             System.err.println("[ERROR] Ha habido un error al recibir la localización");
         }

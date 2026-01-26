@@ -1,18 +1,19 @@
 export const useServer = () => {
     const SERVER_URL = "http://172.30.77.54:45678";
+    const SERVER_CASA = "http://192.168.1.38:45678" // Esto es para MI casa, cambiad a la vuestra si probáis: XAVI
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en
      * una plataforma, ya que es otra ruta distinta a la del emulador.
-     * @param name El nombre
+     * @param username El nombre de usuario
      * @param latitude La latitud
      * @param longitude La longitud
      */
-    const sendLocation = async (name: string, latitude: string, longitude: string) => {
+    const sendLocation = async (username: string, latitude: string, longitude: string) => {
         try {
-            await fetch(`${SERVER_URL}/location`, {
+            await fetch(`${SERVER_CASA}/location`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({code: 1, name, latitude, longitude }),
+                body: JSON.stringify({code: 3, username, latitude, longitude }),
             });
         } catch (error) {
             console.log(error);
@@ -20,17 +21,17 @@ export const useServer = () => {
     };
 
     /**
-     * <strong>getName</strong> envía el usuario y la conrtaseña y recibe el nombre del usuario si está registrado en
+     * <strong>getName</strong> envía el usuario y la contraseña y recibe el nombre del usuario si está registrado en
      * la base de datos
      * @param username
      * @param pass
      */
     const getName = async (username: string, pass: string) => {
         try {
-            const res = await fetch(`${SERVER_URL}/name`, {
+            const res = await fetch(`${SERVER_CASA}/name`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, pass })
+                body: JSON.stringify({ code: 1, username, pass })
             });
 
             if (!res.ok) {

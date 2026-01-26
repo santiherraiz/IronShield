@@ -11,37 +11,43 @@ import java.sql.Timestamp;
  *<br>  - <strong>Longitud - double:</strong> La segunda coordenada sirve para identificar la longitud del agente
  */
 public class Agent {
-    public int code = 1;
-    public String username = null;
-    public String pass = null;
-    public double latitude = 0;
-    public double longitude = 0;
-    public Timestamp fecha = null;
+    public int code;
+    public String username;
+    public String pass;
+    public double latitude;
+    public double longitude;
+    public Timestamp fecha;
 
+    // CODE 1
     public Agent(String username, int code) {
         this.code = code;
         this.username = username;
     }
 
+    // CODE 2
     public Agent(String username, String pass, int code) {
         this.code = code;
         this.username = username;
         this.pass = pass;
     }
 
-    public Agent(String username, double latitude, double longitude, int code) {
+    // CODE 3
+    public Agent(String username, String pass, double latitude, double longitude, int code) {
         this.code = code;
+        this.pass = pass;
         this.username = username;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    // CODE 4
     public Agent(double latitude, double longitude, int code) {
         this.code = code;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    // CODE 5
     public Agent(String username, String pass, double latitude, double longitude, Timestamp fecha, int code) {
         this.code = code;
         this.username = username;
