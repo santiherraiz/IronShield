@@ -3,6 +3,8 @@ package org.DTO;
 /**
  * La clase {@link Agent} es una clase para almacenar los datos del agente.
  *<br>Esta clase tiene como atributos:
+ *<br>  - <strong>Username - String</strong> Es el nombre o código de usuario
+ *<br>  - <strong>Password - String</strong> Es la contraseña del usuario
  *<br>  - <strong>Latitud - double:</strong> La primera coordenada sirve para identificar la latitud del agente
  *<br>  - <strong>Longitud - double:</strong> La segunda coordenada sirve para identificar la longitud del agente
  */

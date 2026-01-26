@@ -18,7 +18,12 @@ export const useServer = () => {
         }
     };
 
-    // Aquí va la función para recibir los registros en el futuro
+    /**
+     * <strong>getName</strong> envía el usuario y la conrtaseña y recibe el nombre del usuario si está registrado en
+     * la base de datos
+     * @param username
+     * @param pass
+     */
     const getName = async (username: string, pass: string) => {
         try {
             const res = await fetch(`${SERVER_URL}/name`, {
