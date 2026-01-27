@@ -1,5 +1,7 @@
 package org.Server;
 
+import com.google.gson.Gson;
+import org.DTO.Agent;
 import org.DTO.ClientHandler;
 
 import java.io.BufferedReader;
@@ -18,7 +20,7 @@ public class Servidor {
     private static final String HOST = UtilsServer.getServerName("server.properties");
 
     public static void main(String[] args) {
-        System.out.printf("[LOG] Servidor iniciado en %s:%d\n", HOST, PORT);
+        System.out.printf("[INFO] Servidor iniciado en %s:%d\n", HOST, PORT);
 
         try (final var serverSocket = new ServerSocket(PORT)) {
             while (true) {

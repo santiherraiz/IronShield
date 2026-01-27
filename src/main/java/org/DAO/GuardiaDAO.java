@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 
 public class GuardiaDAO {
 
-    public void insertarPosicion(String username, double latitud, double longitud) {
+    public static void insertarPosicion(String username, double latitud, double longitud) {
         String sql = "INSERT INTO guardia_posicion (username, latitud, longitud) VALUES (?, ?, ?)";
 
         try (Connection conn = new ConexionBD().conectar();
