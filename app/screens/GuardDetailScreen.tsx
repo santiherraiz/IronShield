@@ -36,7 +36,9 @@ const PantallaDetalleGuardia = () => {
     try {
       const data = await getAlertsLog();
       if (Array.isArray(data)) {
-        setAlerts(data as Agent[]);
+        // Aseguramos que estén ordenadas por fecha descendente (la más reciente primero)
+        const sortedData = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        setAlerts(sortedData as Agent[]);
       } else {
         console.log('[WARN] getAlertsLog no ha devuelto lo esperado', data);
       }
@@ -54,72 +56,93 @@ const PantallaDetalleGuardia = () => {
    * <h1>SE PUEDE EXTRAER A UN COMPONENTE APARTE</h1>
    * @param item
    */
-  const renderAlert = ({ item }: { item: Agent }) => {
+  const renderAlert = ({ item, index }: { item: Agent, index: number }) => {
+    const dateObj = new Date(item.date);
     const hora = new Date(item.date).toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
     });
 
+    let isInactive = false;
+    let timeDiffSeconds = 0;
+
+    // Comparamos con el registro anterior en el tiempo (que en la lista ordenada es index + 1)
+    if (index < alerts.length - 1) {
+      const prevItem = alerts[index + 1];
+      const prevDate = new Date(prevItem.date);
+
+      // Diferencia en milisegundos
+      const diffMs = dateObj.getTime() - prevDate.getTime();
+
+      // Si la diferencia es mayor a 30 segundos (30000 ms), marcamos como inactivo
+      if (diffMs > 30000) {
+        isInactive = true;
+        timeDiffSeconds = Math.floor(diffMs / 1000);
+      }
+    }
+
+    const statusColor = isInactive ? COLORS.danger : COLORS.success;
+
     return (
-        <View style={styles.itemRegistro}>
-          <View style={styles.indicadorRegistro} />
-          <View style={{ flex: 1 }}>
-            <Text style={styles.tipoRegistro}>
-              {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
-            </Text>
-          </View>
-          <Text style={styles.horaRegistro}>{hora}</Text>
+      <View style={styles.itemRegistro}>
+        <View style={styles.indicadorRegistro} />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.tipoRegistro}>
+            {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
+          </Text>
         </View>
+        <Text style={styles.horaRegistro}>{hora}</Text>
+      </View>
     );
   };
 
   return (
-      <SafeAreaView style={styles.contenedor}>
-        <View style={styles.encabezado}>
-          <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
+    <SafeAreaView style={styles.contenedor}>
+      <View style={styles.encabezado}>
+        <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
+      </View>
+
+      <View style={styles.cuadriculaInfo}>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>ID</Text>
+          <Text style={styles.valor}>{userId}</Text>
         </View>
-
-        <View style={styles.cuadriculaInfo}>
-          <View style={styles.cajaInfo}>
-            <Text style={styles.etiqueta}>ID</Text>
-            <Text style={styles.valor}>{userId}</Text>
-          </View>
-          <View style={styles.cajaInfo}>
-            <Text style={styles.etiqueta}>NOMBRE</Text>
-            <Text style={styles.valor}>{name.toUpperCase()}</Text>
-          </View>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>NOMBRE</Text>
+          <Text style={styles.valor}>{name.toUpperCase()}</Text>
         </View>
+      </View>
 
-        {/* Botón para cargar alertas */}
-        <TouchableOpacity
-            style={[styles.botonCerrar, { marginBottom: 10 }]}
-            onPress={cargarAlertas}
-        >
-          <Text style={styles.textoBotonCerrar}>
-            {loading ? 'CARGANDO...' : 'CARGAR ALERTAS'}
-          </Text>
-        </TouchableOpacity>
+      {/* Botón para cargar alertas */}
+      <TouchableOpacity
+        style={[styles.botonCerrar, { marginBottom: 10 }]}
+        onPress={cargarAlertas}
+      >
+        <Text style={styles.textoBotonCerrar}>
+          {loading ? 'CARGANDO...' : 'CARGAR ALERTAS'}
+        </Text>
+      </TouchableOpacity>
 
-        {/* FlatList de alertas */}
-        <View style={styles.seccionRegistros}>
-          <Text style={styles.encabezadoSeccion}>ALERTAS RECIENTES</Text>
+      {/* FlatList de alertas */}
+      <View style={styles.seccionRegistros}>
+        <Text style={styles.encabezadoSeccion}>ALERTAS RECIENTES</Text>
 
-          <FlatList
-              data={alerts}
-              keyExtractor={(item, index) => `${item.username}-${item.date}-${index}`}
-              renderItem={renderAlert}
-              ListEmptyComponent={
-                  !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
-                    No hay alertas registradas
-                  </Text>
-              }
-          />
-        </View>
+        <FlatList
+          data={alerts}
+          keyExtractor={(item) => `${item.username}-${item.date}`}
+          renderItem={renderAlert}
+          ListEmptyComponent={
+            !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
+              No hay alertas registradas
+            </Text>
+          }
+        />
+      </View>
 
-        <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
-          <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+      <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
+        <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
