@@ -156,6 +156,38 @@ public class WebServer {
         }
     }
 
+    private static void handleGuards(HttpExchange exchange) {
+        try {
+            if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+                exchange.sendResponseHeaders(204, -1);
+                exchange.close();
+                return;
+            }
+
+            if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(405, -1);
+                exchange.close();
+                return;
+            }
+
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+            // Llamamos al DAO para obtener todos los guardias (con su fecha)
+            final List<Agent> guards = org.DAO.GuardiaDAO.obtenerTodos();
+            final String json = new Gson().toJson(guards);
+            
+            exchange.sendResponseHeaders(200, json.getBytes().length);
+            final OutputStream os = exchange.getResponseBody();
+            os.write(json.getBytes());
+            os.close();
+        } catch (Exception e) {
+            System.err.println("[ERROR] Ha habido un error al recibir la lista de guardias.");
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
         try {
@@ -163,6 +195,7 @@ public class WebServer {
             server.createContext("/location", WebServer::handleLocation);
             server.createContext("/name", WebServer::handleName);
             server.createContext("/alert-log", WebServer::handleAlertLog);
+            server.createContext("/guards", WebServer::handleGuards);
             server.setExecutor(null);
             server.start();
             System.out.println("[INFO] WebServer escuchando en " + HOST_WEBSERVER + ":" + PORT_WEBSERVER);

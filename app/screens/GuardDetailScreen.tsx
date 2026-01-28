@@ -11,7 +11,7 @@ type Agent = {
     username: string;
     latitude: number;
     longitude: number;
-    date: string;
+    date: number | string;
 };
 
 const PantallaDetalleGuardia = () => {
@@ -20,49 +20,46 @@ const PantallaDetalleGuardia = () => {
     const { userId } = useUser();
     const route = useRoute();
     const { name } = route.params as { name: string };
-    const { getAlertsLog } = useServer();
+    const { getActiveGuards } = useServer();
 
-    // Alertas y su estado de carga
-    const [alerts, setAlerts] = useState<Agent[]>([]);
+    // Guardias y su estado de carga
+    const [guards, setGuards] = useState<Agent[]>([]);
     const [loading, setLoading] = useState(false);
 
-    /**
-     * La función <strong>cargarAlertas</strong> es una función asíncrona la cual, como dice el nombre carga las alertas.
-     * Esto lo hace mediante la llamada a la función <strong>getAlertsLog</strong>. Comprueba si es un array y lo asigna a
-     * la variable de estado <strong>alerts</strong>
-     */
-    const cargarAlertas = async () => {
-        setLoading(true);
-        try {
-            const data = await getAlertsLog();
+    // Polling de guardias activos
+    React.useEffect(() => {
+        const fetchGuards = async () => {
+            const data = await getActiveGuards();
             if (Array.isArray(data)) {
-                setAlerts(data as Agent[]);
-            } else {
-                console.log('[WARN] getAlertsLog no ha devuelto lo esperado', data);
+                setGuards(data);
             }
-        } catch (e) {
-            console.log('[ERROR] No se pudieron cargar alertas', e);
-        } finally {
-            setLoading(false);
-        }
-    };
+        };
+
+        fetchGuards(); // Initial fetch
+        const interval = setInterval(fetchGuards, 5000); // Poll every 5s
+
+        return () => clearInterval(interval);
+    }, []);
+
 
     /**
-     * La función <strong>renderAlert</strong> es el componente renderizable, pero sin ser componente y siendo una función
-     * Esto fomatea la hora (que pasa como string) y la parsea la interfaz {@link Date}. Después hace el componente que se
-     * compone del username, latitud, longitud y, por supuesto, la hora formateada.
-     * <h1>SE PUEDE EXTRAER A UN COMPONENTE APARTE</h1>
-     * @param item
+     * Renderiza cada guardia con su estado (Activo/Inactivo)
      */
-    const renderAlert = ({ item }: { item: Agent }) => {
-        const hora = new Date(item.date).toLocaleTimeString([], {
+    const renderGuardia = ({ item }: { item: Agent }) => {
+        const lastActive = new Date(item.date);
+        const now = new Date();
+        const diffSeconds = (now.getTime() - lastActive.getTime()) / 1000;
+        const isActive = diffSeconds < 30;
+
+        const hora = lastActive.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
+            second: '2-digit'
         });
 
         return (
             <View style={styles.itemRegistro}>
-                <View style={styles.indicadorRegistro} />
+                <View style={[styles.indicadorRegistro, { backgroundColor: isActive ? COLORS.success : 'red' }]} />
                 <View style={{ flex: 1 }}>
                     <Text style={styles.tipoRegistro}>
                         {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
@@ -76,12 +73,12 @@ const PantallaDetalleGuardia = () => {
     return (
         <SafeAreaView style={styles.contenedor}>
             <View style={styles.encabezado}>
-                <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
+                <Text style={styles.tituloPantalla}>PANEL DE SUPERVISIÓN (EN VIVO)</Text>
             </View>
 
             <View style={styles.cuadriculaInfo}>
                 <View style={styles.cajaInfo}>
-                    <Text style={styles.etiqueta}>ID</Text>
+                    <Text style={styles.etiqueta}>SUPERVISOR</Text>
                     <Text style={styles.valor}>{userId}</Text>
                 </View>
                 <View style={styles.cajaInfo}>
@@ -90,27 +87,17 @@ const PantallaDetalleGuardia = () => {
                 </View>
             </View>
 
-            {/* Botón para cargar alertas */}
-            <TouchableOpacity
-                style={[styles.botonCerrar, { marginBottom: 10 }]}
-                onPress={cargarAlertas}
-            >
-                <Text style={styles.textoBotonCerrar}>
-                    {loading ? 'CARGANDO...' : 'CARGAR ALERTAS'}
-                </Text>
-            </TouchableOpacity>
-
-            {/* FlatList de alertas */}
+            {/* FlatList de guardias */}
             <View style={styles.seccionRegistros}>
-                <Text style={styles.encabezadoSeccion}>ALERTAS RECIENTES</Text>
+                <Text style={styles.encabezadoSeccion}>ESTADO DE GUARDIAS</Text>
 
                 <FlatList
-                    data={alerts}
-                    keyExtractor={(item, index) => `${item.username}-${item.date}-${index}`}
-                    renderItem={renderAlert}
+                    data={guards}
+                    keyExtractor={(item, index) => `${item.username}-${index}`}
+                    renderItem={renderGuardia}
                     ListEmptyComponent={
-                        !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
-                            No hay alertas registradas
+                        <Text style={{ color: COLORS.text, textAlign: 'center' }}>
+                            Cargando o no hay guardias activos...
                         </Text>
                     }
                 />

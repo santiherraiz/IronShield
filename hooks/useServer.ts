@@ -2,6 +2,8 @@ export const useServer = () => {
     const SERVER_URL = "http://172.30.77.59:45678";
     const SERVER_CASA = "http://192.168.1.38:45678" // Esto es para MI casa, cambiad a la vuestra si probáis: XAVI
     const SERVER_SANTI = "http://10.183.148.33:45678" // Esto es para SANTI
+    const SERVER_SANTI2 = "http://192.168.1.43:45678" // Esto es para CASA SANTI
+
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en
      * una plataforma, ya que es otra ruta distinta a la del emulador.
@@ -11,7 +13,7 @@ export const useServer = () => {
      */
     const sendLocation = async (username: string, latitude: string, longitude: string) => {
         try {
-            await fetch(`${SERVER_URL}/location`, {
+            await fetch(`${SERVER_SANTI2}/location`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 3, username, latitude, longitude }),
@@ -29,7 +31,7 @@ export const useServer = () => {
      */
     const getName = async (username: string, pass: string) => {
         try {
-            const res = await fetch(`${SERVER_URL}/name`, {
+            const res = await fetch(`${SERVER_SANTI2}/name`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 1, username, pass })
@@ -49,7 +51,7 @@ export const useServer = () => {
     const getAlertsLog = async () => {
         // Esta consulta al servidor solo estará en el WebServer, ya que no tiene mucha lógica envíarla al TCP.
         try {
-            const res = await fetch(`${SERVER_URL}/alert-log`);
+            const res = await fetch(`${SERVER_SANTI2}/alert-log`);
             if (!res.ok) console.log("No se ha podido obtener los logs de alertas");
             return await res.json();
         } catch (error) {
@@ -57,9 +59,24 @@ export const useServer = () => {
         }
     }
 
+    /**
+     * <strong>getActiveGuards</strong> obtiene la lista de todos los guardias con su última fecha de actividad.
+     */
+    const getActiveGuards = async () => {
+        try {
+            const res = await fetch(`${SERVER_SANTI2}/guards`);
+            if (!res.ok) console.log("No se ha podido obtener la lista de guardias");
+            return await res.json();
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
     return {
         sendLocation,
         getName,
         getAlertsLog,
+        getActiveGuards,
     }
 }

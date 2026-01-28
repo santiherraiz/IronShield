@@ -44,6 +44,9 @@ public record ClientHandler(Socket clientSocket) implements Runnable {
     }
 
     private static void handleLoc(final Agent agent) {
+        // Actualizamos la ubicación en la tabla usuarios para la funcionalidad "Hombre Vivo"
+        GuardiaDAO.actualizarUbicacion(agent.username, agent.latitude, agent.longitude);
+        // Mantenemos el historial si es necesario, pero la prioridad es el estado activo
         GuardiaDAO.insertarPosicion(agent.username, agent.latitude, agent.longitude);
     }
 
