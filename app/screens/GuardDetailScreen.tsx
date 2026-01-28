@@ -49,22 +49,6 @@ const PantallaDetalleGuardia = () => {
     }
   };
 
-  const getDistanceFromLatLonInMeters = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-    const R = 6371e3; // Radio de la tierra en metros
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
-
-  const deg2rad = (deg: number) => {
-    return deg * (Math.PI / 180);
-  };
-
   /**
    * La función <strong>renderAlert</strong> es el componente renderizable, pero sin ser componente y siendo una función
    * Esto fomatea la hora (que pasa como string) y la parsea la interfaz {@link Date}. Después hace el componente que se
@@ -73,25 +57,27 @@ const PantallaDetalleGuardia = () => {
    * @param item
    */
   const renderAlert = ({ item, index }: { item: Agent, index: number }) => {
+    const dateObj = new Date(item.date);
     const hora = new Date(item.date).toLocaleTimeString([], {
       hour: '2-digit',
       minute: '2-digit',
     });
 
     let isInactive = false;
+    let timeDiffSeconds = 0;
 
+    // Comparamos con el registro anterior en el tiempo (que en la lista ordenada es index + 1)
     if (index < alerts.length - 1) {
       const prevItem = alerts[index + 1];
+      const prevDate = new Date(prevItem.date);
 
-      const timeDiff = new Date(item.date).getTime() - new Date(prevItem.date).getTime();
-      const distance = getDistanceFromLatLonInMeters(
-        item.latitude, item.longitude,
-        prevItem.latitude, prevItem.longitude
-      );
+      // Diferencia en milisegundos
+      const diffMs = dateObj.getTime() - prevDate.getTime();
 
-      // CONDICIÓN: Si pasaron >= 30 segundos (30000ms) y se movió menos de 10 metros
-      if (timeDiff >= 30000 && distance < 10) {
+      // Si la diferencia es mayor a 30 segundos (30000 ms), marcamos como inactivo
+      if (diffMs > 30000) {
         isInactive = true;
+        timeDiffSeconds = Math.floor(diffMs / 1000);
       }
     }
 
