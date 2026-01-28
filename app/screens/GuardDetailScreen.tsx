@@ -55,10 +55,14 @@ const PantallaDetalleGuardia = () => {
    * @param item
    */
   const renderAlert = ({ item }: { item: Agent }) => {
-    const hora = new Date(item.date).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+      const parsedDate = new Date(String(item.date).replace(' ', 'T'));
+
+      const hora = isNaN(parsedDate.getTime())
+          ? '--:--'
+          : parsedDate.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+          });
 
     return (
         <View style={styles.itemRegistro}>
@@ -106,7 +110,7 @@ const PantallaDetalleGuardia = () => {
 
           <FlatList
               data={alerts}
-              keyExtractor={(item) => `${item.username}-${item.date}`}
+              keyExtractor={(item, index) => `${item.username}-${item.date}-${index}`}
               renderItem={renderAlert}
               ListEmptyComponent={
                   !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
