@@ -1,14 +1,16 @@
 package org.Server;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import org.DAO.ConsultaDAO;
+import org.DTO.Agent;
 
-import java.io.BufferedWriter;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class WebServer {
     // Puertos y nombres de host para el servidor y la conexión TCP
@@ -23,19 +25,22 @@ public class WebServer {
      * @param body Mensaje enviado desde la aplicación
      * @return True o false si no hay un error o lo hay respectivamente.
      */
-    private static boolean sendServer(String body) {
+    private static String sendServer(String body) {
         try (
                 Socket socket = new Socket(HOST_SERVER, PORT_SERVER);
                 final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                final BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
+            // Envío al TCP
             bw.write(body);
             bw.newLine();
             bw.flush();
-        } catch (Exception e) {
-            return false;
-        }
 
-        return true;
+            // Aquí devuelve la respuesta
+            return br.readLine();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -67,22 +72,97 @@ public class WebServer {
 
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             System.out.println("[LOG] Localización: " + body);
-            String response = "Enviado";
-            if (!sendServer(body)) {
-                response = "No se ha podido enviar al Servidor TCP";
-            }
-            exchange.sendResponseHeaders(200, response.length());
+            sendServer(body);
             exchange.close();
         } catch (Exception e) {
-            System.err.println("[ERROR] Ha habido un error al recibir la localización");
+            System.err.println("[ERROR] Ha habido un error al envíar la localización");
+        }
+    }
+
+    /**
+     * Esta función obtiene la petición y envía al servidor TCP para la resolución de la misma. La petición es la
+     * resolución del nombre mediante el username del login. Después reenvia la respuesta del TCP como respuesta
+     * del mismo {@link HttpExchange}
+     * @param exchange encapsula una petición y una respuesta HTTP. Puede examinar la solicitud y
+     *                 construir y enviar una respuesta.
+     */
+    private static void handleName(HttpExchange exchange) {
+        try {
+            if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+                exchange.sendResponseHeaders(204, -1);
+                exchange.close();
+                return;
+            }
+
+            if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(405, -1);
+                exchange.close();
+                return;
+            }
+
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+
+            final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+            String tcpResponse = sendServer(body);
+
+            if (tcpResponse == null) tcpResponse = "Error TCP";
+
+            exchange.sendResponseHeaders(200, tcpResponse.getBytes().length);
+            final OutputStream os = exchange.getResponseBody();
+            os.write(tcpResponse.getBytes());
+            os.close();
+        } catch (Exception e) {
+            System.err.println("[ERROR] Ha habido un error al mandar la localización");
+        }
+    }
+
+    /**
+     * Esta función obtiene una petición, y en el mismo servidor, resuelve la petición recogiendo los registros de
+     * alertas en la BBDD. No se envía al TCP, como las otras, porque sería un gasto en llamadas al servidor para
+     * serializar una lista a JSON.
+     * @param exchange encapsula una petición y una respuesta HTTP. Puede examinar la solicitud y
+     *                 construir y enviar una respuesta.
+     */
+    private static void handleAlertLog(HttpExchange exchange) {
+        try {
+            if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+                exchange.sendResponseHeaders(204, -1);
+                exchange.close();
+                return;
+            }
+
+            if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(405, -1);
+                exchange.close();
+                return;
+            }
+
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+            final List<Agent> alerts = ConsultaDAO.obtenerAlertas();
+            final String json = new Gson().toJson(alerts);
+            System.out.println(json);
+            exchange.sendResponseHeaders(200, json.getBytes().length);
+            final OutputStream os = exchange.getResponseBody();
+            os.write(json.getBytes());
+            os.close();
+        } catch (Exception e) {
+            System.err.println("[ERROR] Ha habido un error al recibir los registros de alertas.");
         }
     }
 
 
-    public static void main() {
+    public static void main(String[] args) {
         try {
             final HttpServer server = HttpServer.create(new InetSocketAddress(HOST_WEBSERVER, PORT_WEBSERVER), 0);
             server.createContext("/location", WebServer::handleLocation);
+            server.createContext("/name", WebServer::handleName);
+            server.createContext("/alert-log", WebServer::handleAlertLog);
             server.setExecutor(null);
             server.start();
             System.out.println("[INFO] WebServer escuchando en " + HOST_WEBSERVER + ":" + PORT_WEBSERVER);

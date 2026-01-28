@@ -7,15 +7,14 @@ import java.sql.PreparedStatement;
 
 public class InactividadDAO {
 
-    public void insertarInactividad(int usuarioId, int minutosInactivo) {
-        String sql = "INSERT INTO inactividad (usuario_id, minutos_inactivo) VALUES (?, ?)";
+    public static void insertarInactividad(int usuarioId) {
+
+        String sql = "INSERT INTO inactividad (usuario_id) VALUES (?)";
 
         try (Connection conn = new ConexionBD().conectar();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, usuarioId);
-            ps.setInt(2, minutosInactivo);
-
             ps.executeUpdate();
 
         } catch (Exception e) {

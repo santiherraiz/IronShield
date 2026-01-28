@@ -53,7 +53,7 @@ public class UtilsServer {
      * @param key Es el campo que quieres buscar (debe estar dentro del fichero de configuración, si no dará null)
      * @return El valor de la clave pasada, si hay un problema o no es válida la clave, devuelve null.
      */
-    private static String getValueFromConf(String key, String path) {
+    public static String getValueFromConf(String key, String path) {
         try (final BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
             final HashMap<String, String> dict = new HashMap<>();
