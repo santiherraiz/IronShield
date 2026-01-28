@@ -11,7 +11,7 @@ export const useServer = () => {
      */
     const sendLocation = async (username: string, latitude: string, longitude: string) => {
         try {
-            await fetch(`${SERVER_SANTI}/location`, {
+            await fetch(`${SERVER_URL}/location`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 3, username, latitude, longitude }),
@@ -29,7 +29,7 @@ export const useServer = () => {
      */
     const getName = async (username: string, pass: string) => {
         try {
-            const res = await fetch(`${SERVER_SANTI}/name`, {
+            const res = await fetch(`${SERVER_URL}/name`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 1, username, pass })
@@ -49,7 +49,7 @@ export const useServer = () => {
     const getAlertsLog = async () => {
         // Esta consulta al servidor solo estará en el WebServer, ya que no tiene mucha lógica envíarla al TCP.
         try {
-            const res = await fetch(`${SERVER_SANTI}/alert-log`);
+            const res = await fetch(`${SERVER_URL}/alert-log`);
             if (!res.ok) console.log("No se ha podido obtener los logs de alertas");
             return await res.json();
         } catch (error) {
