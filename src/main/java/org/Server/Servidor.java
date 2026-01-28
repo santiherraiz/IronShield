@@ -30,5 +30,5 @@ public class Servidor {
         } catch (IOException e) {
             System.err.println("[ERROR] No se ha podido crear un Socket para el server.\n" + e.getMessage());
         }
-    }
+    }z
 }

@@ -3,9 +3,10 @@ import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'rea
 import { useCentinela } from '../hooks/useCentinelaLocation';
 import { Radar, RefreshCw, AlertOctagon, ShieldCheck, Settings } from 'lucide-react-native';
 import { PermissionStatus } from '../infrastructure/interfaces/location';
+import { CentinelaMap } from './CentinelaMap';
 
 export const CentinelaDisplay = () => {
-    const { location, errorMsg, loading, refresh, status } = useCentinela();
+    const { location, errorMsg, loading, status } = useCentinela();
 
 
     const renderContent = () => {
@@ -53,17 +54,17 @@ export const CentinelaDisplay = () => {
                     </View>
                 </View>
 
+                {/* --- MAPA DE MONITOREO --- */}
+                {location && (
+                    <CentinelaMap
+                        latitude={location.coords.latitude}
+                        longitude={location.coords.longitude}
+                    />
+                )}
+
                 {/* Footer de Integridad */}
                 <View style={styles.cardFooter}>
-                    <View style={styles.row}>
-                        <ShieldCheck size={12} color="#166534" />
-                        <Text style={styles.precisionText}>
-                            PRECISIÓN: {location?.coords.accuracy?.toFixed(1) || '0'}m
-                        </Text>
-                    </View>
-                    <View style={styles.verifiedBadge}>
-                        <Text style={styles.verifiedText}>{status === PermissionStatus.GRANTED ? 'VERIFICADO' : 'PENDIENTE'}</Text>
-                    </View>
+                    {/* ... resto de tu footer ... */}
                 </View>
             </View>
         );
@@ -76,7 +77,7 @@ export const CentinelaDisplay = () => {
                     <Radar size={16} color="#22c55e" />
                     <Text style={styles.headerTitle}>SISTEMA IRONSHIELD // PERMISO: {status}</Text>
                 </View>
-                <TouchableOpacity onPress={refresh} disabled={loading}>
+                <TouchableOpacity  disabled={loading}>
                     <RefreshCw size={16} color={loading ? "#14532d" : "#22c55e"} />
                 </TouchableOpacity>
             </View>
