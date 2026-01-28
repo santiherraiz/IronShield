@@ -55,14 +55,10 @@ const PantallaDetalleGuardia = () => {
    * @param item
    */
   const renderAlert = ({ item }: { item: Agent }) => {
-      const parsedDate = new Date(String(item.date).replace(' ', 'T'));
-
-      const hora = isNaN(parsedDate.getTime())
-          ? '--:--'
-          : parsedDate.toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit',
-          });
+    const hora = new Date(item.date).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+    });
 
     return (
         <View style={styles.itemRegistro}>
