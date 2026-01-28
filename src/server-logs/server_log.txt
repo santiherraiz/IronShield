@@ -121,3 +121,5 @@
 [LOG] Cliente desconectado: 127.0.0.1:54450[2026-01-26 | 22:18:31]
 [LOG] Cliente desconectado: 127.0.0.1:38004[2026-01-28 | 08:16:56]
 [LOG] Cliente desconectado: 127.0.0.1:33226[2026-01-28 | 09:45:46]
+[LOG] Cliente desconectado: 192.168.1.181:49382[2026-01-28 | 16:51:25]
+[LOG] Cliente desconectado: 192.168.1.181:53699[2026-01-28 | 16:53:10]

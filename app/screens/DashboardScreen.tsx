@@ -11,31 +11,31 @@ import { useRoute } from "@react-navigation/core";
 
 const PantallaPanelControl = ({ navigation }: any) => {
 
-  const { estado, setEstado, gestionarPuntoControl } = useDashboardScreen();
-  const { role, userId } = useUser();
-  const { dia, mes, anno } = {
-    dia: new Date().getDate(),
-    mes: new Date().getMonth() + 1,
-    anno: new Date().getFullYear()
-  }
-  const { location } = useCentinela();
-  const { sendLocation } = useServer();
-  const { contrasena } = useLogin();
-  const route = useRoute();
-  const { name } = route.params;
+    const { estado, setEstado, gestionarPuntoControl } = useDashboardScreen();
+    const { role, userId, userName} = useUser();
+    const { dia, mes, anno } = {
+        dia: new Date().getDate(),
+        mes: new Date().getMonth() + 1,
+        anno: new Date().getFullYear()
+    }
+    const { location } = useCentinela();
+    const { sendLocation } = useServer();
+    const { contrasena } = useLogin();
+    const route = useRoute();
 
-  return (
-    <SafeAreaView style={styles.contenedor}>
-      <View style={styles.filaEncabezado}>
-        <View>
-          <Text style={styles.etiquetaEncabezado}>GUARDIA</Text>
-          <Text style={styles.valorEncabezado}>{userId} - {(name as string).toUpperCase()}</Text>
-        </View>
-        <View style={{ alignItems: 'flex-end' }}>
-          <Text style={styles.etiquetaEncabezado}>FECHA</Text>
-          <Text style={styles.valorEncabezado}> {dia}/{mes}/{anno}</Text>
-        </View>
-      </View>
+
+    return (
+        <SafeAreaView style={styles.contenedor}>
+            <View style={styles.filaEncabezado}>
+                <View>
+                    <Text style={styles.etiquetaEncabezado}>GUARDIA</Text>
+                    <Text style={styles.valorEncabezado}>{userId} - {(userName || "Invitado").toUpperCase()}</Text>
+                </View>
+                <View style={{ alignItems: 'flex-end' }}>
+                    <Text style={styles.etiquetaEncabezado}>FECHA</Text>
+                    <Text style={styles.valorEncabezado}> {dia}/{mes}/{anno}</Text>
+                </View>
+            </View>
 
       <View style={styles.contenedorAccionPrincipal}>
         <Text style={styles.textoInstruccion}>
