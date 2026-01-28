@@ -146,6 +146,7 @@ public class WebServer {
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
             final List<Agent> alerts = ConsultaDAO.obtenerAlertas();
             final String json = new Gson().toJson(alerts);
+            System.out.println(json);
             exchange.sendResponseHeaders(200, json.getBytes().length);
             final OutputStream os = exchange.getResponseBody();
             os.write(json.getBytes());
