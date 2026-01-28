@@ -6,6 +6,9 @@ target/
 # EXPO
 .expo/
 
+#app.json
+app.json
+
 # DATABASE
 database.properties
 
