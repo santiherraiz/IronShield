@@ -16,7 +16,7 @@ public class Agent {
     public String pass;
     public double latitude;
     public double longitude;
-    public long date;
+    public Timestamp date;
 
     // CODE 1
     public Agent(String username, int code) {
@@ -29,7 +29,7 @@ public class Agent {
         this.username = username;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.date = date.getTime();
+        this.date = date;
     }
 
     // CODE 3

@@ -36,7 +36,9 @@ const PantallaDetalleGuardia = () => {
     try {
       const data = await getAlertsLog();
       if (Array.isArray(data)) {
-        setAlerts(data as Agent[]);
+        // Aseguramos que estén ordenadas por fecha descendente (la más reciente primero)
+        const sortedData = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        setAlerts(sortedData as Agent[]);
       } else {
         console.log('[WARN] getAlertsLog no ha devuelto lo esperado', data);
       }
@@ -47,6 +49,22 @@ const PantallaDetalleGuardia = () => {
     }
   };
 
+  const getDistanceFromLatLonInMeters = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+    const R = 6371e3; // Radio de la tierra en metros
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  const deg2rad = (deg: number) => {
+    return deg * (Math.PI / 180);
+  };
+
   /**
    * La función <strong>renderAlert</strong> es el componente renderizable, pero sin ser componente y siendo una función
    * Esto fomatea la hora (que pasa como string) y la parsea la interfaz {@link Date}. Después hace el componente que se
@@ -54,72 +72,91 @@ const PantallaDetalleGuardia = () => {
    * <h1>SE PUEDE EXTRAER A UN COMPONENTE APARTE</h1>
    * @param item
    */
-  const renderAlert = ({ item }: { item: Agent }) => {
+  const renderAlert = ({ item, index }: { item: Agent, index: number }) => {
     const hora = new Date(item.date).toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
     });
 
+    let isInactive = false;
+
+    if (index < alerts.length - 1) {
+      const prevItem = alerts[index + 1];
+
+      const timeDiff = new Date(item.date).getTime() - new Date(prevItem.date).getTime();
+      const distance = getDistanceFromLatLonInMeters(
+        item.latitude, item.longitude,
+        prevItem.latitude, prevItem.longitude
+      );
+
+      // CONDICIÓN: Si pasaron >= 30 segundos (30000ms) y se movió menos de 10 metros
+      if (timeDiff >= 30000 && distance < 10) {
+        isInactive = true;
+      }
+    }
+
+    const statusColor = isInactive ? COLORS.danger : COLORS.success;
+
     return (
-        <View style={styles.itemRegistro}>
-          <View style={styles.indicadorRegistro} />
-          <View style={{ flex: 1 }}>
-            <Text style={styles.tipoRegistro}>
-              {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
-            </Text>
-          </View>
-          <Text style={styles.horaRegistro}>{hora}</Text>
+      <View style={styles.itemRegistro}>
+        <View style={styles.indicadorRegistro} />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.tipoRegistro}>
+            {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
+          </Text>
         </View>
+        <Text style={styles.horaRegistro}>{hora}</Text>
+      </View>
     );
   };
 
   return (
-      <SafeAreaView style={styles.contenedor}>
-        <View style={styles.encabezado}>
-          <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
+    <SafeAreaView style={styles.contenedor}>
+      <View style={styles.encabezado}>
+        <Text style={styles.tituloPantalla}>PANEL DE DETALLE DEL GUARDIA</Text>
+      </View>
+
+      <View style={styles.cuadriculaInfo}>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>ID</Text>
+          <Text style={styles.valor}>{userId}</Text>
         </View>
-
-        <View style={styles.cuadriculaInfo}>
-          <View style={styles.cajaInfo}>
-            <Text style={styles.etiqueta}>ID</Text>
-            <Text style={styles.valor}>{userId}</Text>
-          </View>
-          <View style={styles.cajaInfo}>
-            <Text style={styles.etiqueta}>NOMBRE</Text>
-            <Text style={styles.valor}>{name.toUpperCase()}</Text>
-          </View>
+        <View style={styles.cajaInfo}>
+          <Text style={styles.etiqueta}>NOMBRE</Text>
+          <Text style={styles.valor}>{name.toUpperCase()}</Text>
         </View>
+      </View>
 
-        {/* Botón para cargar alertas */}
-        <TouchableOpacity
-            style={[styles.botonCerrar, { marginBottom: 10 }]}
-            onPress={cargarAlertas}
-        >
-          <Text style={styles.textoBotonCerrar}>
-            {loading ? 'CARGANDO...' : 'CARGAR ALERTAS'}
-          </Text>
-        </TouchableOpacity>
+      {/* Botón para cargar alertas */}
+      <TouchableOpacity
+        style={[styles.botonCerrar, { marginBottom: 10 }]}
+        onPress={cargarAlertas}
+      >
+        <Text style={styles.textoBotonCerrar}>
+          {loading ? 'CARGANDO...' : 'CARGAR ALERTAS'}
+        </Text>
+      </TouchableOpacity>
 
-        {/* FlatList de alertas */}
-        <View style={styles.seccionRegistros}>
-          <Text style={styles.encabezadoSeccion}>ALERTAS RECIENTES</Text>
+      {/* FlatList de alertas */}
+      <View style={styles.seccionRegistros}>
+        <Text style={styles.encabezadoSeccion}>ALERTAS RECIENTES</Text>
 
-          <FlatList
-              data={alerts}
-              keyExtractor={(item, index) => `${item.username}-${item.date}-${index}`}
-              renderItem={renderAlert}
-              ListEmptyComponent={
-                  !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
-                    No hay alertas registradas
-                  </Text>
-              }
-          />
-        </View>
+        <FlatList
+          data={alerts}
+          keyExtractor={(item) => `${item.username}-${item.date}`}
+          renderItem={renderAlert}
+          ListEmptyComponent={
+            !loading && <Text style={{ color: COLORS.text, textAlign: 'center' }}>
+              No hay alertas registradas
+            </Text>
+          }
+        />
+      </View>
 
-        <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
-          <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+      <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
+        <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 

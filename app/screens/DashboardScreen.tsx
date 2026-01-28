@@ -4,10 +4,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useDashboardScreen } from '../../hooks/useDashboardScreen';
 import { useUser } from '../../contexts/UserContext';
-import {useCentinela} from "../../hooks/useCentinelaLocation";
-import {useServer} from "../../hooks/useServer";
-import {useLogin} from "../../hooks/useLogin";
-import {useRoute} from "@react-navigation/core";
+import { useCentinela } from "../../hooks/useCentinelaLocation";
+import { useServer } from "../../hooks/useServer";
+import { useLogin } from "../../hooks/useLogin";
+import { useRoute } from "@react-navigation/core";
 
 const PantallaPanelControl = ({ navigation }: any) => {
 
@@ -21,8 +21,8 @@ const PantallaPanelControl = ({ navigation }: any) => {
   const { location } = useCentinela();
   const { sendLocation } = useServer();
   const { contrasena } = useLogin();
-    const route = useRoute();
-    const { name } = route.params;
+  const route = useRoute();
+  const { name } = route.params;
 
   return (
     <SafeAreaView style={styles.contenedor}>
@@ -41,11 +41,11 @@ const PantallaPanelControl = ({ navigation }: any) => {
         <Text style={styles.textoInstruccion}>
           AL LLEGAR A POSICIÓN, PULSE PARA CONFIRMAR PRESENCIA
         </Text>
-        
+
         <TouchableOpacity style={styles.botonPuntoControl} onPress={() => sendLocation(
-            userId,
-            location?.coords.latitude.toFixed(6),
-            location?.coords.longitude.toFixed(6))}
+          userId,
+          location?.coords.latitude.toFixed(6),
+          location?.coords.longitude.toFixed(6))}
         >
           <View style={styles.anilloInterno}>
             <Text style={styles.textoPuntoControl}>PUNTO DE CONTROL</Text>
@@ -55,8 +55,8 @@ const PantallaPanelControl = ({ navigation }: any) => {
       </View>
 
       <View style={styles.navegacionCuadricula}>
-        <TouchableOpacity 
-          style={styles.tarjetaNav} 
+        <TouchableOpacity
+          style={styles.tarjetaNav}
           onPress={() => navigation.navigate('MapMonitor')}>
           <Text style={styles.tituloNav}>MAPA / GPS</Text>
           <Text style={styles.estadoNav}>RASTREO ACTIVO</Text>
