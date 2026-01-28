@@ -1,5 +1,5 @@
 export const useServer = () => {
-    const SERVER_URL = "http://172.30.77.54:45678";
+    const SERVER_URL = "http://172.30.77.59:45678";
     const SERVER_CASA = "http://192.168.1.38:45678" // Esto es para MI casa, cambiad a la vuestra si probáis: XAVI
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en
