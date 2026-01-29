@@ -39,7 +39,7 @@ public class Servidor {
             LogManager.error("Error al iniciar el monitor de inactividad: " + e.getMessage());
             e.printStackTrace();
             System.err.println("ADVERTENCIA: El monitor de inactividad no se pudo iniciar.");
-            System.err.println("   El servidor continuará funcionando pero sin detección automática.");
+            System.err.println("El servidor continuará funcionando pero sin detección automática.");
         }
         
         // Agregar shutdown hook para detener el monitor limpiamente
