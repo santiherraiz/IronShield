@@ -579,3 +579,101 @@
 [2026-01-29 18:18:31] [INFO] [GUARDS] Devolviendo 1 guardias activos
 [2026-01-29 18:18:32] [INFO] Total de guardias recuperados: 5
 [2026-01-29 18:18:33] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:38] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:38] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:38] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:40] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:40] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:42] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:43] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:45] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:45] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:47] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:48] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:18:50] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:18:50] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:18:51] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G001
+[2026-01-29 18:18:52] [INFO] Guardia G001 tiene 4 inactividades hoy
+[2026-01-29 18:18:52] [WARNING] ALERTA DE INACTIVIDAD:
+  - Guardia: G001
+  - Última señal: hace 3635 segundos
+  - Última posición: (39,457354, -0,468938)
+  - Total inactividades hoy: 4
+[2026-01-29 18:18:54] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:55] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:18:55] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:18:55] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:18:57] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:58] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:00] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:00] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:03] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:05] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:05] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:07] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:08] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:10] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:10] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:13] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:13] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 18:19:15] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:15] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:17] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:18] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:20] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:20] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:22] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:24] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:25] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:25] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:27] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:29] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:30] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:30] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:32] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:34] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:35] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:35] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:38] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:40] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:40] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:42] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:44] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:45] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:46] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:47] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:49] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:50] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:50] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:52] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:53] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:55] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:19:55] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:19:57] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:19:58] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:00] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:00] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:20:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:20:03] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:03] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 18:20:06] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:06] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:20:07] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:20:08] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:10] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:10] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:20:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:20:13] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:20:14] [INFO] Señal de apagado recibida. Deteniendo servicios...
+[2026-01-29 18:20:14] [INFO] Monitor de inactividad detenido
+[2026-01-29 18:20:14] [INFO] Servidor detenido correctamente.

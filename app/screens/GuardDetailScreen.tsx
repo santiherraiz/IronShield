@@ -17,10 +17,12 @@ type Agent = {
 const PantallaDetalleGuardia = () => {
 
     const { handleCerrar } = useGuardDetailScreen();
-    const { userId } = useUser();
+    const { userId, userName} = useUser();
     const route = useRoute();
     const { name } = route.params as { name: string };
     const { getActiveGuards } = useServer();
+
+    const { getAlertsLog } = useServer();
 
     // Guardias y su estado de carga
     const [guards, setGuards] = useState<Agent[]>([]);
@@ -83,7 +85,7 @@ const PantallaDetalleGuardia = () => {
                 </View>
                 <View style={styles.cajaInfo}>
                     <Text style={styles.etiqueta}>NOMBRE</Text>
-                    <Text style={styles.valor}>{name.toUpperCase()}</Text>
+                    <Text style={styles.valor}>{(userName || "").toUpperCase()}</Text>
                 </View>
             </View>
 
