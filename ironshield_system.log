@@ -1,0 +1,581 @@
+[2026-01-29 16:36:01] [INFO] ✓ WebServer escuchando en 0.0.0.0:45678
+[2026-01-29 16:36:54] [INFO] Servidor iniciado en 0.0.0.0:6969
+[2026-01-29 16:37:38] [INFO] ✓ WebServer escuchando en 0.0.0.0:45678
+[2026-01-29 16:39:32] [INFO] Servidor iniciado en 0.0.0.0:6969
+[2026-01-29 16:39:32] [INFO] ✓ Monitor de inactividad iniciado correctamente
+  - Umbral de inactividad: 30 segundos
+  - Intervalo de verificación: 5 segundos
+[2026-01-29 16:39:32] [INFO] ✓ Servidor TCP listo para aceptar conexiones
+[2026-01-29 16:39:35] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:39:37] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:39:39] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G004
+[2026-01-29 16:39:41] [INFO] Guardia G004 tiene 1 inactividades hoy
+[2026-01-29 16:39:41] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G004
+  - Última señal: hace 82067 segundos
+  - Última posición: (39,457331, -0,468950)
+  - Total inactividades hoy: 1
+[2026-01-29 16:39:43] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G002
+[2026-01-29 16:39:45] [INFO] Guardia G002 tiene 1 inactividades hoy
+[2026-01-29 16:39:45] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G002
+  - Última señal: hace 58798 segundos
+  - Última posición: (39,457340, -0,468940)
+  - Total inactividades hoy: 1
+[2026-01-29 16:39:47] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G005
+[2026-01-29 16:39:49] [INFO] Guardia G005 tiene 1 inactividades hoy
+[2026-01-29 16:39:49] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G005
+  - Última señal: hace 61576 segundos
+  - Última posición: (39,457372, -0,468941)
+  - Total inactividades hoy: 1
+[2026-01-29 16:39:52] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G003
+[2026-01-29 16:39:53] [INFO] Guardia G003 tiene 1 inactividades hoy
+[2026-01-29 16:39:53] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G003
+  - Última señal: hace 29656 segundos
+  - Última posición: (0,000000, 0,000000)
+  - Total inactividades hoy: 1
+[2026-01-29 16:39:56] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G001
+[2026-01-29 16:39:58] [INFO] Guardia G001 tiene 1 inactividades hoy
+[2026-01-29 16:39:58] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G001
+  - Última señal: hace 13571 segundos
+  - Última posición: (39,459999, -0,470423)
+  - Total inactividades hoy: 1
+[2026-01-29 16:39:59] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:00] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:00] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 16:40:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:03] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:03] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 16:40:04] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:06] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:07] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:08] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:09] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:11] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:13] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:14] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:15] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:17] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:18] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:20] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:21] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:23] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:24] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:25] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:28] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:30] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:34] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:35] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:38] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:39] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:44] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:45] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:48] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:50] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:50] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 16:40:54] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:40:55] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:40:58] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:00] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:04] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:05] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:09] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:10] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:14] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:15] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:18] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:19] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:22] [INFO] Señal de apagado recibida. Deteniendo servicios...
+[2026-01-29 16:41:22] [INFO] Monitor de inactividad detenido
+[2026-01-29 16:41:22] [INFO] Servidor detenido correctamente.
+[2026-01-29 16:41:35] [INFO] Servidor iniciado en 0.0.0.0:6969
+[2026-01-29 16:41:35] [INFO] ✓ Monitor de inactividad iniciado correctamente
+  - Umbral de inactividad: 30 segundos
+  - Intervalo de verificación: 5 segundos
+[2026-01-29 16:41:35] [INFO] ✓ Servidor TCP listo para aceptar conexiones
+[2026-01-29 16:41:38] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:39] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:39] [INFO] ✓ WebServer escuchando en 0.0.0.0:45678
+[2026-01-29 16:41:41] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G004
+[2026-01-29 16:41:42] [INFO] Guardia G004 tiene 2 inactividades hoy
+[2026-01-29 16:41:42] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G004
+  - Última señal: hace 82189 segundos
+  - Última posición: (39,457331, -0,468950)
+  - Total inactividades hoy: 2
+[2026-01-29 16:41:44] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G002
+[2026-01-29 16:41:45] [INFO] Guardia G002 tiene 2 inactividades hoy
+[2026-01-29 16:41:45] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G002
+  - Última señal: hace 58919 segundos
+  - Última posición: (39,457340, -0,468940)
+  - Total inactividades hoy: 2
+[2026-01-29 16:41:48] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G005
+[2026-01-29 16:41:49] [INFO] Guardia G005 tiene 2 inactividades hoy
+[2026-01-29 16:41:49] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G005
+  - Última señal: hace 61697 segundos
+  - Última posición: (39,457372, -0,468941)
+  - Total inactividades hoy: 2
+[2026-01-29 16:41:51] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G003
+[2026-01-29 16:41:52] [INFO] Guardia G003 tiene 2 inactividades hoy
+[2026-01-29 16:41:52] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G003
+  - Última señal: hace 29775 segundos
+  - Última posición: (0,000000, 0,000000)
+  - Total inactividades hoy: 2
+[2026-01-29 16:41:55] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G001
+[2026-01-29 16:41:56] [INFO] Guardia G001 tiene 2 inactividades hoy
+[2026-01-29 16:41:56] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G001
+  - Última señal: hace 13690 segundos
+  - Última posición: (39,459999, -0,470423)
+  - Total inactividades hoy: 2
+[2026-01-29 16:41:57] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:41:58] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:41:59] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:01] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:03] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:04] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:05] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:06] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:07] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:08] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:09] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:13] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:17] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:18] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:22] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:23] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:26] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:28] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:29] [INFO] [NAME] Petición de nombre recibida
+[2026-01-29 16:42:29] [INFO] Nueva conexión entrante desde: 192.168.1.43:35960
+[2026-01-29 16:42:31] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:32] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:32] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 16:42:32] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:32] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:42:37] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:37] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:42:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:38] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:42] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:43] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:43] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:43] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:42:47] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:47] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:47] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:42:48] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:52] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:52] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:42:52] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:54] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:56] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:42:56] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:42:56] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:42:57] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:43:01] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:02] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:43:02] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:43:02] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:43:06] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:07] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:43:07] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:43:07] [INFO] [NAME] Petición de nombre recibida
+[2026-01-29 16:43:07] [INFO] Nueva conexión entrante desde: 192.168.1.43:37338
+[2026-01-29 16:43:08] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:43:09] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G002","latitude":"39.4573729","longitude":"-0.4689296"}
+[2026-01-29 16:43:09] [INFO] Nueva conexión entrante desde: 192.168.1.43:37352
+[2026-01-29 16:43:11] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:43:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:12] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:43:13] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:13] [INFO] ✓ Guardia G002 se ha REACTIVADO
+[2026-01-29 16:43:14] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:14] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:17] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:17] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:17] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:18] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:22] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:22] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:22] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:22] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:22] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 1
+  - Guardias inactivos: 4
+[2026-01-29 16:43:26] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:27] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:27] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:28] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:31] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:32] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:32] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:32] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:37] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:37] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:38] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:42] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:42] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:42] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:42] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:44] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G002","latitude":"39.457373","longitude":"-0.468930"}
+[2026-01-29 16:43:44] [INFO] Nueva conexión entrante desde: 192.168.1.43:59064
+[2026-01-29 16:43:46] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:43:47] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:47] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:43:48] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:49] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:49] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:51] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:52] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:52] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:52] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:56] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:43:57] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:43:57] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:43:58] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:01] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:02] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:02] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:03] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:06] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:08] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:08] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:08] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:11] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:12] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:12] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:13] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:13] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 1
+  - Guardias inactivos: 4
+[2026-01-29 16:44:17] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:17] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:17] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:18] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:44:21] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G002
+[2026-01-29 16:44:22] [INFO] Guardia G002 tiene 3 inactividades hoy
+[2026-01-29 16:44:22] [WARNING] ⚠️ ALERTA DE INACTIVIDAD:
+  - Guardia: G002
+  - Última señal: hace 3634 segundos
+  - Última posición: (39,457373, -0,468930)
+  - Total inactividades hoy: 3
+[2026-01-29 16:44:22] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:44:22] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:44:23] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:24] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:44:26] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:27] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:44:27] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:44:28] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:44:28] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G002","latitude":"39.457373","longitude":"-0.468930"}
+[2026-01-29 16:44:28] [INFO] Nueva conexión entrante desde: 192.168.1.43:42438
+[2026-01-29 16:44:29] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:44:30] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:44:31] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:32] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:32] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:32] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:32] [INFO] ✓ Guardia G002 se ha REACTIVADO
+[2026-01-29 16:44:36] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:37] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:37] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:37] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:37] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G002","latitude":"39.457373","longitude":"-0.468930"}
+[2026-01-29 16:44:37] [INFO] Nueva conexión entrante desde: 192.168.1.43:57480
+[2026-01-29 16:44:39] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:44:40] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:44:41] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:42] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:42] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:42] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:46] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:47] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:47] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:48] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:52] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:52] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:52] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:53] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:56] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:44:57] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:44:57] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:44:58] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:45:03] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:03] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:45:03] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:03] [INFO] 📊 Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 1
+  - Guardias inactivos: 4
+[2026-01-29 16:45:06] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:45:08] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:08] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:45:08] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:11] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:45:12] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:45:12] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:45:12] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:45:13] [INFO] Ya existe registro reciente de inactividad para G002, omitiendo...
+[2026-01-29 16:45:16] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:45:18] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:45:18] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:45:18] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:45:22] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:45:22] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:45:22] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 16:45:23] [INFO] Guardias activos recuperados: 0
+[2026-01-29 16:45:23] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G002","latitude":"39.457373","longitude":"-0.468930"}
+[2026-01-29 16:45:23] [INFO] Nueva conexión entrante desde: 192.168.1.43:39142
+[2026-01-29 16:45:25] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:45:26] [INFO] Nueva posición registrada para G002: (39,457373, -0,468930)
+[2026-01-29 16:45:26] [INFO] Total de guardias recuperados: 5
+[2026-01-29 16:45:27] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:27] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 16:45:27] [INFO] Guardias activos recuperados: 1
+[2026-01-29 16:45:27] [INFO] ✓ Guardia G002 se ha REACTIVADO
+[2026-01-29 16:45:32] [INFO] Señal de apagado recibida. Deteniendo servicios...
+[2026-01-29 16:45:32] [INFO] Monitor de inactividad detenido
+[2026-01-29 16:45:32] [INFO] Servidor detenido correctamente.
+[2026-01-29 18:15:01] [INFO] WebServer escuchando en 0.0.0.0:45678
+[2026-01-29 18:15:06] [INFO] Servidor iniciado en 0.0.0.0:6969
+[2026-01-29 18:15:06] [INFO] ✓ Monitor de inactividad iniciado correctamente
+  - Umbral de inactividad: 30 segundos
+  - Intervalo de verificación: 5 segundos
+[2026-01-29 18:15:06] [INFO] Servidor TCP listo para aceptar conexiones
+[2026-01-29 18:15:09] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:10] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:12] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G004
+[2026-01-29 18:15:14] [INFO] Guardia G004 tiene 3 inactividades hoy
+[2026-01-29 18:15:14] [WARNING] ALERTA DE INACTIVIDAD:
+  - Guardia: G004
+  - Última señal: hace 87800 segundos
+  - Última posición: (39,457331, -0,468950)
+  - Total inactividades hoy: 3
+[2026-01-29 18:15:16] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G005
+[2026-01-29 18:15:18] [INFO] Guardia G005 tiene 3 inactividades hoy
+[2026-01-29 18:15:18] [WARNING] ALERTA DE INACTIVIDAD:
+  - Guardia: G005
+  - Última señal: hace 67305 segundos
+  - Última posición: (39,457372, -0,468941)
+  - Total inactividades hoy: 3
+[2026-01-29 18:15:21] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G003
+[2026-01-29 18:15:22] [INFO] Guardia G003 tiene 3 inactividades hoy
+[2026-01-29 18:15:22] [WARNING] ALERTA DE INACTIVIDAD:
+  - Guardia: G003
+  - Última señal: hace 35385 segundos
+  - Última posición: (0,000000, 0,000000)
+  - Total inactividades hoy: 3
+[2026-01-29 18:15:24] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G001
+[2026-01-29 18:15:25] [INFO] Guardia G001 tiene 3 inactividades hoy
+[2026-01-29 18:15:25] [WARNING] ALERTA DE INACTIVIDAD:
+  - Guardia: G001
+  - Última señal: hace 19299 segundos
+  - Última posición: (39,459999, -0,470423)
+  - Total inactividades hoy: 3
+[2026-01-29 18:15:28] [WARNING] ⚠️ ALERTA: Inactividad registrada para guardia G002
+[2026-01-29 18:15:30] [INFO] Guardia G002 tiene 4 inactividades hoy
+[2026-01-29 18:15:30] [WARNING] ALERTA DE INACTIVIDAD:
+  - Guardia: G002
+  - Última señal: hace 9002 segundos
+  - Última posición: (39,457373, -0,468930)
+  - Total inactividades hoy: 4
+[2026-01-29 18:15:31] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:33] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:34] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:36] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:39] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:40] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:42] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:43] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:45] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:46] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:48] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:49] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:50] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:50] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 18:15:51] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:53] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:53] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 18:15:54] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:55] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:15:57] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:15:58] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:02] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:06] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:08] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:13] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:15] [INFO] [NAME] Petición de nombre recibida
+[2026-01-29 18:16:15] [INFO] Nueva conexión entrante desde: 192.168.1.43:40916
+[2026-01-29 18:16:16] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:18] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:21] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:22] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:27] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:28] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:32] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:33] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:38] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:42] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:43] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:43] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 0
+  - Guardias inactivos: 5
+[2026-01-29 18:16:47] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:48] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:51] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:52] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:16:56] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:16:57] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:01] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:02] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:07] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:07] [INFO] [NAME] Petición de nombre recibida
+[2026-01-29 18:17:07] [INFO] Nueva conexión entrante desde: 192.168.1.43:59492
+[2026-01-29 18:17:08] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:10] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:10] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:17:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:13] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:15] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:15] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:17:17] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:19] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:20] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:20] [INFO] [GUARDS] Devolviendo 0 guardias activos
+[2026-01-29 18:17:20] [INFO] [NAME] Petición de nombre recibida
+[2026-01-29 18:17:20] [INFO] Nueva conexión entrante desde: 192.168.1.43:48478
+[2026-01-29 18:17:21] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:22] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.4573538","longitude":"-0.4689379"}
+[2026-01-29 18:17:22] [INFO] Nueva conexión entrante desde: 192.168.1.43:48492
+[2026-01-29 18:17:22] [INFO] Guardias activos recuperados: 0
+[2026-01-29 18:17:23] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:24] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:25] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:25] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:27] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:27] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:27] [INFO] Guardia G001 se ha REACTIVADO
+[2026-01-29 18:17:30] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:30] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:32] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:33] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:33] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 1
+  - Guardias inactivos: 4
+[2026-01-29 18:17:35] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:35] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:37] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:37] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:17:37] [INFO] Nueva conexión entrante desde: 192.168.1.43:48548
+[2026-01-29 18:17:38] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:38] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:39] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:41] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:41] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:42] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:43] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:45] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:45] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:46] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:17:46] [INFO] Nueva conexión entrante desde: 192.168.1.43:47260
+[2026-01-29 18:17:47] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:47] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:48] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:48] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:50] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:50] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:51] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:17:51] [INFO] Nueva conexión entrante desde: 192.168.1.43:47262
+[2026-01-29 18:17:51] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:52] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:52] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:53] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:54] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:54] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:17:55] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:17:55] [INFO] Nueva conexión entrante desde: 192.168.1.43:37358
+[2026-01-29 18:17:56] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:56] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:17:57] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:17:57] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:17:57] [INFO] Nueva conexión entrante desde: 192.168.1.43:37374
+[2026-01-29 18:17:57] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:17:59] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:18:01] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:18:02] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:02] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:02] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:03] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:05] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:05] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:07] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:07] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:18:07] [INFO] Nueva conexión entrante desde: 192.168.1.43:37520
+[2026-01-29 18:18:08] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:08] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:18:09] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:18:10] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:10] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:12] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:12] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:14] [INFO] [LOCATION] Recibida actualización: {"code":3,"username":"G001","latitude":"39.457354","longitude":"-0.468938"}
+[2026-01-29 18:18:14] [INFO] Nueva conexión entrante desde: 192.168.1.43:37534
+[2026-01-29 18:18:14] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:18:16] [INFO] Nueva posición registrada para G001: (39,457354, -0,468938)
+[2026-01-29 18:18:17] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:17] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:17] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:18] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:21] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:21] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:21] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:23] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:23] [INFO] Resumen de monitoreo:
+  - Total guardias: 5
+  - Guardias activos: 1
+  - Guardias inactivos: 4
+[2026-01-29 18:18:25] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:25] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:27] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:28] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:31] [INFO] Guardias activos recuperados: 1
+[2026-01-29 18:18:31] [INFO] [GUARDS] Devolviendo 1 guardias activos
+[2026-01-29 18:18:32] [INFO] Total de guardias recuperados: 5
+[2026-01-29 18:18:33] [INFO] Guardias activos recuperados: 1

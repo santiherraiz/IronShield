@@ -43,7 +43,7 @@ const PantallaLogin = () => {
         </TouchableOpacity>
 
         <Text style={styles.textoPie}>SOLO PERSONAL AUTORIZADO</Text>
-        <Text style={styles.textoVersion}>SIS v0.0.3</Text>
+        <Text style={styles.textoVersion}>SIS v0.0.5</Text>
       </View>
     </SafeAreaView>
   );

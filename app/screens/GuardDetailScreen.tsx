@@ -42,9 +42,9 @@ const PantallaDetalleGuardia = () => {
     }, []);
 
 
-    /**
-     * Renderiza cada guardia con su estado (Activo/Inactivo)
-     */
+
+    // Renderiza cada guardia con su estado (Activo/Inactivo)
+
     const renderGuardia = ({ item }: { item: Agent }) => {
         const lastActive = new Date(item.date);
         const now = new Date();
@@ -59,7 +59,7 @@ const PantallaDetalleGuardia = () => {
 
         return (
             <View style={styles.itemRegistro}>
-                <View style={[styles.indicadorRegistro, { backgroundColor: isActive ? COLORS.success : 'red' }]} />
+                <View style={[styles.indicadorRegistro, { backgroundColor: isActive ? COLORS.success : COLORS.danger }]} />
                 <View style={{ flex: 1 }}>
                     <Text style={styles.tipoRegistro}>
                         {item.username.toUpperCase()} ({item.latitude.toFixed(3)}, {item.longitude.toFixed(3)})
@@ -87,7 +87,6 @@ const PantallaDetalleGuardia = () => {
                 </View>
             </View>
 
-            {/* FlatList de guardias */}
             <View style={styles.seccionRegistros}>
                 <Text style={styles.encabezadoSeccion}>ESTADO DE GUARDIAS</Text>
 

@@ -5,10 +5,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * LogManager Mejorado - Sistema de Trazabilidad IronShield
- * Centraliza la escritura de eventos, errores y auditoría de conexiones.
- */
 public class LogManager {
     private static final String LOG_FILE = "ironshield_system.log";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -54,4 +50,5 @@ public class LogManager {
     public static void info(String msg) { log(LogLevel.INFO, msg, null); }
     public static void warn(String msg) { log(LogLevel.WARNING, msg, null); }
     public static void error(String msg, Exception e) { log(LogLevel.ERROR, msg, e); }
+    public static void error(String msg) { log(LogLevel.ERROR, msg, null); }
 }

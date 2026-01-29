@@ -59,9 +59,6 @@ export const useServer = () => {
         }
     }
 
-    /**
-     * <strong>getActiveGuards</strong> obtiene la lista de todos los guardias con su última fecha de actividad.
-     */
     const getActiveGuards = async () => {
         try {
             const res = await fetch(`${SERVER_SANTI2}/guards`);
