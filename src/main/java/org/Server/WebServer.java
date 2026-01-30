@@ -109,7 +109,7 @@ public class WebServer {
     public static void main(String[] args) {
         try {
             final HttpServer server = HttpServer.create(new InetSocketAddress(HOST_WEBSERVER, PORT_WEBSERVER), 0);
-            System.out.printf("Servidor iniciado en %s:%d\n", HOST_WEBSERVER, PORT_WEBSERVER));
+            System.out.printf("Servidor iniciado en %s:%d\n", HOST_WEBSERVER, PORT_WEBSERVER);
             server.createContext("/location", WebServer::handleLocation);
             server.createContext("/name", WebServer::handleName);
             server.createContext("/guards", WebServer::handleGuards);
