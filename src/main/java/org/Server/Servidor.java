@@ -1,6 +1,5 @@
 package org.Server;
 
-import org.Config.AppConfig;
 import org.DTO.ClientHandler;
 import org.DTO.InactivityMonitor;
     
@@ -21,7 +20,7 @@ public class Servidor {
     private static final String HOST = UtilsServer.getServerName("server.properties");
 
     public static void main(String[] args) {
-        LogManager.info(String.format("Servidor iniciado en %s:%d", HOST, PORT));
+        System.out.printf("Servidor iniciado en %s:%d\n", HOST, PORT);
         
         // Iniciar el monitor de inactividad
         try {
