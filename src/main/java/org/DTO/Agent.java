@@ -18,26 +18,12 @@ public class Agent {
     public double longitude;
     public long date;
 
-    // CODE 1
-    public Agent(String username, int code) {
-        this.code = code;
-        this.username = username;
-    }
-
     // CODE 2
     public Agent(String username, double latitude, double longitude, Timestamp date) {
         this.username = username;
         this.latitude = latitude;
         this.longitude = longitude;
         this.date = date.getTime();
-    }
-
-    // CODE 3
-    public Agent(String username, double latitude, double longitude, int code) {
-        this.code = code;
-        this.username = username;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
     @Override

@@ -79,9 +79,7 @@ public class UtilsServer {
     /**
      * @return Devuelve el nombre del servidor llamando a la función {@code getValueFromConf}
      */
-    public static String getServerName(String path) {
-        return getValueFromConf("host", path);
-    }
+    public static String getServerName(String path) { return getValueFromConf("host", path); }
 
     /**
      * @return Devuelve el puerto del servidor llamando a la función {@code getValueFromConf},

@@ -1,6 +1,7 @@
 package org.DAO;
 
 import org.BBDD.ConexionBD;
+import org.Server.LogManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +24,7 @@ public class NombreDAO {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LogManager.error("[ERROR] Ha habido un error en la consulta NombreDAO", e);
         }
         return nombre;
     }

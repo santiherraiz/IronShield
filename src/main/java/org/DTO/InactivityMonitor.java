@@ -106,9 +106,4 @@ public class InactivityMonitor {
             LogManager.error("Error en el monitor de inactividad: " + e.getMessage());
         }
     }
-    
-    /**
-     * Obtiene el estado actual del monitor. 
-     */
-    public static boolean isRunning() { return isRunning; }
 }

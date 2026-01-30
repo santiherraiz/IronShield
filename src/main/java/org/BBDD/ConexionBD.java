@@ -1,5 +1,6 @@
 package org.BBDD;
 
+import org.Server.LogManager;
 import org.Server.UtilsServer;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public class ConexionBD {
             password = UtilsServer.getValueFromConf("db.password", "database.properties");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LogManager.error("[ERROR] No se pudo conectar a la base de datos", e);
         }
     }
 
@@ -26,7 +27,7 @@ public class ConexionBD {
         try {
             return DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogManager.error("[ERROR] No se pudo conectar a la base de datos", e);
             return null;
         }
     }
