@@ -9,7 +9,6 @@ interface UserContextType {
     setUserId: (id: string) => void;
     userName: string;
     setUserName: (id: string) => void;
-
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);

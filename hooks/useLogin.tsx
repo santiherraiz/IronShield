@@ -7,10 +7,9 @@ import {useServer} from "./useServer";
 
 export const useLogin = () => {
     const navigation = useNavigation<any>();
-    const { setRole, setUserId } = useUser();
+    const { setRole, setUserId, setUserName } = useUser();
     const [idServicio, setIdServicio] = useState('');
     const [contrasena, setContrasena] = useState('');
-    const [nombre, setName] = useState("");
 
     const gestionarInicioSesion = async () => {
         try {
@@ -22,18 +21,19 @@ export const useLogin = () => {
             const supervisorRegex = /^S\d{3}$/;
 
             const name = await useServer().getName(idServicio, contrasena);
+            setUserName(name);
 
             let role: 'guardia' | 'supervisor';
             if (guardiaRegex.test(idServicio)) {
                 role = 'guardia';
                 setRole('guardia');
                 setUserId(idServicio);
-                navigation.replace('OperationsStack', {name});
+                navigation.replace('OperationsStack');
             } else if (supervisorRegex.test(idServicio)) {
                 role = 'supervisor';
                 setRole('supervisor');
                 setUserId(idServicio);
-                navigation.replace('GuardDetail', {name});
+                navigation.replace('GuardDetail');
             } else {
                 throw new Error('ID de servicio inválido.');
             }
@@ -50,6 +50,5 @@ export const useLogin = () => {
         contrasena,
         setContrasena,
         gestionarInicioSesion,
-        nombre
     };
 };

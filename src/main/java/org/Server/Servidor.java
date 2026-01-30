@@ -21,15 +21,6 @@ public class Servidor {
     private static final String HOST = UtilsServer.getServerName("server.properties");
 
     public static void main(String[] args) {
-        System.out.println("╔══════════════════════════════════════════════╗");
-        System.out.println("║         TRACKMATE - IRONSHIELD SERVER        ║");
-        System.out.println("╚══════════════════════════════════════════════╝");
-        System.out.println();
-        
-        // Mostrar configuración
-        System.out.println(AppConfig.getConfigInfo());
-        System.out.println();
-        
         LogManager.info(String.format("Servidor iniciado en %s:%d", HOST, PORT));
         
         // Iniciar el monitor de inactividad
