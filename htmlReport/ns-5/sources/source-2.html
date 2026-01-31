@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Servidor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.Server</a>
+</div>
+
+<h1>Coverage Summary for Class: Servidor (org.Server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Servidor</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.Server;
+&nbsp;
+&nbsp;import org.DTO.ClientHandler;
+&nbsp;import org.DTO.InactivityMonitor;
+&nbsp;    
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.ServerSocket;
+&nbsp;import java.net.Socket;
+&nbsp;
+&nbsp;/**
+&nbsp; * La clase {@link Servidor} es la que se encarga de las conexiones TCP con los clientes. 
+&nbsp; * Este genera un hilo por cada conexión. El objetivo es recibir o enviar el JSON pertinente al cliente. 
+&nbsp; * Por ejemplo, queremos recibir un JSON con los datos de los agentes, recibiremos 1 JSON con los datos del agente. 
+&nbsp; * Nunca se enviarán más de 1 JSON.
+&nbsp; * NUEVO: Ahora también inicia el monitor de inactividad para detectar guardias inactivos automáticamente.
+&nbsp; *
+&nbsp; */
+<b class="nc">&nbsp;public class Servidor {</b>
+<b class="nc">&nbsp;    private static final int PORT = UtilsServer.getServerPort(&quot;server.properties&quot;);</b>
+<b class="nc">&nbsp;    private static final String HOST = UtilsServer.getServerName(&quot;server.properties&quot;);</b>
+&nbsp;
+&nbsp;    public static void main(String[] args) {
+<b class="nc">&nbsp;        System.out.printf(&quot;Servidor iniciado en %s:%d\n&quot;, HOST, PORT);</b>
+&nbsp;        
+&nbsp;        // Iniciar el monitor de inactividad
+&nbsp;        try {
+<b class="nc">&nbsp;            InactivityMonitor.start();</b>
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            UtilsServer.writeServerLog(&quot;Error al iniciar el monitor de inactividad: &quot; + e.getMessage());</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        try (final ServerSocket serverSocket = new ServerSocket(PORT)) {</b>
+&nbsp;            while (true) {
+&nbsp;                try {
+<b class="nc">&nbsp;                    final Socket clientSocket = serverSocket.accept();</b>
+<b class="nc">&nbsp;                    final String clientInfo = clientSocket.getInetAddress().getHostAddress() + &quot;:&quot; + clientSocket.getPort();</b>
+<b class="nc">&nbsp;                    new Thread(new ClientHandler(clientSocket), &quot;ClientHandler-&quot; + clientInfo).start();</b>
+&nbsp;                } catch (IOException e) {
+<b class="nc">&nbsp;                    UtilsServer.writeServerLog(&quot;Error al aceptar conexión del cliente: &quot; + e.getMessage());</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        } catch (IOException e) {
+<b class="nc">&nbsp;            UtilsServer.writeServerLog(&quot;[ERROR] No se ha podido levantar el servidor TCP/IP: &quot; + e.getMessage());</b>
+&nbsp;        } finally {
+<b class="nc">&nbsp;            InactivityMonitor.stop();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>

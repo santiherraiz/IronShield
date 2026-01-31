@@ -13,7 +13,9 @@ public class ConexionBD {
     private String password;
 
     public ConexionBD() {
+
         try {
+
             url = UtilsServer.getValueFromConf("db.url", "database.properties");
             user = UtilsServer.getValueFromConf("db.agent", "database.properties");
             password = UtilsServer.getValueFromConf("db.password", "database.properties");

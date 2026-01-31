@@ -12,8 +12,8 @@ import java.net.Socket;
  * Este genera un hilo por cada conexión. El objetivo es recibir o enviar el JSON pertinente al cliente. 
  * Por ejemplo, queremos recibir un JSON con los datos de los agentes, recibiremos 1 JSON con los datos del agente. 
  * Nunca se enviarán más de 1 JSON.
- * 
  * NUEVO: Ahora también inicia el monitor de inactividad para detectar guardias inactivos automáticamente.
+ *
  */
 public class Servidor {
     private static final int PORT = UtilsServer.getServerPort("server.properties");

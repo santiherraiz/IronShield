@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ConexionBD</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.BBDD</a>
+</div>
+
+<h1>Coverage Summary for Class: ConexionBD (org.BBDD)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConexionBD</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62,5%
+  </span>
+  <span class="absValue">
+    (5/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.BBDD;
+&nbsp;
+&nbsp;import org.Server.LogManager;
+&nbsp;import org.Server.UtilsServer;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;
+&nbsp;public class ConexionBD {
+&nbsp;
+&nbsp;    private String url;
+&nbsp;    private String user;
+&nbsp;    private String password;
+&nbsp;
+<b class="fc">&nbsp;    public ConexionBD() {</b>
+&nbsp;
+&nbsp;        try {
+&nbsp;
+<b class="fc">&nbsp;            url = UtilsServer.getValueFromConf(&quot;db.url&quot;, &quot;database.properties&quot;);</b>
+<b class="fc">&nbsp;            user = UtilsServer.getValueFromConf(&quot;db.agent&quot;, &quot;database.properties&quot;);</b>
+<b class="fc">&nbsp;            password = UtilsServer.getValueFromConf(&quot;db.password&quot;, &quot;database.properties&quot;);</b>
+&nbsp;
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            LogManager.error(&quot;[ERROR] No se pudo conectar a la base de datos&quot;, e);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public Connection conectar() {
+&nbsp;        try {
+<b class="fc">&nbsp;            return DriverManager.getConnection(url, user, password);</b>
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            LogManager.error(&quot;[ERROR] No se pudo conectar a la base de datos&quot;, e);</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>

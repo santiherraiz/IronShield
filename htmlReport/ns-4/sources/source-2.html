@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClientHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.DTO</a>
+</div>
+
+<h1>Coverage Summary for Class: ClientHandler (org.DTO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.DTO;
+&nbsp;
+&nbsp;import com.google.gson.Gson;
+&nbsp;import org.DAO.GuardiaDAO;
+&nbsp;import org.DAO.NombreDAO;
+&nbsp;import org.Server.LogManager;
+&nbsp;import org.Server.UtilsServer;
+&nbsp;
+&nbsp;import java.io.*;
+&nbsp;import java.net.Socket;
+&nbsp;
+<b class="nc">&nbsp;public record ClientHandler(Socket clientSocket) implements Runnable {</b>
+<b class="nc">&nbsp;    private static Agent deserialize(String body) { return new Gson().fromJson(body, Agent.class); }</b>
+<b class="nc">&nbsp;    private static String serialise(String res) { return new Gson().toJson(res); }</b>
+&nbsp;    /**
+&nbsp;     * La función el mensaje que ha enviado el cliente conectado, si es que envía algún mensaje.
+&nbsp;     * Esto sirve para no ofuscar el código
+&nbsp;     *
+&nbsp;     * @param clientSocket Es el {@link Socket} del cliente, sirve para obtener el {@link InputStream}.
+&nbsp;     * @return Devuelve el mensaje que ha leído.
+&nbsp;     */
+&nbsp;    private static String readClientMsg(Socket clientSocket) {
+&nbsp;        try {
+<b class="nc">&nbsp;            final var br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));</b>
+<b class="nc">&nbsp;            return br.readLine();</b>
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            UtilsServer.writeServerLog(&quot;[ERROR] No se ha podido leer el mensaje&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void handleName(final Agent agent, final Socket clientSocket) {
+<b class="nc">&nbsp;        final String name = NombreDAO.obtenerNombrePorUsuario(agent.username, agent.pass);</b>
+<b class="nc">&nbsp;        final String jsonResponse = serialise(name);</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));</b>
+<b class="nc">&nbsp;            bw.write(jsonResponse);</b>
+<b class="nc">&nbsp;            bw.newLine();</b>
+<b class="nc">&nbsp;            bw.flush();</b>
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            System.err.println(&quot;[ERROR] Error al enviar respuesta al WebServer.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void handleLoc(final Agent agent) {
+&nbsp;        // Actualizamos la ubicación en la tabla usuarios para la funcionalidad &quot;Hombre Vivo&quot;
+<b class="nc">&nbsp;        GuardiaDAO.actualizarUbicacion(agent.username, agent.latitude, agent.longitude);</b>
+&nbsp;        // Mantenemos el historial si es necesario, pero la prioridad es el estado activo
+<b class="nc">&nbsp;        GuardiaDAO.insertarPosicion(agent.username, agent.latitude, agent.longitude);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void run() {
+<b class="nc">&nbsp;        final String json = readClientMsg(clientSocket);</b>
+<b class="nc">&nbsp;        final Agent agent = deserialize(json);</b>
+<b class="nc">&nbsp;        switch (agent.code) {</b>
+&nbsp;            case 1:
+<b class="nc">&nbsp;                handleName(agent, clientSocket);</b>
+&nbsp;                break;
+&nbsp;            case 3:
+<b class="nc">&nbsp;                handleLoc(agent);</b>
+&nbsp;                break;
+&nbsp;            default:
+<b class="nc">&nbsp;                System.out.println(&quot;No implementado&quot;);</b>
+&nbsp;                return;
+&nbsp;        }
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            clientSocket.close();</b>
+<b class="nc">&nbsp;            UtilsServer.writeServerLog(&quot;[LOG] Cliente desconectado: &quot; + clientSocket.getInetAddress().getHostAddress() + &quot;:&quot; + clientSocket.getPort());</b>
+&nbsp;        } catch (IOException e) {
+<b class="nc">&nbsp;            LogManager.error(&quot;[ERROR] Ha habido un error en el hilo del cliente&quot;, e);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>

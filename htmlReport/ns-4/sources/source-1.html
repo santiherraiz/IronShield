@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Agent</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.DTO</a>
+</div>
+
+<h1>Coverage Summary for Class: Agent (org.DTO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Agent</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.DTO;
+&nbsp;
+&nbsp;import java.sql.Timestamp;
+&nbsp;
+&nbsp;/**
+&nbsp; * La clase {@link Agent} es una clase para almacenar los datos del agente.
+&nbsp; *&lt;br&gt;Esta clase tiene como atributos:
+&nbsp; *&lt;br&gt;  - &lt;strong&gt;Username - String&lt;/strong&gt; Es el nombre o código de usuario
+&nbsp; *&lt;br&gt;  - &lt;strong&gt;Password - String&lt;/strong&gt; Es la contraseña del usuario
+&nbsp; *&lt;br&gt;  - &lt;strong&gt;Latitud - double:&lt;/strong&gt; La primera coordenada sirve para identificar la latitud del agente
+&nbsp; *&lt;br&gt;  - &lt;strong&gt;Longitud - double:&lt;/strong&gt; La segunda coordenada sirve para identificar la longitud del agente
+&nbsp; */
+&nbsp;public class Agent {
+&nbsp;    public int code;
+&nbsp;    public String username;
+&nbsp;    public String pass;
+&nbsp;    public double latitude;
+&nbsp;    public double longitude;
+&nbsp;    public long date;
+&nbsp;
+&nbsp;    // CODE 2
+<b class="fc">&nbsp;    public Agent(String username, double latitude, double longitude, Timestamp date) {</b>
+<b class="fc">&nbsp;        this.username = username;</b>
+<b class="fc">&nbsp;        this.latitude = latitude;</b>
+<b class="fc">&nbsp;        this.longitude = longitude;</b>
+<b class="fc">&nbsp;        this.date = date.getTime();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return  &quot;Username: &quot; + this.username + &quot;\n&quot; +</b>
+&nbsp;                &quot;Pass: &quot; + this.pass + &quot;\n&quot; +
+&nbsp;                &quot;Latitud: &quot; + this.latitude + &quot;\n&quot; +
+&nbsp;                &quot;Longitud: &quot; + this.longitude;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>

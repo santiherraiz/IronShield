@@ -1,0 +1,204 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > LogManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.Server</a>
+</div>
+
+<h1>Coverage Summary for Class: LogManager (org.Server)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LogManager</td>
+<td class="coverageStat">
+  <span class="percent">
+    85,7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,2%
+  </span>
+  <span class="absValue">
+    (15/17)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">LogManager$LogLevel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90,9%
+  </span>
+  <span class="absValue">
+    (20/22)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.Server;
+&nbsp;
+&nbsp;import java.io.FileWriter;
+&nbsp;import java.io.IOException;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.time.format.DateTimeFormatter;
+&nbsp;
+<b class="nc">&nbsp;public class LogManager {</b>
+&nbsp;    private static final String LOG_FILE = &quot;ironshield_system.log&quot;;
+<b class="fc">&nbsp;    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</b>
+&nbsp;
+&nbsp;    // Niveles de log para categorizar la importancia
+<b class="fc">&nbsp;    public enum LogLevel {</b>
+<b class="fc">&nbsp;        INFO,    // Conexiones, envíos exitosos</b>
+<b class="fc">&nbsp;        WARNING, // Problemas de configuración menores</b>
+<b class="fc">&nbsp;        ERROR,   // Fallos de socket o serialización</b>
+<b class="fc">&nbsp;        CRITICAL // El servidor no puede arrancar o escribir archivos</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Método principal de escritura.
+&nbsp;     * @param level Nivel de severidad
+&nbsp;     * @param message Descripción del evento
+&nbsp;     * @param e Excepción (opcional, puede ser null)
+&nbsp;     */
+&nbsp;    public static void log(LogLevel level, String message, Exception e) {
+<b class="fc">&nbsp;        try (FileWriter writer = new FileWriter(LOG_FILE, true)) {</b>
+<b class="fc">&nbsp;            String timestamp = LocalDateTime.now().format(formatter);</b>
+<b class="fc">&nbsp;            String exceptionInfo = (e != null) ? &quot; | Exception: &quot; + e.getMessage() : &quot;&quot;;</b>
+&nbsp;            
+&nbsp;            // Formato profesional: [FECHA] [NIVEL] Mensaje
+<b class="fc">&nbsp;            String logEntry = String.format(&quot;[%s] [%s] %s%s%n&quot;, </b>
+<b class="fc">&nbsp;                                timestamp, level.name(), message, exceptionInfo);</b>
+&nbsp;            
+<b class="fc">&nbsp;            writer.write(logEntry);</b>
+<b class="fc">&nbsp;            writer.flush();</b>
+&nbsp;            
+&nbsp;            // Mostrar por consola según severidad
+<b class="fc">&nbsp;            if (level == LogLevel.ERROR || level == LogLevel.CRITICAL) {</b>
+<b class="fc">&nbsp;                System.err.print(&quot;[LOGGED] &quot; + logEntry);</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                System.out.print(&quot;[LOGGED] &quot; + logEntry);</b>
+&nbsp;            }
+&nbsp;        } catch (IOException ioException) {
+<b class="nc">&nbsp;            System.err.printf(&quot;[CRITICAL] Fallo total del sistema de logs: %s%n&quot;, ioException.getMessage());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // Sobrecarga para mensajes rápidos sin excepción
+<b class="fc">&nbsp;    public static void info(String msg) { log(LogLevel.INFO, msg, null); }</b>
+<b class="fc">&nbsp;    public static void warn(String msg) { log(LogLevel.WARNING, msg, null); }</b>
+<b class="fc">&nbsp;    public static void error(String msg, Exception e) { log(LogLevel.ERROR, msg, e); }</b>
+<b class="fc">&nbsp;    public static void error(String msg) { log(LogLevel.ERROR, msg, null); }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>

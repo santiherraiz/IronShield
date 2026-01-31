@@ -1,0 +1,208 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > InactividadDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.DAO</a>
+</div>
+
+<h1>Coverage Summary for Class: InactividadDAO (org.DAO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InactividadDAO</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    37,5%
+  </span>
+  <span class="absValue">
+    (3/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71,4%
+  </span>
+  <span class="absValue">
+    (15/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.DAO;
+&nbsp;
+&nbsp;import org.BBDD.ConexionBD;
+&nbsp;import org.Server.LogManager;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.PreparedStatement;
+&nbsp;import java.sql.ResultSet;
+&nbsp;import java.sql.SQLException;
+&nbsp;
+&nbsp;/**
+&nbsp; * DAO para gestionar los registros de inactividad de los guardias.
+&nbsp; * Permite insertar alertas de inactividad y consultar el historial.
+&nbsp; */
+<b class="nc">&nbsp;public class InactividadDAO {</b>
+&nbsp;    /**
+&nbsp;     * Inserta un registro de inactividad para un guardia.
+&nbsp;     * Esta función se llama cuando se detecta que un guardia ha estado inactivo.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * NOTA: Si tu tabla inactividad tiene la columna &#39;usuario_id&#39; en lugar de &#39;username&#39;,
+&nbsp;     * necesitarás modificar esta función o crear la columna username.
+&nbsp;     *
+&nbsp;     * @param username Nombre de usuario del guardia inactivo
+&nbsp;     */
+&nbsp;    public static void insertarInactividad(String username) {
+&nbsp;        // Verificar si ya existe un registro reciente para evitar duplicados
+<b class="pc">&nbsp;        if (existeRegistroReciente(username)) {</b>
+<b class="nc">&nbsp;            LogManager.info(String.format(&quot;Ya existe registro reciente de inactividad para %s, omitiendo...&quot;, username));</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;        
+<b class="fc">&nbsp;        final String sql = &quot;INSERT INTO inactividad (usuario_id, fecha) VALUES ((SELECT id FROM usuarios WHERE username = ?), NOW())&quot;;</b>
+&nbsp;        
+&nbsp;        Connection conn;
+&nbsp;        PreparedStatement ps;
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            conn = new ConexionBD().conectar();</b>
+<b class="fc">&nbsp;            ps = conn.prepareStatement(sql);</b>
+<b class="fc">&nbsp;            ps.setString(1, username);</b>
+&nbsp;            
+<b class="fc">&nbsp;            final int rowsAffected = ps.executeUpdate();</b>
+&nbsp;            
+<b class="nc">&nbsp;            if (rowsAffected &gt; 0) {</b>
+<b class="nc">&nbsp;                LogManager.warn(String.format(&quot;[ALERTA] Inactividad registrada para guardia %s&quot;, username));</b>
+&nbsp;            }
+&nbsp;            ps.close();
+&nbsp;            conn.close();
+&nbsp;        } catch (SQLException e) {
+<b class="fc">&nbsp;            LogManager.error(String.format(&quot;Error al insertar inactividad para %s: %s&quot;, username, e.getMessage()));</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Verifica si existe un registro de inactividad reciente para un guardia.
+&nbsp;     * Esto evita crear múltiples alertas en un corto período de tiempo.
+&nbsp;     *
+&nbsp;     * @param username Nombre de usuario del guardia
+&nbsp;     * @return true si existe un registro reciente, false en caso contrario
+&nbsp;     */
+&nbsp;    private static boolean existeRegistroReciente(String username) {
+<b class="fc">&nbsp;        String sql = &quot;SELECT COUNT(*) as count &quot; +</b>
+&nbsp;                     &quot;FROM inactividad i &quot; +
+&nbsp;                     &quot;JOIN usuarios u ON i.usuario_id = u.id &quot; +
+&nbsp;                     &quot;WHERE u.username = ? &quot; +
+&nbsp;                     &quot;AND i.fecha &gt;= DATE_SUB(NOW(), INTERVAL ? SECOND)&quot;;
+&nbsp;        
+&nbsp;        Connection conn;
+&nbsp;        PreparedStatement ps;
+&nbsp;        ResultSet rs;
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            conn = new ConexionBD().conectar();</b>
+<b class="fc">&nbsp;            ps = conn.prepareStatement(sql);</b>
+<b class="fc">&nbsp;            ps.setString(1, username);</b>
+<b class="fc">&nbsp;            ps.setInt(2, 30);</b>
+<b class="fc">&nbsp;            rs = ps.executeQuery();</b>
+&nbsp;            
+<b class="pc">&nbsp;            if (rs.next()) {</b>
+<b class="pc">&nbsp;                return rs.getInt(&quot;count&quot;) &gt; 0;</b>
+&nbsp;            }
+&nbsp;            rs.close();
+&nbsp;            ps.close();
+&nbsp;            conn.close();
+&nbsp;        } catch (SQLException e) {
+<b class="nc">&nbsp;            LogManager.error(&quot;Error al verificar registro reciente: &quot; + e.getMessage());</b>
+&nbsp;        }
+&nbsp;        
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>

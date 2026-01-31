@@ -3301,3 +3301,67 @@
 [2026-01-30 12:20:29] [INFO] Total de guardias recuperados: 6
 [2026-01-30 12:20:30] [INFO] Guardias activos recuperados: 0
 [2026-01-30 13:47:50] [INFO] Servidor iniciado en 0.0.0.0:45678
+[2026-01-31 13:40:56] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 13:40:56] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 13:40:56] [INFO] Test de unidad: mensaje de información
+[2026-01-31 13:40:56] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 13:40:56] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 13:40:57] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 13:40:57] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 13:40:57] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:40:57] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:41:20] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 13:41:20] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 13:41:20] [INFO] Test de unidad: mensaje de información
+[2026-01-31 13:41:20] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 13:41:20] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 13:41:20] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 13:41:21] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 13:41:21] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:41:21] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:42:23] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-01-31 13:44:51] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 13:44:51] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 13:44:51] [INFO] Test de unidad: mensaje de información
+[2026-01-31 13:44:51] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 13:44:51] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 13:44:52] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 13:44:53] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 13:44:53] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:44:53] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:58:46] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 13:58:46] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 13:58:46] [INFO] Test de unidad: mensaje de información
+[2026-01-31 13:58:46] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 13:58:46] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 13:58:47] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 13:58:47] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 13:58:47] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 13:58:47] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 14:09:42] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 14:09:42] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 14:09:42] [INFO] Test de unidad: mensaje de información
+[2026-01-31 14:09:42] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 14:09:42] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 14:09:42] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 14:09:43] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 14:09:43] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 14:09:43] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 14:18:26] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 14:18:26] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 14:18:26] [INFO] Test de unidad: mensaje de información
+[2026-01-31 14:18:26] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 14:18:26] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 14:18:27] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 14:18:28] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 14:18:28] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 14:18:28] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 14:18:37] [ERROR] Mensaje de error simple sin excepción
+[2026-01-31 14:18:37] [CRITICAL] Fallo crítico de prueba
+[2026-01-31 14:18:37] [INFO] Test de unidad: mensaje de información
+[2026-01-31 14:18:37] [WARNING] Test de unidad: advertencia de seguridad
+[2026-01-31 14:18:37] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-01-31 14:18:38] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-01-31 14:18:38] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-01-31 14:18:38] [WARNING] El monitor de inactividad no está en ejecución
+[2026-01-31 14:18:38] [WARNING] El monitor de inactividad no está en ejecución

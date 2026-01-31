@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > InactivityMonitor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.DTO</a>
+</div>
+
+<h1>Coverage Summary for Class: InactivityMonitor (org.DTO)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InactivityMonitor</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    7,1%
+  </span>
+  <span class="absValue">
+    (1/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    13,8%
+  </span>
+  <span class="absValue">
+    (4/29)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">InactivityMonitor$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    28,6%
+  </span>
+  <span class="absValue">
+    (2/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    7,1%
+  </span>
+  <span class="absValue">
+    (1/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12,9%
+  </span>
+  <span class="absValue">
+    (4/31)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.DTO;
+&nbsp;
+&nbsp;import org.Config.AppConfig;
+&nbsp;import org.DAO.GuardiaDAO;
+&nbsp;import org.DAO.InactividadDAO;
+&nbsp;import org.Server.LogManager;
+&nbsp;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Set;
+&nbsp;import java.util.Timer;
+&nbsp;import java.util.TimerTask;
+&nbsp;
+&nbsp;/**
+&nbsp; * Monitor de inactividad que verifica periódicamente el estado de los guardias.
+&nbsp; * Detecta guardias que no han enviado señal en el tiempo configurado y registra alertas.
+&nbsp; */
+<b class="nc">&nbsp;public class InactivityMonitor {</b>
+&nbsp;    private static Timer timer;
+<b class="fc">&nbsp;    private static boolean isRunning = false;</b>
+<b class="fc">&nbsp;    private static Set&lt;String&gt; currentInactiveGuards = new HashSet&lt;&gt;();</b>
+&nbsp;    
+&nbsp;    /**
+&nbsp;     * Inicia el monitor de inactividad.
+&nbsp;     * El monitor verificará guardias inactivos cada POLLING_INTERVAL_MS milisegundos.
+&nbsp;     */
+&nbsp;    public static void start() {
+<b class="nc">&nbsp;        if (!isRunning) {</b>
+<b class="nc">&nbsp;            LogManager.warn(&quot;El monitor de inactividad ya está en ejecución&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;        
+<b class="nc">&nbsp;        timer = new Timer(&quot;Hilo_Inactividad&quot;, true);</b>
+&nbsp;        
+<b class="nc">&nbsp;        timer.scheduleAtFixedRate(new TimerTask() {</b>
+&nbsp;            @Override
+&nbsp;            public void run() {
+<b class="nc">&nbsp;                checkInactiveGuards();</b>
+&nbsp;            }
+&nbsp;        }, 0, AppConfig.POLLING_INTERVAL_MS);
+&nbsp;        
+<b class="nc">&nbsp;        isRunning = true;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    /**
+&nbsp;     * Detiene el monitor de inactividad.
+&nbsp;     */
+&nbsp;    public static void stop() {
+<b class="pc">&nbsp;        if (!isRunning) {</b>
+<b class="fc">&nbsp;            LogManager.warn(&quot;El monitor de inactividad no está en ejecución&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;        
+<b class="nc">&nbsp;        if (timer != null) {</b>
+<b class="nc">&nbsp;            timer.cancel();</b>
+<b class="nc">&nbsp;            timer = null;</b>
+&nbsp;        }
+&nbsp;        
+<b class="nc">&nbsp;        isRunning = false;</b>
+<b class="nc">&nbsp;        currentInactiveGuards.clear();</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    /**
+&nbsp;     * Verifica el estado de los guardias y detecta inactividad.
+&nbsp;     * Esta función:
+&nbsp;     * 1. Obtiene todos los guardias registrados
+&nbsp;     * 2. Obtiene los guardias activos
+&nbsp;     * 3. Compara ambas listas para detectar inactivos
+&nbsp;     * 4. Registra alertas de inactividad cuando es necesario
+&nbsp;     */
+&nbsp;    private static void checkInactiveGuards() {
+&nbsp;        try {
+&nbsp;            // Obtener todos los guardias que alguna vez enviaron posición
+<b class="nc">&nbsp;            List&lt;Agent&gt; todosLosGuardias = GuardiaDAO.obtenerTodosLosGuardias();</b>
+&nbsp;            
+&nbsp;            // Obtener solo los guardias activos (últimos N segundos)
+<b class="nc">&nbsp;            List&lt;Agent&gt; guardiaActivos = GuardiaDAO.obtenerTodos();</b>
+&nbsp;            
+&nbsp;            // Crear un Set con los usernames activos para búsqueda rápida
+<b class="nc">&nbsp;            final Set&lt;String&gt; usernames_activos = new HashSet&lt;&gt;();</b>
+<b class="nc">&nbsp;            for (final Agent activo : guardiaActivos) {</b>
+<b class="nc">&nbsp;                usernames_activos.add(activo.username);</b>
+&nbsp;            }
+&nbsp;            
+&nbsp;            // Detectar guardias inactivos
+<b class="nc">&nbsp;            final Set&lt;String&gt; nuevosInactivos = new HashSet&lt;&gt;();</b>
+&nbsp;            
+<b class="nc">&nbsp;            for (Agent guardia : todosLosGuardias) {</b>
+<b class="nc">&nbsp;                boolean estaActivo = usernames_activos.contains(guardia.username);</b>
+&nbsp;                
+<b class="nc">&nbsp;                if (!estaActivo) {</b>
+<b class="nc">&nbsp;                    nuevosInactivos.add(guardia.username);</b>
+&nbsp;                    
+&nbsp;                    // Solo registrar si es un nuevo inactivo (no estaba en la lista anterior)
+<b class="nc">&nbsp;                    if (!currentInactiveGuards.contains(guardia.username)) {</b>
+&nbsp;                        // Registrar inactividad en la base de datos
+<b class="nc">&nbsp;                        InactividadDAO.insertarInactividad(guardia.username);</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;            
+&nbsp;            // Actualizar la lista de inactivos actual
+<b class="nc">&nbsp;            currentInactiveGuards = nuevosInactivos;</b>
+&nbsp;            
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            LogManager.error(&quot;Error en el monitor de inactividad: &quot; + e.getMessage());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-31 14:10</div>
+</div>
+</body>
+</html>
