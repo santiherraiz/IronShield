@@ -13,7 +13,7 @@ export const useServer = () => {
      */
     const sendLocation = async (username: string, latitude: string, longitude: string) => {
         try {
-            await fetch(`${SERVER_URL}/location`, {
+            await fetch(`${SERVER_SANTI2}/location`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 3, username, latitude, longitude }),
@@ -31,7 +31,7 @@ export const useServer = () => {
      */
     const getName = async (username: string, pass: string) => {
         try {
-            const res = await fetch(`${SERVER_URL}/name`, {
+            const res = await fetch(`${SERVER_SANTI2}/name`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 1, username, pass })
@@ -47,7 +47,7 @@ export const useServer = () => {
 
     const getActiveGuards = async () => {
         try {
-            const res = await fetch(`${SERVER_URL}/guards`);
+            const res = await fetch(`${SERVER_SANTI2}/guards`);
             if (!res.ok) console.log("No se ha podido obtener la lista de guardias");
             return await res.json();
         } catch (error) {

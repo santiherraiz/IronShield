@@ -17,12 +17,10 @@ type Agent = {
 const PantallaDetalleGuardia = () => {
 
     const { handleCerrar } = useGuardDetailScreen();
-    const { userId, userName} = useUser();
+    const { userId, userName } = useUser();
     const route = useRoute();
     const { name } = route.params as { name: string };
     const { getActiveGuards } = useServer();
-
-    const { getAlertsLog } = useServer();
 
     // Guardias y su estado de carga
     const [guards, setGuards] = useState<Agent[]>([]);
@@ -105,7 +103,7 @@ const PantallaDetalleGuardia = () => {
             </View>
 
             <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
-                <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
+                <Text style={styles.textoBotonCerrar}>CERRAR SESIÓN</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );

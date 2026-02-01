@@ -3301,3 +3301,12 @@
 [2026-01-30 12:20:29] [INFO] Total de guardias recuperados: 6
 [2026-01-30 12:20:30] [INFO] Guardias activos recuperados: 0
 [2026-01-30 13:47:50] [INFO] Servidor iniciado en 0.0.0.0:45678
+[2026-01-30 18:35:12] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-01-30 18:35:14] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-01-30 18:35:14] [ERROR] Error al obtener guardias activos: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-01-30 18:35:19] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-01-30 18:35:19] [ERROR] Error al obtener guardias activos: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-01-30 18:35:24] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-01-30 18:35:24] [ERROR] Error al obtener guardias activos: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-01-30 18:36:53] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-01 23:29:44] [WARNING] El monitor de inactividad ya está en ejecución
