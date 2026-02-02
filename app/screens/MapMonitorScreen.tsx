@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { CentinelaDisplay } from '../../components/CentinelaDisplay';
 import { useMapMonitorScreen } from '../../hooks/useMapMonitorScreen';
+
+const { width } = Dimensions.get('window');
 
 const PantallaMonitoreoMapa = () => {
 
@@ -11,159 +13,156 @@ const PantallaMonitoreoMapa = () => {
 
     return (
         <SafeAreaView style={styles.contenedor}>
-            <View style={styles.barraSuperior}>
-                <Text style={styles.textoZona}>ZONA: POLÍGONO NORTE</Text>
+
+            {/* Cabecera Flotante */}
+            <View style={styles.cabeceraFlotante}>
+                <View style={styles.etiquetaZona}>
+                    <Text style={styles.textoZona}>ZONA: POLÍGONO NORTE</Text>
+                </View>
                 <View style={styles.indicadorSenal}>
+                    <View style={styles.puntoSenal} />
                     <Text style={styles.textoSenal}>SEÑAL: FUERTE</Text>
                 </View>
             </View>
 
-            <View style={styles.marcadorMapa}>
-                <View style={styles.radarOverlay}>
-                    <CentinelaDisplay />
-                    <View style={styles.coordFooter}>
-                        <Text style={styles.labelCoords}>SISTEMA DE POSICIONAMIENTO GLOBAL</Text>
-                        <Text style={styles.valorCoords}>ACTIVO // ALTA PRECISIÓN</Text>
-                    </View>
+            {/* Area Principal del Mapa (Más grande) */}
+            <View style={styles.areaMapa}>
+                <CentinelaDisplay />
+
+                {/* Overlay de Coordenadas integradas en el mapa */}
+                <View style={styles.overlayCoordenadas}>
+                    <Text style={styles.labelCoords}>GPS ACTIVO</Text>
                 </View>
             </View>
 
-            <View style={styles.panelCoordenadas}>
-                <Text style={styles.tituloPanel}>TELEMETRÍA EN VIVO</Text>
-                
-                <View style={styles.fila}>
-                    <Text style={styles.etiqueta}>VELOCIDAD:</Text>
-                    <Text style={styles.valor}>0.0 KM/H</Text>
-                </View>
-                
-                <View style={styles.fila}>
-                    <Text style={styles.etiqueta}>LATENCIA PING:</Text>
-                    <Text style={styles.valor}>24 MS</Text>
-                </View>
-                
-                <View style={styles.fila}>
-                    <Text style={styles.etiqueta}>ESTADO DEL LINK:</Text>
-                    <Text style={[styles.valor, { color: COLORS.primary }]}>ENCRIPTADO</Text>
+            {/* Panel Inferior Compacto */}
+            <View style={styles.panelInferior}>
+                <View style={styles.infoEstado}>
+                    <Text style={styles.textoEstado}>SISTEMA OPERATIVO</Text>
+                    <Text style={styles.subtextoEstado}>MONITOREO EN TIEMPO REAL</Text>
                 </View>
 
                 <TouchableOpacity style={styles.botonCerrar} onPress={handleCerrar}>
-                    <Text style={styles.textoBotonCerrar}>CERRAR PANEL</Text>
+                    <Text style={styles.textoBotonCerrar}>FINALIZAR VIGILANCIA</Text>
                 </TouchableOpacity>
             </View>
+
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    contenedor: { 
-        flex: 1, 
-        backgroundColor: COLORS.background 
+    contenedor: {
+        flex: 1,
+        backgroundColor: COLORS.background,
     },
-    barraSuperior: { 
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
-        padding: 15, 
-        backgroundColor: COLORS.card, 
-        borderBottomWidth: 1, 
-        borderBottomColor: COLORS.border 
+    cabeceraFlotante: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        backgroundColor: COLORS.background,
+        borderBottomWidth: 1,
+        borderBottomColor: COLORS.border,
+        zIndex: 10,
     },
-    textoZona: { 
-        color: COLORS.textHighlight, 
-        fontSize: 10, 
-        fontWeight: 'bold', 
-        letterSpacing: 2 
+    etiquetaZona: {
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 4,
     },
-    indicadorSenal: { 
-        backgroundColor: COLORS.success, 
-        paddingHorizontal: 8, 
-        paddingVertical: 2, 
-        borderRadius: 4 
-    },
-    textoSenal: { 
-        color: COLORS.primaryText, 
-        fontSize: 9, 
-        fontWeight: '900' 
-    },
-    marcadorMapa: { 
-        flex: 2, 
-        backgroundColor: COLORS.background, 
-        justifyContent: 'center', 
-        padding: 20 
-    },
-    radarOverlay: { 
-        flex: 1, 
-        justifyContent: 'center' 
-    },
-    coordFooter: { 
-        marginTop: 20, 
-        alignItems: 'center', 
-        borderTopWidth: 1, 
-        borderTopColor: COLORS.border, 
-        paddingTop: 10 
-    },
-    labelCoords: { 
-        color: COLORS.text, 
-        fontSize: 8, 
-        fontFamily: 'monospace' 
-    },
-    valorCoords: { 
+    textoZona: {
         color: COLORS.primary,
-        fontSize: 9, 
-        fontFamily: 'monospace', 
-        fontWeight: 'bold' 
+        fontSize: 10,
+        fontWeight: 'bold',
+        letterSpacing: 1,
     },
-    panelCoordenadas: { 
-        flex: 1, 
-        padding: 25, 
+    indicadorSenal: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+    },
+    puntoSenal: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: COLORS.success,
+    },
+    textoSenal: {
+        color: COLORS.textHighlight,
+        fontSize: 10,
+        fontWeight: 'bold',
+    },
+    areaMapa: {
+        flex: 1, // Ocupa todo el espacio disponible restante
+        backgroundColor: '#000',
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+        borderBottomWidth: 1,
+        borderBottomColor: COLORS.border,
+    },
+    overlayCoordenadas: {
+        position: 'absolute',
+        bottom: 20,
+        left: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: 8,
+        borderLeftWidth: 2,
+        borderLeftColor: COLORS.textHighlight,
+    },
+    labelCoords: {
+        color: COLORS.text,
+        fontSize: 8,
+        letterSpacing: 2,
+        marginBottom: 2,
+    },
+    valorCoords: {
+        color: COLORS.textHighlight,
+        fontSize: 12,
+        fontFamily: 'monospace',
+        fontWeight: 'bold',
+    },
+    panelInferior: {
         backgroundColor: COLORS.card,
-        borderTopWidth: 2, 
-        borderTopColor: COLORS.primary
+        padding: 20,
+        paddingBottom: 30, // Extra padding for bottom safe area visual
     },
-    tituloPanel: { 
-        color: COLORS.text, 
-        fontSize: 10, 
-        letterSpacing: 3, 
-        marginBottom: 20, 
-        borderBottomWidth: 1, 
-        borderBottomColor: COLORS.border, 
-        paddingBottom: 5 
+    infoEstado: {
+        marginBottom: 15,
+        alignItems: 'center',
     },
-    fila: { 
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
-        marginBottom: 10 
+    textoEstado: {
+        color: COLORS.text,
+        fontSize: 9,
+        letterSpacing: 3,
+        marginBottom: 2,
     },
-    etiqueta: { 
-        color: COLORS.text, 
-        fontSize: 11, 
-        fontFamily: 'monospace' 
-    },
-    valor: { 
-        color: COLORS.textHighlight, 
-        fontSize: 11, 
-        fontWeight: 'bold', 
-        fontFamily: 'monospace' 
-    },
-    alertaContenedor: { 
-        marginTop: 15, 
-        padding: 10, 
-        alignItems: 'center' 
-    },
-    textoAlerta: { 
-        color: COLORS.success,
-        fontSize: 10, 
-        fontWeight: '900', 
-        letterSpacing: 2 
+    subtextoEstado: {
+        color: COLORS.primary,
+        fontSize: 11,
+        fontWeight: 'bold',
     },
     botonCerrar: {
         backgroundColor: COLORS.primary,
-        padding: 15,
-        marginTop: 10,
+        paddingVertical: 18,
         alignItems: 'center',
+        borderRadius: 0, // Rectangular, industrial look
+        shadowColor: COLORS.primary,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
     },
     textoBotonCerrar: {
-        color: 'black',
-        fontWeight: 'bold',
+        color: '#000',
+        fontWeight: '900',
+        fontSize: 14,
+        letterSpacing: 1,
     }
 });
 
