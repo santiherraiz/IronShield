@@ -6,6 +6,11 @@ target/
 # EXPO
 .expo/
 
+# Que no se suba el pom ni los logs
+.pom.xml
+.ironshield_system.log
+
+
 #app.json
 app.json
 
