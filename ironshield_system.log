@@ -1,0 +1,2 @@
+[2026-02-04 09:14:11] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 09:14:11] [ERROR] Error al obtener guardias activos: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
