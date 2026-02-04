@@ -1,3 +1,70 @@
 [2026-02-04 10:08:29] [WARNING] El monitor de inactividad ya está en ejecución
 [2026-02-04 10:09:30] [WARNING] El monitor de inactividad ya está en ejecución
 [2026-02-04 10:26:52] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-04 13:10:05] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-04 13:13:53] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-04 13:13:54] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-04 13:14:10] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:10] [ERROR] [ERROR] Ha habido un error en la consulta NombreDAO | Exception: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:14] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:14] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:14] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:14] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:15] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:15] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:15] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:15] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:18] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:18] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:18] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:18] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:27] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:27] [ERROR] [ERROR] Ha habido un error en la consulta NombreDAO | Exception: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:27] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:27] [ERROR] Error al obtener guardias activos: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] [ERROR] Ha habido un error en la consulta NombreDAO | Exception: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
+[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
+[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null

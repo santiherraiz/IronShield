@@ -3,7 +3,7 @@ export const useServer = () => {
     const SERVER_CASA = "http://192.168.1.38:45678" // Esto es para MI casa, cambiad a la vuestra si probáis: XAVI
     const SERVER_SANTI = "http://10.183.148.33:45678" // Esto es para SANTI
     const SERVER_SANTI2 = "http://192.168.1.43:45678" // Esto es para CASA SANTI
-    const SERVER_MANU = "http://10.249.54.134:45678" // Esto es para CASA SANTI
+    const SERVER_MANU = "http://10.249.49.194:45678" // Esto es para CASA SANTI
 
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en
