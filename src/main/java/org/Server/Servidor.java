@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
+/**G001G
  * La clase {@link Servidor} es la que se encarga de las conexiones TCP con los clientes. 
  * Este genera un hilo por cada conexión. El objetivo es recibir o enviar el JSON pertinente al cliente. 
  * Por ejemplo, queremos recibir un JSON con los datos de los agentes, recibiremos 1 JSON con los datos del agente. 
