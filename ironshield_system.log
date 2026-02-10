@@ -1,71 +1,48 @@
 [2026-02-04 10:08:29] [WARNING] El monitor de inactividad ya está en ejecución
 [2026-02-04 10:09:30] [WARNING] El monitor de inactividad ya está en ejecución
 [2026-02-04 10:26:52] [WARNING] El monitor de inactividad ya está en ejecución
-[2026-02-04 13:10:05] [WARNING] El monitor de inactividad ya está en ejecución
-[2026-02-04 13:13:53] [WARNING] El monitor de inactividad ya está en ejecución
-[2026-02-04 13:13:54] [WARNING] El monitor de inactividad ya está en ejecución
-[2026-02-04 13:14:10] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:10] [ERROR] [ERROR] Ha habido un error en la consulta NombreDAO | Exception: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:14] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:14] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:14] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:14] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:15] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:15] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:15] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:15] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:18] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:18] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:18] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:18] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:20] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:20] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:27] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:27] [ERROR] [ERROR] Ha habido un error en la consulta NombreDAO | Exception: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:27] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:27] [ERROR] Error al obtener guardias activos: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:28] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:28] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] [ERROR] Ha habido un error en la consulta NombreDAO | Exception: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:45] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:45] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-04 13:14:50] [ERROR] [ERROR] No se pudo conectar a la base de datos | Exception: No suitable driver found for db.url
-[2026-02-04 13:14:50] [ERROR] Error al actualizar ubicación: Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn" is null
-[2026-02-08 12:12:12] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:33:19] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:34:47] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:34:47] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 09:34:47] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 09:34:51] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:34:51] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 09:34:51] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 09:36:07] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:36:07] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 09:36:07] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 09:36:16] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:36:16] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 09:36:16] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 09:36:57] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:36:57] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 09:36:57] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 09:37:44] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 09:37:44] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 09:37:44] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 10:00:52] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 10:00:52] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 10:00:52] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 10:03:04] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 10:03:04] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 10:03:04] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 10:08:39] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 10:08:39] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 10:08:39] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 10:08:51] [ERROR] ERROR CRÍTICO en WebServer: La dirección ya se está usando
+[2026-02-10 10:08:51] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 10:08:51] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 10:11:30] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 10:16:48] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 11:46:37] [ERROR] Mensaje de error simple sin excepción
+[2026-02-10 11:46:37] [CRITICAL] Fallo crítico de prueba
+[2026-02-10 11:46:37] [INFO] Test de unidad: mensaje de información
+[2026-02-10 11:46:37] [WARNING] Test de unidad: advertencia de seguridad
+[2026-02-10 11:46:37] [ERROR] Test de unidad: fallo de servidor | Exception: Error simulado para el test
+[2026-02-10 11:46:41] [ERROR] Error al insertar inactividad para null: Column 'usuario_id' cannot be null
+[2026-02-10 11:46:43] [ERROR] Error al insertar inactividad para USUARIO_INEXISTENTE_TEST: Column 'usuario_id' cannot be null
+[2026-02-10 11:46:43] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 11:46:43] [WARNING] El monitor de inactividad no está en ejecución
+[2026-02-10 11:47:03] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 11:50:03] [WARNING] El monitor de inactividad ya está en ejecución
+[2026-02-10 12:01:44] [WARNING] El monitor de inactividad ya está en ejecución

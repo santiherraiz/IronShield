@@ -1,9 +1,6 @@
 export const useServer = () => {
-    const SERVER_URL = "http://172.30.77.24:45678";
-    const SERVER_CASA = "http://192.168.1.38:45678" // Esto es para MI casa, cambiad a la vuestra si probáis: XAVI
-    const SERVER_SANTI = "http://10.183.148.33:45678" // Esto es para SANTI
-    const SERVER_SANTI2 = "http://192.168.1.43:45678" // Esto es para CASA SANTI
-    const SERVER_MANU = "http://10.249.49.194:45678" // Esto es para CASA SANTI
+    // Esta URL es actualizada automáticamente por set-ip.js
+    const BASE_URL = "http://10.127.113.33:45678";
 
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en
@@ -14,7 +11,7 @@ export const useServer = () => {
      */
     const sendLocation = async (username: string, latitude: string, longitude: string) => {
         try {
-            await fetch(`${SERVER_MANU}/location`, {
+            await fetch(`${BASE_URL}/location`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 3, username, latitude, longitude }),
@@ -32,7 +29,7 @@ export const useServer = () => {
      */
     const getName = async (username: string, pass: string) => {
         try {
-            const res = await fetch(`${SERVER_MANU}/name`, {
+            const res = await fetch(`${BASE_URL}/name`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: 1, username, pass })
@@ -48,7 +45,7 @@ export const useServer = () => {
 
     const getActiveGuards = async () => {
         try {
-            const res = await fetch(`${SERVER_MANU}/guards`);
+            const res = await fetch(`${BASE_URL}/guards`);
             if (!res.ok) console.log("No se ha podido obtener la lista de guardias");
             return await res.json();
         } catch (error) {
