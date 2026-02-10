@@ -1,6 +1,6 @@
 export const useServer = () => {
     // Esta URL es actualizada automáticamente por set-ip.js
-    const BASE_URL = "http://10.127.113.33:45678";
+    const BASE_URL = "http://192.168.1.43:45678";
 
     /**
      * <strong>sendLocation</strong> envía la localización de la aplicación al servidor web. Primero comprobará si está en web o en

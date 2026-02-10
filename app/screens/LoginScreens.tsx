@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar, Alert, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/colors';
 import { useLogin } from '../../hooks/useLogin';
@@ -13,8 +13,12 @@ const PantallaLogin = () => {
       <StatusBar barStyle="light-content" backgroundColor={COLORS.background} />
 
       <View style={styles.encabezado}>
-        <Text style={styles.titulo}>TRACKMATE</Text>
-        <Text style={styles.subtitulo}>OPERACIONES DE SEGURIDAD</Text>
+        {/* Añadir la imagen imagen1 de la carpeta assets */}
+        <Image
+          source={require('../../assets/images/imagen2-rb.png')}
+          style={styles.imagen}
+          resizeMode="contain"
+        />
       </View>
 
       <View style={styles.contenedorFormulario}>
@@ -43,7 +47,7 @@ const PantallaLogin = () => {
         </TouchableOpacity>
 
         <Text style={styles.textoPie}>SOLO PERSONAL AUTORIZADO</Text>
-        <Text style={styles.textoVersion}>SIS v0.0.5</Text>
+        <Text style={styles.textoVersion}>SIS v1.0.0</Text>
       </View>
     </SafeAreaView>
   );
@@ -119,6 +123,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 10,
     opacity: 0.5,
+  },
+  imagen: {
+    width: 400,
+    height: 200,
   },
 });
 
