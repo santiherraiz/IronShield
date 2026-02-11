@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import { useCentinela } from '../hooks/useCentinelaLocation';
-import { Radar, RefreshCw, AlertOctagon, ShieldCheck, Settings } from 'lucide-react-native';
+import { Radar, RefreshCw, AlertOctagon } from 'lucide-react-native';
 import { PermissionStatus } from '../infrastructure/interfaces/location';
 import { CentinelaMap } from './CentinelaMap';
 

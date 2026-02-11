@@ -1,6 +1,8 @@
 import * as Location from 'expo-location'
 import { PermissionStatus } from '../../../infrastructure/interfaces/location'
 import { Alert, Linking } from 'react-native';
+
+
 export const requestLocationPermission = async (): Promise<PermissionStatus> => {
 
 
@@ -8,13 +10,12 @@ export const requestLocationPermission = async (): Promise<PermissionStatus> => 
 
 
     if (status !== 'granted') {
-        //TODO Crear la peticion manual de cambio de permisos
+        
         if (status === 'denied') {
             manualPermissionRequest();
         }
         return PermissionStatus.DENIED;
     }
-    //Faltan los estados intermedios
     return PermissionStatus.GRANTED;
 }
 
