@@ -64,7 +64,6 @@ export const CentinelaDisplay = () => {
 
                 {/* Footer de Integridad */}
                 <View style={styles.cardFooter}>
-                    {/* ... resto de tu footer ... */}
                 </View>
             </View>
         );
